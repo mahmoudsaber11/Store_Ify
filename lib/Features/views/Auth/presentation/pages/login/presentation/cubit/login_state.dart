@@ -7,3 +7,13 @@ class LoginChangePasswordVisibility extends LoginState {
 
   LoginChangePasswordVisibility({required this.isPassword});
 }
+
+class SignInLoadingState extends LoginState {}
+
+class SignInSuccessState extends LoginState {}
+
+class SignInErrorState extends LoginState {
+  final String error;
+
+  SignInErrorState(this.error);
+}
