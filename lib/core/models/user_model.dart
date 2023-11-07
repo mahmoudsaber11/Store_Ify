@@ -1,12 +1,12 @@
 class UserModel {
   final String message;
-  final UserData userData;
+  final UserData data;
 
-  UserModel({required this.message, required this.userData});
+  UserModel({required this.message, required this.data});
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      message: message,
-      userData: userData,
+      message: json["message"],
+      data: UserData.fromJson(json["data"]),
     );
   }
 }
