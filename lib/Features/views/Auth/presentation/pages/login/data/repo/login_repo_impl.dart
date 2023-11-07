@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/data/repo/login_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
@@ -19,7 +20,10 @@ class LoginRepoImpl implements LoginRepo {
       final UserModel user = UserModel.fromJson(response);
       return right(user);
     } catch (e) {
-      return left(ServerFailure());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 }
