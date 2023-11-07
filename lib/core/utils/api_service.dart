@@ -8,18 +8,18 @@ class ApiService {
   ApiService(this.dio);
 
   Future<Map<String, dynamic>> getData(
-    String path, {
+    String url, {
     required Map<String, dynamic>? queryParameters,
   }) async {
-    Response response = await dio.get(path, queryParameters: queryParameters);
+    Response response = await dio.get(url, queryParameters: queryParameters);
     return jsonDecode(response.data);
   }
 
-  Future<Map<String, dynamic>> postData(String path,
+  Future<Map<String, dynamic>> postData(String url,
       {Map<String, dynamic>? queryParameters,
       required Map<String, dynamic> data}) async {
     Response response = await dio.post(
-      path,
+      url,
       queryParameters: queryParameters,
       data: data,
     );
