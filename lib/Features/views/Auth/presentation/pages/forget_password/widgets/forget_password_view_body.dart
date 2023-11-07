@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/verification/verification_view.dart';
 import 'package:store_ify/core/utils/constant.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
@@ -77,7 +78,11 @@ class ForgetPasswordViewBody extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const SignUpView(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(milliseconds: 500));
+                  },
                   child: GeneralText(
                     text: "Signup ",
                     color: kPrimaryColor,

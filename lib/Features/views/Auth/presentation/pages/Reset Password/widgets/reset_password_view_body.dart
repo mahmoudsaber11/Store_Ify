@@ -62,7 +62,7 @@ class ResetPasswordViewBody extends StatelessWidget {
                 var passNonNullValue = value ?? "";
                 if (passNonNullValue.isEmpty) {
                   return ("Password is required");
-                } else if (passNonNullValue.length < 6) {
+                } else if (passNonNullValue.length < 8) {
                   return ("Password Must be more than 5 characters");
                 } else if (!regex.hasMatch(passNonNullValue)) {
                   return ("Password should contain upper,lower,digit and Special character ");
@@ -76,43 +76,39 @@ class ResetPasswordViewBody extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            GeneralText(
-              text: " Confirm password",
-              color: kPrimaryColor,
-              textAlign: TextAlign.start,
-              fontSize: 16,
-            ),
-            CustomTextField(
-              isPassword: true,
-              onChange: (value) {
-                confirmPassword = value;
-              },
-              validate: (value) {
-                RegExp regex = RegExp(
-                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                var passNonNullValue = value ?? "";
-                if (passNonNullValue.isEmpty) {
-                  return ("Password is required");
-                } else if (passNonNullValue.length < 6) {
-                  return ("Password Must be more than 5 characters");
-                } else if (!regex.hasMatch(passNonNullValue)) {
-                  return ("Password should contain upper,lower,digit and Special character ");
-                } else if (value != password) {
-                  return 'Confirm password not matching';
-                }
-                return null;
-              },
-              controller: confirmController,
-              inputType: TextInputType.visiblePassword,
-              hintText: '*********',
-              // suffix: Icons.visibility_off,
-              // iconButton: IconButton(
-              //     icon: Icon(
-              //       Icons.visibility_off,
-              //       color: kPrimaryColor,
-              //     ),
-              //     onPressed: () {}),
-            ),
+            
+                GeneralText(
+                  text: " Confirm password",
+                  color: kPrimaryColor,
+                  textAlign: TextAlign.start,
+                  fontSize: 16,
+                ),
+                CustomTextField(
+                  isPassword: true,
+                  onChange: (value) {
+                    confirmPassword = value;
+                  },
+                  validate: (value) {
+                    RegExp regex = RegExp(
+                        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                    var passNonNullValue = value ?? "";
+                    if (passNonNullValue.isEmpty) {
+                      return ("Password is required");
+                    } else if (passNonNullValue.length < 6) {
+                      return ("Password Must be more than 5 characters");
+                    } else if (!regex.hasMatch(passNonNullValue)) {
+                      return ("Password should contain upper,lower,digit and Special character ");
+                    } else if (value != password) {
+                      return 'Confirm password not matching';
+                    }
+                    return null;
+                  },
+                  controller: confirmController,
+                  inputType: TextInputType.visiblePassword,
+                  hintText: '*********',
+                ),
+              
+            
             const SizedBox(
               height: 28,
             ),

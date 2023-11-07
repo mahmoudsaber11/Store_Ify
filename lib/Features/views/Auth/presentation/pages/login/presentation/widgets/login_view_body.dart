@@ -10,6 +10,7 @@ import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/core/widgets/general_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
+import 'package:store_ify/main.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({

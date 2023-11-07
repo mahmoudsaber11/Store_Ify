@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/splash/presentation/views/splash_view.dart';
-import 'package:store_ify/core/utils/api_service.dart';
+import 'package:store_ify/Features/views/store_ify_layout/presentation/views/store_ify_layout.dart';
 import 'package:store_ify/core/utils/bloc_observer.dart';
 
 void main(List<String> args) {
@@ -19,7 +19,7 @@ class StoreIfyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFFFFFFF)),
       debugShowCheckedModeBanner: false,
-      home: const SplashView(),
+      home: const StoreIfyLayout(),
     );
   }
 }

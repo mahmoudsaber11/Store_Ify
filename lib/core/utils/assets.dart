@@ -4,4 +4,5 @@ class AssetsData {
   static const face = 'assets/images/Google(1).png';
   static const twet = 'assets/images/Google(2).png';
   static const verification = 'assets/images/image 1.png';
+  static const person = 'assets/images/Ellipse 4.png';
 }
