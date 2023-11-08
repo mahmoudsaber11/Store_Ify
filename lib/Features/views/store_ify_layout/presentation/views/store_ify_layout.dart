@@ -3,7 +3,6 @@ import 'package:store_ify/Features/views/store_ify_layout/presentation/widgets/s
 
 class StoreIfyLayout extends StatelessWidget {
   const StoreIfyLayout({super.key});
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

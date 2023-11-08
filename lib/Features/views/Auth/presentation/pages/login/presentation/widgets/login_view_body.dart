@@ -1,16 +1,19 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/forget_password/forget_password_view.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/cubit/login_state.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/views/sign_up_view.dart';
+import 'package:store_ify/Features/views/store_ify_layout/presentation/views/store_ify_layout.dart';
 import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/utils/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/core/widgets/general_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
-import 'package:store_ify/main.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({
@@ -26,7 +29,24 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
     var formKey = GlobalKey<FormState>();
-    return BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
+    return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
+      if (state is SignInSuccessState) {
+        Fluttertoast.showToast(
+                msg: state.userModel.message,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 5,
+                backgroundColor: Colors.green,
+                textColor: Colors.white,
+                fontSize: 16.0)
+            .then((value) {
+          Get.off(() => const StoreIfyLayout());
+        });
+      }
+      if (state is SignInErrorState) {
+        showToast(text: state.error, state: ToastStates.ERROR);
+      }
+    }, builder: (context, state) {
       return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -88,16 +108,25 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 ),
                 CustomTextField(
                   validate: (String? value) {
-                    RegExp regex = RegExp(
-                        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                    // RegExp regex = RegExp(
+                    //     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
                     if (value!.isEmpty) {
                       return 'Please enter password';
-                    } else {
-                      if (!regex.hasMatch(value)) {
-                        return 'Enter valid password';
-                      } else {
-                        return null;
-                      }
+                    }
+                    // else {
+                    //  if (!regex.hasMatch(value)) {
+                    //   return 'Enter valid password';
+                    //   }
+                    else {
+                      return null;
+                      // }
+                    }
+                  },
+                  onSubmited: (value) {
+                    if (formKey.currentState!.validate()) {
+                      LoginCubit.get(context).userSignIn(
+                          email: emailController.text,
+                          password: passwordController.text);
                     }
                   },
                   controller: passwordController,
@@ -118,11 +147,25 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 const SizedBox(
                   height: 32,
                 ),
-                CustomGeneralButton(
-                    text: 'Log in',
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {}
-                    }),
+                ConditionalBuilder(
+                  condition: state is! SignInLoadingState,
+                  builder: (context) {
+                    return CustomGeneralButton(
+                        text: 'Log in',
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            LoginCubit.get(context).userSignIn(
+                                email: emailController.text,
+                                password: passwordController.text);
+                          }
+                        });
+                  },
+                  fallback: (context) => Center(
+                    child: CircularProgressIndicator(
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
                 Row(
                   children: [
                     TextButton(

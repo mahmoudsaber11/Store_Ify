@@ -15,7 +15,7 @@ class ApiService {
     return jsonDecode(response.data);
   }
 
-  Future<Map<String, dynamic>> postData(String url,
+  Future<dynamic> postData(String url,
       {Map<String, dynamic>? queryParameters,
       required Map<String, dynamic> data}) async {
     Response response = await dio.post(
@@ -23,6 +23,6 @@ class ApiService {
       queryParameters: queryParameters,
       data: data,
     );
-    return jsonDecode(response.data);
+    return response.data;
   }
 }

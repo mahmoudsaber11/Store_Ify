@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   final ValueSetter? onChange;
   final bool? isPassword;
   final Widget? suffix;
-
+  final ValueSetter? onSubmited;
   const CustomTextField({
     super.key,
     this.inputType,
@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.onChange,
     this.isPassword,
     this.suffix,
+    this.onSubmited,
   });
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class CustomTextField extends StatelessWidget {
       obscureText: isPassword ?? false,
       validator: validate,
       onChanged: onChange,
+      onFieldSubmitted: onSubmited,
       controller: controller,
       keyboardType: inputType,
       decoration: InputDecoration(
