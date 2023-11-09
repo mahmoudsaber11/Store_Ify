@@ -13,9 +13,9 @@ class LoginChangePasswordVisibility extends LoginState {
 class SignInLoadingState extends LoginState {}
 
 class SignInSuccessState extends LoginState {
-
   final UserModel userModel;
-   SignInSuccessState({required this.userModel});
+  final String uId;
+  SignInSuccessState(this.uId, {required this.userModel});
 }
 
 class SignInErrorState extends LoginState {

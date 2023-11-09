@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/views/login_view.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/cubit/sign_up_state.dart';
+import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/widgets/user_sign_up_form.dart';
+import 'package:store_ify/Features/views/store_ify_layout/presentation/views/store_ify_layout.dart';
 import 'package:store_ify/core/utils/constant.dart';
-import 'package:store_ify/core/widgets/custom_buttons.dart';
-import 'package:store_ify/core/widgets/custom_text_field.dart';
+import 'package:store_ify/core/utils/show_toast.dart';
 import 'package:store_ify/core/widgets/general_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
 
@@ -24,7 +26,25 @@ class SignUpViewBody extends StatelessWidget {
     // ignore: unused_local_variable
     String confirmPassword = '';
 
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
+      listener: (context, state) {
+        if (state is SignUpSuccessState) {
+          Fluttertoast.showToast(
+                  msg: state.userModel.message,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 5,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0)
+              .then((value) {
+            Get.off(() => const StoreIfyLayout());
+          });
+        }
+        if (state is SignUpErrorState) {
+          showToast(text: state.error, state: ToastStates.ERROR);
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(16),
@@ -53,145 +73,14 @@ class SignUpViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 22,
                   ),
-                  GeneralText(
-                    text: "E-mail",
-                    color: kPrimaryColor,
-                    textAlign: TextAlign.start,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  CustomTextField(
-                    validate: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'email must not be empty';
-                      } else if (!value.contains('@')) {
-                        return "email should contains @";
-                      }
-                      return null;
-                    },
-                    controller: emailController,
-                    inputType: TextInputType.emailAddress,
-                    hintText: 'Example@gmail.com',
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  GeneralText(
-                    text: "Username",
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                  CustomTextField(
-                    validate: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'email must not be empty';
-                      }
-                      if (value.length < 6) {
-                        return "must be more than 5 charater";
-                      }
-                      return null;
-                    },
-                    controller: nameController,
-                    inputType: TextInputType.name,
-                    hintText: 'Enter  your username',
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  GeneralText(
-                    text: "password",
-                    color: kPrimaryColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    textAlign: TextAlign.start,
-                  ),
-                  CustomTextField(
-                    isPassword: SignUpCubit.get(context).isPassword,
-                    suffix: IconButton(
-                        onPressed: () {
-                          SignUpCubit.get(context).switchPassVisibility();
-                        },
-                        icon: Icon(
-                          SignUpCubit.get(context).isPassword
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
-                          color: kPrimaryColor,
-                        )),
-                    onChange: (value) {
-                      password = value;
-                    },
-                    validate: (value) {
-                      RegExp regex = RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                      var passNonNullValue = value ?? "";
-                      if (passNonNullValue.isEmpty) {
-                        return ("Password is required");
-                      } else if (passNonNullValue.length < 6) {
-                        return ("Password Must be more than 5 characters");
-                      } else if (!regex.hasMatch(passNonNullValue)) {
-                        return ("Password should contain upper,lower,digit and Special character ");
-                      }
-                      return null;
-                    },
-                    controller: passwordController,
-                    inputType: TextInputType.visiblePassword,
-                    hintText: '*********',
-                    //  suffix: Icons.visibility_off,
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  GeneralText(
-                    textAlign: TextAlign.start,
-                    text: " Confirm password",
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                  CustomTextField(
-                    isPassword: SignUpCubit.get(context).isPassword,
-                    suffix: IconButton(
-                        onPressed: () {
-                          SignUpCubit.get(context).switchPassVisibility();
-                        },
-                        icon: Icon(
-                          SignUpCubit.get(context).isPassword
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
-                          color: kPrimaryColor,
-                        )),
-                    onChange: (value) {
-                      confirmPassword = value;
-                    },
-                    validate: (value) {
-                      RegExp regex = RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                      var passNonNullValue = value ?? "";
-                      if (passNonNullValue.isEmpty) {
-                        return ("Password is required");
-                      } else if (passNonNullValue.length < 6) {
-                        return ("Password Must be more than 5 characters");
-                      } else if (!regex.hasMatch(passNonNullValue)) {
-                        return ("Password should contain upper,lower,digit and Special character ");
-                      } else if (value != password) {
-                        return 'Confirm password not matching';
-                      }
-                      return null;
-                    },
-                    controller: confirmController,
-                    inputType: TextInputType.visiblePassword,
-                    hintText: '*********',
-                    //   suffix: Icons.visibility_off,
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  CustomGeneralButton(
-                      text: 'Signup',
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {}
-                      }),
+                  UserSignUpForm(
+                      emailController: emailController,
+                      nameController: nameController,
+                      passwordController: passwordController,
+                      formKey: formKey,
+                      confirmController: confirmController,
+                      password: password,
+                      state: state),
                   TextButton(
                       onPressed: () {
                         Get.off(() => const LoginView(),

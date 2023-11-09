@@ -2,11 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/views/login_view.dart';
-import 'package:store_ify/Features/views/splash/presentation/views/splash_view.dart';
-import 'package:store_ify/Features/views/store_ify_layout/presentation/views/store_ify_layout.dart';
 import 'package:store_ify/core/utils/bloc_observer.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const StoreIfyApp());
