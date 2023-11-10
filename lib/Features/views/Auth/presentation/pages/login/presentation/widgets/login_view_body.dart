@@ -51,6 +51,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           child: Form(
             key: formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
                   height: MediaQuery.of(context).size.height * .2,

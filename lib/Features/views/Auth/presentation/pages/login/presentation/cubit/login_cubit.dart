@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/Features/views/Auth/presentation/pages/login/data/repo/login_repo.dart';
+import 'package:store_ify/Features/views/Auth/presentation/pages/login/doman/repositories/login_repo.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/cubit/login_state.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/utils/constant.dart';

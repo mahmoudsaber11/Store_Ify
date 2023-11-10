@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/models/user_model.dart';
 
@@ -7,4 +8,5 @@ abstract class LoginRepo {
     required String email,
     required String password,
   });
+  Future<Either<Exception, UserCredential>> loginWithGoogle();
 }

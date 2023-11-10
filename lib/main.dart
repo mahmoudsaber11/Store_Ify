@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/views/login_view.dart';
@@ -7,6 +8,7 @@ import 'package:store_ify/core/utils/bloc_observer.dart';
 void main(List<String> args) async {
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const StoreIfyApp());
 }
 
