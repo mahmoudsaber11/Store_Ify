@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/assets.dart';
 import 'package:store_ify/core/utils/constant.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({
@@ -16,18 +15,22 @@ class CustomUser extends StatelessWidget {
         Image.asset(AssetsData.person),
         Column(
           children: [
-            GeneralText(
-              text: "Hello,Yasmeen",
-              color: appColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 12,
+            Text(
+              "Hello,Yasmeen",
+              style: TextStyle(
+                color: appColor,
+                fontWeight: FontWeight.w400,
+                fontSize: 12,
+              ),
             ),
-            const GeneralText(
-              text: "Alexandria,Egypt",
-              color: Color(0xFF0F3557),
-              fontWeight: FontWeight.w300,
-              fontSize: 10,
-            ),
+            Text(
+              "Alexandria,Egypt",
+              style: TextStyle(
+                color: textProfileColor,
+                fontWeight: FontWeight.w300,
+                fontSize: 10,
+              ),
+            )
           ],
         )
       ],

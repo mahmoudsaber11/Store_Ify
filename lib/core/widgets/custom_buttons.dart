@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/constant.dart';
 import 'package:store_ify/core/utils/size_config.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 
 class CustomGeneralButton extends StatelessWidget {
   const CustomGeneralButton(
@@ -17,15 +18,10 @@ class CustomGeneralButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: MaterialButton(
-        onPressed: onPressed,
-        child: Text(text!,
-            // poppins medium 16
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFFFFFFFF),
-            )),
-      ),
+          onPressed: onPressed,
+          child: CustomTextButton(
+            text: text!,
+          )),
     );
   }
 }

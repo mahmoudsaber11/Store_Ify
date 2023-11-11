@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class ResetPasswordViewBody extends StatelessWidget {
   const ResetPasswordViewBody({super.key});
@@ -23,49 +22,29 @@ class ResetPasswordViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            GeneralText(
-              text: "Reset Password",
-              color: kTitleColor,
-              textAlign: TextAlign.center,
-              fontSize: 22.5,
-              fontWeight: FontWeight.w500,
-            ),
+            const TextTitleApp(text: "Reset Password"),
             const SizedBox(
               height: 13,
             ),
-            const GeneralText(
+            const TextResetAndForgetPassword(
               text:
                   "Enter your new password ,make sure that it should at least 8 characters started by _ ",
-              color: Color(0xFFD0CFCE),
-              textAlign: TextAlign.center,
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
             ),
             const SizedBox(
               height: 23,
             ),
-            GeneralText(
-              text: "password",
-              color: kPrimaryColor,
-              textAlign: TextAlign.start,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+            const TitleTextFieldAndTextButton(text: "password"),
             CustomTextField(
               isPassword: true,
               onChange: (value) {
                 password = value;
               },
               validate: (value) {
-                RegExp regex = RegExp(
-                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
                 var passNonNullValue = value ?? "";
                 if (passNonNullValue.isEmpty) {
                   return ("Password is required");
                 } else if (passNonNullValue.length < 8) {
                   return ("Password Must be more than 5 characters");
-                } else if (!regex.hasMatch(passNonNullValue)) {
-                  return ("Password should contain upper,lower,digit and Special character ");
                 }
                 return null;
               },
@@ -76,39 +55,27 @@ class ResetPasswordViewBody extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            
-                GeneralText(
-                  text: " Confirm password",
-                  color: kPrimaryColor,
-                  textAlign: TextAlign.start,
-                  fontSize: 16,
-                ),
-                CustomTextField(
-                  isPassword: true,
-                  onChange: (value) {
-                    confirmPassword = value;
-                  },
-                  validate: (value) {
-                    RegExp regex = RegExp(
-                        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                    var passNonNullValue = value ?? "";
-                    if (passNonNullValue.isEmpty) {
-                      return ("Password is required");
-                    } else if (passNonNullValue.length < 6) {
-                      return ("Password Must be more than 5 characters");
-                    } else if (!regex.hasMatch(passNonNullValue)) {
-                      return ("Password should contain upper,lower,digit and Special character ");
-                    } else if (value != password) {
-                      return 'Confirm password not matching';
-                    }
-                    return null;
-                  },
-                  controller: confirmController,
-                  inputType: TextInputType.visiblePassword,
-                  hintText: '*********',
-                ),
-              
-            
+            const TitleTextFieldAndTextButton(text: "Confirm password"),
+            CustomTextField(
+              isPassword: true,
+              onChange: (value) {
+                confirmPassword = value;
+              },
+              validate: (value) {
+                var passNonNullValue = value ?? "";
+                if (passNonNullValue.isEmpty) {
+                  return ("Password is required");
+                } else if (passNonNullValue.length < 6) {
+                  return ("Password Must be more than 5 characters");
+                } else if (value != password) {
+                  return 'Confirm password not matching';
+                }
+                return null;
+              },
+              controller: confirmController,
+              inputType: TextInputType.visiblePassword,
+              hintText: '*********',
+            ),
             const SizedBox(
               height: 28,
             ),

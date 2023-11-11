@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class UserSignUpForm extends StatefulWidget {
   const UserSignUpForm({
@@ -49,13 +49,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
       key: formKey,
       child: Column(
         children: [
-          GeneralText(
-            text: "E-mail",
-            color: kPrimaryColor,
-            textAlign: TextAlign.start,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-          ),
+          const TitleTextFieldAndTextButton(text: "E-mail"),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
@@ -72,12 +66,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           const SizedBox(
             height: 35,
           ),
-          GeneralText(
-            text: "Username",
-            color: kPrimaryColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
+          const TitleTextFieldAndTextButton(text: "Username"),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
@@ -95,13 +84,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           const SizedBox(
             height: 35,
           ),
-          GeneralText(
-            text: "password",
-            color: kPrimaryColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            textAlign: TextAlign.start,
-          ),
+          const TitleTextFieldAndTextButton(text: "password"),
           CustomTextField(
             isPassword: SignUpCubit.get(context).isPassword,
             suffix: IconButton(
@@ -130,13 +113,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           const SizedBox(
             height: 35,
           ),
-          GeneralText(
-            textAlign: TextAlign.start,
-            text: " Confirm password",
-            color: kPrimaryColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
+          const TitleTextFieldAndTextButton(text: " Confirm password"),
           CustomTextField(
             isPassword: SignUpCubit.get(context).isPassword,
             suffix: IconButton(

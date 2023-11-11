@@ -5,7 +5,6 @@ import 'package:store_ify/Features/views/on_Boarding/presentation/views/widgets/
 import 'package:store_ify/Features/views/on_Boarding/presentation/views/widgets/custom_page_view.dart';
 import 'package:store_ify/core/utils/constant.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -46,14 +45,15 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                 ? (pageController?.page == 2 ? false : true)
                 : true,
             child: Positioned(
-              top: MediaQuery.of(context).size.height * .15,
-              right: 32,
-              child: GeneralText(
-                text: "Skip",
-                color: kPrimaryColor,
-                fontSize: 24,
-              ),
-            )),
+                top: MediaQuery.of(context).size.height * .15,
+                right: 32,
+                child: Text(
+                  "Skip",
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: 24,
+                  ),
+                ))),
         Positioned(
             bottom: MediaQuery.of(context).size.height * .180,
             right: MediaQuery.of(context).size.height * .1,

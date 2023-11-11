@@ -6,8 +6,8 @@ import 'package:otp_text_field/style.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/reset%20password/reset_password_view.dart';
 import 'package:store_ify/core/utils/assets.dart';
 import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class VerificationViewBody extends StatelessWidget {
   const VerificationViewBody({super.key});
@@ -23,22 +23,12 @@ class VerificationViewBody extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * .1,
           ),
-          GeneralText(
-            text: "OTP Verification ",
-            color: kTitleColor,
-            textAlign: TextAlign.center,
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-          ),
+          const TextTitleApp(text: "OTP Verification "),
           const SizedBox(
             height: 8,
           ),
-          GeneralText(
+          const TextResetAndForgetPassword(
             text: "We’ve sent a code to XXXXXX",
-            color: kSubTitleColor,
-            textAlign: TextAlign.center,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
           ),
           const SizedBox(
             height: 19,
@@ -47,13 +37,7 @@ class VerificationViewBody extends StatelessWidget {
           const SizedBox(
             height: 19,
           ),
-          GeneralText(
-            text: "OTP Code",
-            color: kTitleColor,
-            textAlign: TextAlign.center,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+          const TextGeneralApp(text: "OTP Code"),
           const SizedBox(
             height: 13,
           ),
@@ -82,9 +66,9 @@ class VerificationViewBody extends StatelessWidget {
             child: CustomGeneralButton(
                 text: 'Verify',
                 onPressed: () {
-                  Get.to(() => const ResetPasswordView(),
-                      transition: Transition.rightToLeft,
-                      duration: const Duration(milliseconds: 500));
+                  Get.to(
+                    () => const ResetPasswordView(),
+                  );
                 }),
           )
         ],

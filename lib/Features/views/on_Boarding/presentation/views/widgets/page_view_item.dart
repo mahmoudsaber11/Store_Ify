@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/constant.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
@@ -22,21 +21,11 @@ class PageViewItem extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          GeneralText(
-            text: title,
-            color: kTitleColor,
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-          ),
+          TextGeneralApp(text: title),
           const SizedBox(
             height: 16,
           ),
-          GeneralText(
-            text: subTitle,
-            color: kTitleColor,
-            textAlign: TextAlign.center,
-            fontSize: 12,
-          ),
+          TextSubTitleOnBoarding(text: subTitle)
         ],
       ),
     );

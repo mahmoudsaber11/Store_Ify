@@ -7,9 +7,8 @@ import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentat
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/widgets/user_login_form.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/Features/views/store_ify_layout/presentation/views/store_ify_layout.dart';
-import 'package:store_ify/core/utils/constant.dart';
 import 'package:store_ify/core/utils/show_toast.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -39,21 +38,11 @@ class LoginViewBody extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .2,
               ),
-              GeneralText(
-                text: "Sign in to Continue ",
-                color: kTitleColor,
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-              ),
+              const TextTitleApp(text: "Sign in to Continue "),
               const SizedBox(
                 height: 5,
               ),
-              GeneralText(
-                text: "Welcome ",
-                color: kTitleColor,
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
+              const TextTitleApp(text: "Welcome "),
               const SizedBox(
                 height: 22,
               ),
@@ -64,15 +53,12 @@ class LoginViewBody extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Get.to(() => const ForgetPasswordView(),
-                          //  transition: Transition.rightToLeft,
-                          duration: const Duration(milliseconds: 500));
+                      Get.to(
+                        () => const ForgetPasswordView(),
+                      );
                     },
-                    child: const GeneralText(
+                    child: const TextResetAndForgetPassword(
                       text: "Forget password?",
-                      color: Color(0xFFD0CFCE),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   const Spacer(),
@@ -82,20 +68,11 @@ class LoginViewBody extends StatelessWidget {
                         () => const SignUpView(),
                       );
                     },
-                    child: GeneralText(
-                        text: "Signup ",
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16),
-                  ),
+                    child: const TitleTextFieldAndTextButton(text: "Signup "),
+                  )
                 ],
               ),
-              GeneralText(
-                text: "Or sign in with",
-                color: kTitleColor,
-                textAlign: TextAlign.center,
-                fontWeight: FontWeight.w500,
-              ),
+              const TextGeneralApp(text: "Or sign in with"),
               const SizedBox(
                 height: 24,
               ),

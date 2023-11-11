@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/verification/verification_view.dart';
-import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
   const ForgetPasswordViewBody({super.key});
@@ -22,23 +21,13 @@ class ForgetPasswordViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: GeneralText(
-                text: "Forget Password",
-                color: kTitleColor,
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-              ),
+            const Center(
+              child: TextTitleApp(text: "Forget Password"),
             ),
             const SizedBox(
               height: 30,
             ),
-            GeneralText(
-              text: "E-mail",
-              color: kPrimaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+            const TitleTextFieldAndTextButton(text: "E-mail"),
             CustomTextField(
               validate: (String? value) {
                 if (value!.isEmpty) {
@@ -71,22 +60,14 @@ class ForgetPasswordViewBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GeneralText(
-                  text: "Don’t have an account ? ",
-                  color: kTitleColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+                const TextGeneralApp(text: "Don’t have an account ? "),
                 InkWell(
                   onTap: () {
-                    Get.to(() => const SignUpView(),
-                        transition: Transition.rightToLeft,
-                        duration: const Duration(milliseconds: 500));
+                    Get.to(
+                      () => const SignUpView(),
+                    );
                   },
-                  child: GeneralText(
-                    text: "Signup ",
-                    color: kPrimaryColor,
-                  ),
+                  child: const TitleTextFieldAndTextButton(text: "Signup "),
                 ),
               ],
             ),

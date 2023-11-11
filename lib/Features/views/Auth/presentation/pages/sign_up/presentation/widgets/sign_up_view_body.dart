@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/views/login_view.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/sign_up/presentation/widgets/user_sign_up_form.dart';
 import 'package:store_ify/Features/views/store_ify_layout/presentation/views/store_ify_layout.dart';
-import 'package:store_ify/core/utils/constant.dart';
 import 'package:store_ify/core/utils/show_toast.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
 
 class SignUpViewBody extends StatelessWidget {
@@ -23,17 +21,9 @@ class SignUpViewBody extends StatelessWidget {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccessState) {
-          Fluttertoast.showToast(
-                  msg: state.userModel.message,
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16.0)
-              .then((value) {
-            Get.off(() => const StoreIfyLayout());
-          });
+          showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
+
+          Get.off(() => const StoreIfyLayout());
         }
         if (state is SignUpErrorState) {
           showToast(text: state.error, state: ToastStates.ERROR);
@@ -47,21 +37,11 @@ class SignUpViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                GeneralText(
-                  text: "Sign Up",
-                  color: kTitleColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
-                ),
+                const TextTitleApp(text: "Sign Up"),
                 const SizedBox(
                   height: 5,
                 ),
-                GeneralText(
-                  text: "Create an account",
-                  color: kTitleColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
+                const TextGeneralApp(text: "Create an account"),
                 const SizedBox(
                   height: 22,
                 ),
@@ -75,21 +55,16 @@ class SignUpViewBody extends StatelessWidget {
                     child: Row(
                       children: [
                         const Spacer(),
-                        GeneralText(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          text: "Login",
-                          color: kPrimaryColor,
+                        TextButton(
+                          onPressed: () {
+                            Get.to(() => const LoginView());
+                          },
+                          child:
+                              const TitleTextFieldAndTextButton(text: "Login"),
                         ),
                       ],
                     )),
-                GeneralText(
-                  text: "Or sign in with",
-                  color: kTitleColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  textAlign: TextAlign.center,
-                ),
+                const TextGeneralApp(text: "Or sign in with"),
                 const SizedBox(
                   height: 24,
                 ),

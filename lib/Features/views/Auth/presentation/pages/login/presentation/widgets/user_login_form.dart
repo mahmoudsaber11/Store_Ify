@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/cubit/login_state.dart';
 import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/core/widgets/general_text.dart';
 
 class UserLoginForm extends StatefulWidget {
   const UserLoginForm({
@@ -41,12 +41,7 @@ class _UserLoginFormState extends State<UserLoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          GeneralText(
-            text: "E-mail",
-            color: kPrimaryColor,
-            fontSize: 16,
-            textAlign: TextAlign.start,
-          ),
+          const TitleTextFieldAndTextButton(text: "E-mail"),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
@@ -64,27 +59,13 @@ class _UserLoginFormState extends State<UserLoginForm> {
           const SizedBox(
             height: 38,
           ),
-          GeneralText(
-            text: "password",
-            color: kPrimaryColor,
-            textAlign: TextAlign.start,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-          ),
+          const TitleTextFieldAndTextButton(text: "password"),
           CustomTextField(
             validate: (String? value) {
-              // RegExp regex = RegExp(
-              //     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
               if (value!.isEmpty) {
                 return 'Please enter password';
-              }
-              // else {
-              //  if (!regex.hasMatch(value)) {
-              //   return 'Enter valid password';
-              //   }
-              else {
+              } else {
                 return null;
-                // }
               }
             },
             onSubmited: (value) {
