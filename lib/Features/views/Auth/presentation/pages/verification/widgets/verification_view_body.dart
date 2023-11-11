@@ -23,12 +23,14 @@ class VerificationViewBody extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * .1,
           ),
-          const TextTitleApp(text: "OTP Verification "),
+          const Align(
+              alignment: Alignment.center,
+              child: TextTitleApp(text: "OTP Verification ")),
           const SizedBox(
             height: 8,
           ),
           const TextResetAndForgetPassword(
-            text: "We’ve sent a code to XXXXXX",
+            text: "We’ve sent a code to Example@gmail.com",
           ),
           const SizedBox(
             height: 19,
@@ -37,7 +39,9 @@ class VerificationViewBody extends StatelessWidget {
           const SizedBox(
             height: 19,
           ),
-          const TextGeneralApp(text: "OTP Code"),
+          const Align(
+              alignment: Alignment.center,
+              child: TextGeneralApp(text: "OTP Code")),
           const SizedBox(
             height: 13,
           ),

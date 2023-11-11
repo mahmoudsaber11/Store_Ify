@@ -64,7 +64,7 @@ class SignUpViewBody extends StatelessWidget {
                         ),
                       ],
                     )),
-                const TextGeneralApp(text: "Or sign in with"),
+                const Center(child: TextGeneralApp(text: "Or sign in with")),
                 const SizedBox(
                   height: 24,
                 ),

@@ -42,7 +42,7 @@ class LoginViewBody extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              const TextTitleApp(text: "Welcome "),
+              const TextGeneralApp(text: "Welcome "),
               const SizedBox(
                 height: 22,
               ),
@@ -72,7 +72,7 @@ class LoginViewBody extends StatelessWidget {
                   )
                 ],
               ),
-              const TextGeneralApp(text: "Or sign in with"),
+              const Center(child: TextGeneralApp(text: "Or sign in with")),
               const SizedBox(
                 height: 24,
               ),

@@ -22,13 +22,15 @@ class ResetPasswordViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const TextTitleApp(text: "Reset Password"),
+            const Align(
+                alignment: Alignment.center,
+                child: TextTitleApp(text: "Reset Password")),
             const SizedBox(
               height: 13,
             ),
             const TextResetAndForgetPassword(
               text:
-                  "Enter your new password ,make sure that it should at least 8 characters started by _ ",
+                  "Enter your new password ,make sure \n that it should at least 8 characters \n started by _ ",
             ),
             const SizedBox(
               height: 23,

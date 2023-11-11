@@ -71,9 +71,7 @@ class TitleTextFieldAndTextButton extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Text(
-        textAlign: TextAlign.center,
-        text,
+    return Text(text,
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,

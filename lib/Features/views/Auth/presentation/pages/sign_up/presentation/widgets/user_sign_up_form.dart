@@ -48,6 +48,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
     return Form(
       key: formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const TitleTextFieldAndTextButton(text: "E-mail"),
           CustomTextField(
