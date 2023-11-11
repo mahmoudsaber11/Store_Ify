@@ -23,3 +23,17 @@ class SignInErrorState extends LoginState {
 
   SignInErrorState(this.error);
 }
+
+class SignInWithGoogleLoadingState extends LoginState {}
+
+class SignInWithGoogleSuccessState extends LoginState {
+  final String uId;
+
+  SignInWithGoogleSuccessState(this.uId);
+}
+
+class SignInWithGoogleErrorState extends LoginState {
+  final String error;
+
+  SignInWithGoogleErrorState({required this.error});
+}

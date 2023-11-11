@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:store_ify/Features/views/Auth/presentation/pages/Reset%20Password/reset_password_view.dart';
+import 'package:store_ify/Features/views/Auth/presentation/pages/reset%20password/reset_password_view.dart';
 import 'package:store_ify/core/utils/assets.dart';
 import 'package:store_ify/core/utils/constant.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
