@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/Features/views/Auth/presentation/pages/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/core/utils/assets.dart';
 
 class SignWithSocial extends StatelessWidget {
   const SignWithSocial({
+    required this.onTap,
     super.key,
   });
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,9 +14,7 @@ class SignWithSocial extends StatelessWidget {
       children: [
         InkWell(onTap: () {}, child: Image.asset(AssetsData.face)),
         InkWell(
-            onTap: () {
-              LoginCubit.get(context).signInWithGoogle();
-            },
+            onTap: onTap,
             child: Image.asset(
               AssetsData.google,
             )),

@@ -23,3 +23,17 @@ class SignUpErrorState extends SignUpState {
 
   SignUpErrorState(this.error);
 }
+
+class SignUpWithGoogleLoadingState extends SignUpState {}
+
+class SignUpWithGoogleSuccessState extends SignUpState {
+  final String uId;
+
+  SignUpWithGoogleSuccessState(this.uId);
+}
+
+class SignUpWithGoogleErrorState extends SignUpState {
+  final String error;
+
+  SignUpWithGoogleErrorState({required this.error});
+}

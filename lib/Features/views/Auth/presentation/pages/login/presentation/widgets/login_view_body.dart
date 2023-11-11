@@ -76,7 +76,11 @@ class LoginViewBody extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              const SignWithSocial(),
+              SignWithSocial(
+                onTap: () {
+                  LoginCubit.get(context).signInWithGoogle();
+                },
+              ),
             ],
           ),
         ),

@@ -25,6 +25,9 @@ class SignUpViewBody extends StatelessWidget {
 
           Get.off(() => const StoreIfyLayout());
         }
+        if (state is SignUpWithGoogleSuccessState) {
+          Get.off(() => const StoreIfyLayout());
+        }
         if (state is SignUpErrorState) {
           showToast(text: state.error, state: ToastStates.ERROR);
         }
@@ -68,7 +71,11 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                const SignWithSocial(),
+                SignWithSocial(
+                  onTap: () {
+                    SignUpCubit.get(context).signUpWithGoogle();
+                  },
+                ),
               ],
             ),
           ),

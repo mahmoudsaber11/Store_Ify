@@ -36,6 +36,18 @@ class SignUpCubit extends Cubit<SignUpState> {
     });
   }
 
+  void signUpWithGoogle() {
+    emit(SignUpLoadingState());
+    registerRepo.userSignUpWithGoogle().then((value) {
+      value.fold(
+        (failure) {
+          SignUpWithGoogleErrorState(error: failure.toString());
+        },
+        (user) => emit(SignUpWithGoogleSuccessState(user.user!.uid)),
+      );
+    });
+  }
+
   bool isPassword = true;
 
   void switchPassVisibility() {
