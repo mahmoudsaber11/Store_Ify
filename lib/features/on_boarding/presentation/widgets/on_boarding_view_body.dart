@@ -36,7 +36,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         Positioned(
           left: 0,
           right: 0,
-          bottom: MediaQuery.of(context).size.height * .27,
+          bottom: 210,
           child: CustomIndicator(
             dotIndex: pageController!.hasClients ? pageController?.page : 0,
           ),
@@ -46,7 +46,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               ? (pageController?.page == 2 ? false : true)
               : true,
           child: Positioned(
-            top: MediaQuery.of(context).size.height * .15,
+            top: 66,
             right: 32,
             child: TextButton(
               onPressed: () {
@@ -63,9 +63,9 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           ),
         ),
         Positioned(
-            bottom: MediaQuery.of(context).size.height * .180,
-            right: MediaQuery.of(context).size.height * .1,
-            left: MediaQuery.of(context).size.height * .1,
+            bottom: 140,
+            left: 80,
+            right: 80,
             child: CustomGeneralButton(
               onPressed: () {
                 if (pageController!.page! < 2) {

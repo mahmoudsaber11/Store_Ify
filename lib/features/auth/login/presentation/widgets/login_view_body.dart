@@ -38,8 +38,8 @@ class LoginViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .2,
+              const SizedBox(
+                height: 122,
               ),
               const TextTitleApp(text: "Sign in to Continue "),
               const SizedBox(
