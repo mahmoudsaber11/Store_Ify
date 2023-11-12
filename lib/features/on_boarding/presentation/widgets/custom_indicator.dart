@@ -12,7 +12,7 @@ class CustomIndicator extends StatelessWidget {
       dotsCount: 3,
       position: dotIndex!.toInt(),
       decorator: const DotsDecorator(
-        activeColor: AppColors.kPrimaryColor,
+        activeColor: AppColors.primaryColor,
       ),
     );
   }

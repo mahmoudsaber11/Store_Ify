@@ -9,7 +9,7 @@ class TextGeneralApp extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        color: AppColors.kTitleColor,
+        color: AppColors.titleColor,
         fontWeight: FontWeight.w500,
         fontSize: 16,
       ),
@@ -25,7 +25,7 @@ class TextTitleApp extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        color: AppColors.kTitleColor,
+        color: AppColors.titleColor,
         fontWeight: FontWeight.w500,
         fontSize: 24,
       ),
@@ -42,7 +42,7 @@ class TextSubTitleOnBoarding extends StatelessWidget {
       textAlign: TextAlign.center,
       text,
       style: const TextStyle(
-        color: AppColors.kTitleColor,
+        color: AppColors.titleColor,
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),
@@ -75,7 +75,7 @@ class TitleTextFieldAndTextButton extends StatelessWidget {
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: AppColors.kPrimaryColor,
+          color: AppColors.primaryColor,
         ));
   }
 }

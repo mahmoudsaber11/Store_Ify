@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:store_ify/features/auth/login/presentation/views/login_view.dart';
+import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/widgets/user_sign_up_form.dart';
-import 'package:store_ify/features/layout/presentation/views/store_ify_layout.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
@@ -23,10 +22,14 @@ class SignUpViewBody extends StatelessWidget {
         if (state is SignUpSuccessState) {
           showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
 
-          Get.off(() => const StoreIfyLayout());
+          context.navigateAndReplacement(
+            newRoute: Routes.storeifyLayoutViewRoute,
+          );
         }
         if (state is SignUpWithGoogleSuccessState) {
-          Get.off(() => const StoreIfyLayout());
+          context.navigateAndReplacement(
+            newRoute: Routes.storeifyLayoutViewRoute,
+          );
         }
         if (state is SignUpErrorState) {
           showToast(text: state.error, state: ToastStates.ERROR);
@@ -51,16 +54,15 @@ class SignUpViewBody extends StatelessWidget {
                 UserSignUpForm(state: state),
                 TextButton(
                     onPressed: () {
-                      Get.off(
-                        () => const LoginView(),
-                      );
+                      context.navigateTo(routeName: Routes.loginViewRoute);
                     },
                     child: Row(
                       children: [
                         const Spacer(),
                         TextButton(
                           onPressed: () {
-                            Get.to(() => const LoginView());
+                            context.navigateTo(
+                                routeName: Routes.loginViewRoute);
                           },
                           child:
                               const TitleTextFieldAndTextButton(text: "Login"),
