@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/assets.dart';
+import 'package:store_ify/core/utils/assets_data.dart';
 
 class SignWithSocial extends StatelessWidget {
   const SignWithSocial({
