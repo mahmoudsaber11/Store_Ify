@@ -3,6 +3,7 @@ import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/features/auth/login/doman/repositories/login_repo.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
+import 'package:store_ify/service_locator.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginRepo) : super(LoginInitial());
@@ -27,7 +28,9 @@ class LoginCubit extends Cubit<LoginState> {
           emit(SignInErrorState(failure.errMessage.toString()));
         },
         (user) {
-          CacheHelper.saveData(key: 'uid', value: Helper.uId);
+          serviceLocator
+              .get<CacheHelper>()
+              .saveData(key: 'uid', value: Helper.uId);
           emit(SignInSuccessState(
             userModel: user,
             user.data.id,
