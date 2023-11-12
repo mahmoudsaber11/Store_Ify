@@ -2,16 +2,17 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/features/auth/sign_up/domain/repositories/register_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/models/user_model.dart';
-import 'package:store_ify/core/api/api_service.dart';
+import 'package:store_ify/core/api/dio_consumer.dart';
 
 class RegisterRepoImpl implements RegisterRepo {
-  final ApiService apiService;
+  final DioConsumer dioConsumer;
 
-  RegisterRepoImpl(this.apiService);
+  RegisterRepoImpl(this.dioConsumer);
   @override
   Future<Either<Failure, UserModel>> userSingUp(
       {required String userName,
@@ -19,7 +20,7 @@ class RegisterRepoImpl implements RegisterRepo {
       required String password,
       required String confirmPassword}) async {
     try {
-      final response = await apiService.postData(
+      final response = await dioConsumer.postData(
         EndPoints.register,
         data: {
           "userName": userName,
