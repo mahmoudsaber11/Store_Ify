@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/size_config.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 
 class CustomGeneralButton extends StatelessWidget {
@@ -12,7 +11,7 @@ class CustomGeneralButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 42,
-      width: SizeConfig.screenWidth,
+      // width: SizeConfig.screenWidth,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(8),
