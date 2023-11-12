@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 
 class TextGeneralApp extends StatelessWidget {
   const TextGeneralApp({super.key, required this.text});
@@ -8,8 +8,8 @@ class TextGeneralApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-        color: kTitleColor,
+      style: const TextStyle(
+        color: AppColors.kTitleColor,
         fontWeight: FontWeight.w500,
         fontSize: 16,
       ),
@@ -24,8 +24,8 @@ class TextTitleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-        color: kTitleColor,
+      style: const TextStyle(
+        color: AppColors.kTitleColor,
         fontWeight: FontWeight.w500,
         fontSize: 24,
       ),
@@ -41,8 +41,8 @@ class TextSubTitleOnBoarding extends StatelessWidget {
     return Text(
       textAlign: TextAlign.center,
       text,
-      style: TextStyle(
-        color: kTitleColor,
+      style: const TextStyle(
+        color: AppColors.kTitleColor,
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),
@@ -72,10 +72,10 @@ class TitleTextFieldAndTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: kPrimaryColor,
+          color: AppColors.kPrimaryColor,
         ));
   }
 }

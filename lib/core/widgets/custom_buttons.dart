@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/size_config.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 
@@ -14,7 +14,7 @@ class CustomGeneralButton extends StatelessWidget {
       height: 42,
       width: SizeConfig.screenWidth,
       decoration: BoxDecoration(
-        color: kPrimaryColor,
+        color: AppColors.kPrimaryColor,
         borderRadius: BorderRadius.circular(8),
       ),
       child: MaterialButton(

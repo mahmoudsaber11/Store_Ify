@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/constant.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextInputType? inputType;
@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   final ValueSetter? onChange;
   final bool? isPassword;
   final Widget? suffix;
-  final ValueSetter? onSubmited;
+  final ValueSetter? onSubmitted;
   const CustomTextField({
     super.key,
     this.inputType,
@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.onChange,
     this.isPassword,
     this.suffix,
-    this.onSubmited,
+    this.onSubmitted,
   });
   @override
   Widget build(BuildContext context) {
@@ -27,20 +27,20 @@ class CustomTextField extends StatelessWidget {
       obscureText: isPassword ?? false,
       validator: validate,
       onChanged: onChange,
-      onFieldSubmitted: onSubmited,
+      onFieldSubmitted: onSubmitted,
       controller: controller,
       keyboardType: inputType,
       decoration: InputDecoration(
           suffixIcon: suffix,
-          focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: kTitleColor)),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.kTitleColor)),
           hintText: hintText!,
-          labelStyle: TextStyle(color: kTitleColor),
+          labelStyle: const TextStyle(color: AppColors.kTitleColor),
           filled: true,
           fillColor: Colors.transparent,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kTitleColor),
+            borderSide: const BorderSide(color: AppColors.kTitleColor),
           )),
     );
   }
