@@ -96,7 +96,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                   SignUpCubit.get(context).isPassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
-                  color: AppColors.kPrimaryColor,
+                  color: AppColors.primaryColor,
                 )),
             validate: (value) {
               var passNonNullValue = value ?? "";
@@ -125,7 +125,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                   SignUpCubit.get(context).isPassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
-                  color: AppColors.kPrimaryColor,
+                  color: AppColors.primaryColor,
                 )),
             onSubmitted: (value) {
               if (formKey.currentState!.validate()) {
@@ -173,7 +173,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             },
             fallback: (context) => const Center(
               child: CircularProgressIndicator(
-                color: AppColors.kPrimaryColor,
+                color: AppColors.primaryColor,
               ),
             ),
           ),

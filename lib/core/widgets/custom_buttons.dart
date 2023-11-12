@@ -14,7 +14,7 @@ class CustomGeneralButton extends StatelessWidget {
       height: 42,
       width: SizeConfig.screenWidth,
       decoration: BoxDecoration(
-        color: AppColors.kPrimaryColor,
+        color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(8),
       ),
       child: MaterialButton(

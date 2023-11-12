@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:store_ify/features/auth/forget_password/forget_password_view.dart';
-import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
-import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
-import 'package:store_ify/features/auth/login/presentation/widgets/user_login_form.dart';
-import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
-import 'package:store_ify/features/layout/presentation/views/store_ify_layout.dart';
+
+import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
+import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
+import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
+import 'package:store_ify/features/auth/login/presentation/widgets/user_login_form.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({
@@ -20,10 +19,14 @@ class LoginViewBody extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
       if (state is SignInSuccessState) {
         showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
-        Get.off(() => const StoreIfyLayout());
+        context.navigateAndReplacement(
+          newRoute: Routes.storeifyLayoutViewRoute,
+        );
       }
       if (state is SignInWithGoogleSuccessState) {
-        Get.off(() => const StoreIfyLayout());
+        context.navigateAndReplacement(
+          newRoute: Routes.storeifyLayoutViewRoute,
+        );
       }
       if (state is SignInErrorState) {
         showToast(text: state.error, state: ToastStates.ERROR);
@@ -53,9 +56,7 @@ class LoginViewBody extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Get.to(
-                        () => const ForgetPasswordView(),
-                      );
+                      context.navigateTo(routeName: Routes.forgetPasswordRoute);
                     },
                     child: const TextResetAndForgetPassword(
                       text: "Forget password?",
@@ -64,11 +65,9 @@ class LoginViewBody extends StatelessWidget {
                   const Spacer(),
                   TextButton(
                     onPressed: () {
-                      Get.to(
-                        () => const SignUpView(),
-                      );
+                      context.navigateTo(routeName: Routes.signUpViewRoute);
                     },
-                    child: const TitleTextFieldAndTextButton(text: "Signup "),
+                    child: const TitleTextFieldAndTextButton(text: "Sign up "),
                   )
                 ],
               ),

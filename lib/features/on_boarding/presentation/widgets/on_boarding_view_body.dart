@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/features/auth/login/presentation/views/login_view.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/features/on_boarding/presentation/widgets/custom_indicator.dart';
@@ -50,12 +50,12 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             right: 32,
             child: TextButton(
               onPressed: () {
-                Get.to(() => const LoginView());
+                context.navigateTo(routeName: Routes.loginViewRoute);
               },
               child: const Text(
                 "Skip",
                 style: TextStyle(
-                  color: AppColors.kPrimaryColor,
+                  color: AppColors.primaryColor,
                   fontSize: 24,
                 ),
               ),
@@ -74,9 +74,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                     curve: Curves.easeIn,
                   );
                 } else {
-                  Get.to(() => const LoginView(),
-                      transition: Transition.rightToLeft,
-                      duration: const Duration(milliseconds: 500));
+                  context.navigateTo(routeName: Routes.loginViewRoute);
                 }
               },
               text: pageController!.hasClients

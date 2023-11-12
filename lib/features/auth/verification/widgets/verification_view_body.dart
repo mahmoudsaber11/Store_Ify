@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/assets_data.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
-import 'package:store_ify/features/auth/reset_password/reset_password_view.dart';
 
 class VerificationViewBody extends StatelessWidget {
   const VerificationViewBody({super.key});
@@ -59,8 +60,7 @@ class VerificationViewBody extends StatelessWidget {
               fieldWidth: 45,
               fieldStyle: FieldStyle.box,
               outlineBorderRadius: 15,
-              style:
-                  const TextStyle(fontSize: 17, color: AppColors.kTitleColor),
+              style: const TextStyle(fontSize: 17, color: AppColors.titleColor),
             ),
           ),
           const SizedBox(
@@ -71,9 +71,7 @@ class VerificationViewBody extends StatelessWidget {
             child: CustomGeneralButton(
                 text: 'Verify',
                 onPressed: () {
-                  Get.to(
-                    () => const ResetPasswordView(),
-                  );
+                  context.navigateTo(routeName: Routes.resetPasswordViewRoute);
                 }),
           )
         ],
