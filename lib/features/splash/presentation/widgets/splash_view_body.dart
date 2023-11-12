@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -46,7 +46,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
                   fontSize: 24,
                   fontFamily: 'PottaOne-Regular',
                   fontWeight: FontWeight.w400,
-                  color: AppColors.kPrimaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
             );
@@ -67,7 +67,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), (() {
-      Get.to(() => const OnBoardingView(), transition: Transition.fade);
+      context.navigateAndReplacement(newRoute: Routes.onBoardingViewRoute);
     }));
   }
 }

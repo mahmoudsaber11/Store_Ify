@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
+import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/features/auth/verification/verification_view.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
   const ForgetPasswordViewBody({super.key});
@@ -49,9 +48,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
                 text: 'Verify Email',
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    Get.to(() => const VerificationView(),
-                        transition: Transition.rightToLeft,
-                        duration: const Duration(milliseconds: 500));
+                    context.navigateTo(routeName: Routes.verificationViewRoute);
                   }
                 }),
             const SizedBox(
@@ -63,11 +60,9 @@ class ForgetPasswordViewBody extends StatelessWidget {
                 const TextGeneralApp(text: "Don’t have an account ? "),
                 InkWell(
                   onTap: () {
-                    Get.to(
-                      () => const SignUpView(),
-                    );
+                    context.navigateTo(routeName: Routes.signUpViewRoute);
                   },
-                  child: const TitleTextFieldAndTextButton(text: "Signup "),
+                  child: const TitleTextFieldAndTextButton(text: "Sign up "),
                 ),
               ],
             ),
