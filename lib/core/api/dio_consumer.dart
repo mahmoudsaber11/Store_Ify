@@ -27,4 +27,12 @@ class DioConsumer {
     );
     return response.data;
   }
+
+  Future patchData(
+    String path, {
+    required Map<String, dynamic> data,
+  }) async {
+    Response response = await dio.patch(path, data: data);
+    return response.data;
+  }
 }
