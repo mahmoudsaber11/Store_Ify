@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
-import 'package:store_ify/core/widgets/custom_buttons.dart';
+import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
 class ResetPasswordViewBody extends StatelessWidget {

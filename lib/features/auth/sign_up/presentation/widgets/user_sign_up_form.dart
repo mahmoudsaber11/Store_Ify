@@ -4,7 +4,7 @@ import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
-import 'package:store_ify/core/widgets/custom_buttons.dart';
+import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
 class UserSignUpForm extends StatefulWidget {

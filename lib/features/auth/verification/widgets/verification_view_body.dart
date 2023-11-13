@@ -8,7 +8,7 @@ import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
-import 'package:store_ify/core/widgets/custom_buttons.dart';
+import 'package:store_ify/core/widgets/custom_general_button.dart';
 
 class VerificationViewBody extends StatelessWidget {
   const VerificationViewBody({super.key});
