@@ -100,6 +100,5 @@ class _SplashViewBodyState extends State<SplashViewBody>
         statusBarIconBrightness: Brightness.dark,
       ),
     );
-    
   }
 }
