@@ -46,14 +46,14 @@ class SignUpViewBody extends StatelessWidget {
               children: [
                 const Text(
                   "Sign Up",
-                  style: AppTextStyle.textStyle24Medium,
+                  style: AppTextStyles.textStyle24Medium,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 const Text(
                   "Create an account",
-                  style: AppTextStyle.textStyle16Medium,
+                  style: AppTextStyles.textStyle16Medium,
                 ),
                 const SizedBox(
                   height: 22,
@@ -73,7 +73,7 @@ class SignUpViewBody extends StatelessWidget {
                             },
                             child: Text(
                               "Login",
-                              style: AppTextStyle.textStyle16Regular.copyWith(
+                              style: AppTextStyles.textStyle16Regular.copyWith(
                                 color: AppColors.primaryColor,
                               ),
                             )),
@@ -82,7 +82,7 @@ class SignUpViewBody extends StatelessWidget {
                 const Center(
                     child: Text(
                   "Or sign in with",
-                  style: AppTextStyle.textStyle16Medium,
+                  style: AppTextStyles.textStyle16Medium,
                 )),
                 const SizedBox(
                   height: 24,

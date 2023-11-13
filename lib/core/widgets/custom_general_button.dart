@@ -23,7 +23,8 @@ class CustomGeneralButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             text,
-            style: AppTextStyle.textStyle16Medium.copyWith(color: Colors.white),
+            style:
+                AppTextStyles.textStyle16Medium.copyWith(color: Colors.white),
           )),
     );
   }

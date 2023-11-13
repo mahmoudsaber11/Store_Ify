@@ -41,7 +41,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
                 const Center(
                   child: Text(
                     "Forget Password",
-                    style: AppTextStyle.textStyle24Medium,
+                    style: AppTextStyles.textStyle24Medium,
                   ),
                 ),
                 const SizedBox(
@@ -49,7 +49,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
                 ),
                 const Text(
                   "E-mail",
-                  style: AppTextStyle.textStyle16Regular,
+                  style: AppTextStyles.textStyle16Regular,
                 ),
                 CustomTextField(
                   onSubmitted: (value) {
@@ -98,15 +98,15 @@ class ForgetPasswordViewBody extends StatelessWidget {
                   children: [
                     const Text(
                       "Don’t have an account ? ",
-                      style: AppTextStyle.textStyle16Regular,
+                      style: AppTextStyles.textStyle16Regular,
                     ),
                     InkWell(
                       onTap: () {
                         context.navigateTo(routeName: Routes.signUpViewRoute);
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign up ",
-                        style: AppTextStyle.textStyle16Regular,
+                        style: AppTextStyles.textStyle16Regular,
                       ),
                     ),
                   ],

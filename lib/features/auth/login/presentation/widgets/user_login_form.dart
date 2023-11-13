@@ -43,7 +43,7 @@ class _UserLoginFormState extends State<UserLoginForm> {
         children: [
           Text(
             "E-mail",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
@@ -65,7 +65,7 @@ class _UserLoginFormState extends State<UserLoginForm> {
           ),
           Text(
             "password",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(

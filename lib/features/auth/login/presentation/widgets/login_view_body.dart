@@ -43,14 +43,14 @@ class LoginViewBody extends StatelessWidget {
               ),
               const Text(
                 "Sign in to Continue ",
-                style: AppTextStyle.textStyle24Medium,
+                style: AppTextStyles.textStyle24Medium,
               ),
               const SizedBox(
                 height: 5,
               ),
               const Text(
                 "Welcome ",
-                style: AppTextStyle.textStyle16Medium,
+                style: AppTextStyles.textStyle16Medium,
               ),
               const SizedBox(
                 height: 22,
@@ -66,7 +66,7 @@ class LoginViewBody extends StatelessWidget {
                     },
                     child: const Text(
                       "Forget password?",
-                      style: AppTextStyle.textStyle16Regular,
+                      style: AppTextStyles.textStyle16Regular,
                     ),
                   ),
                   const Spacer(),
@@ -76,7 +76,7 @@ class LoginViewBody extends StatelessWidget {
                     },
                     child: const Text(
                       "Sign up ",
-                      style: AppTextStyle.textStyle16Regular,
+                      style: AppTextStyles.textStyle16Regular,
                     ),
                   )
                 ],
@@ -84,7 +84,7 @@ class LoginViewBody extends StatelessWidget {
               const Center(
                   child: Text(
                 "Or sign in with",
-                style: AppTextStyle.textStyle16Medium,
+                style: AppTextStyles.textStyle16Medium,
               )),
               const SizedBox(
                 height: 24,

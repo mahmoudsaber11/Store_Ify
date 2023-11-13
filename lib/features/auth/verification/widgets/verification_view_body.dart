@@ -28,14 +28,14 @@ class VerificationViewBody extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 "OTP Verification ",
-                style: AppTextStyle.textStyle24Medium,
+                style: AppTextStyles.textStyle24Medium,
               )),
           const SizedBox(
             height: 8,
           ),
           Text(
             "We’ve sent a code to Example@gmail.com",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.subTitleColor),
           ),
           const SizedBox(
@@ -49,7 +49,7 @@ class VerificationViewBody extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 "OTP Code",
-                style: AppTextStyle.textStyle16Medium,
+                style: AppTextStyles.textStyle16Medium,
               )),
           const SizedBox(
             height: 13,

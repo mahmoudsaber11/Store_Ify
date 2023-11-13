@@ -24,14 +24,14 @@ class PageViewItem extends StatelessWidget {
           ),
           Text(
             title,
-            style: AppTextStyle.textStyle16Medium,
+            style: AppTextStyles.textStyle16Medium,
           ),
           const SizedBox(
             height: 16,
           ),
           Text(
             subTitle,
-            style: AppTextStyle.textStyle12Medium,
+            style: AppTextStyles.textStyle12Medium,
           ),
         ],
       ),
