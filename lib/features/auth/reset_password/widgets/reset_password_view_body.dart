@@ -27,7 +27,7 @@ class ResetPasswordViewBody extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 "Reset Password",
-                style: AppTextStyle.textStyle24Medium,
+                style: AppTextStyles.textStyle24Medium,
               ),
             ),
             const SizedBox(
@@ -36,14 +36,14 @@ class ResetPasswordViewBody extends StatelessWidget {
             Text(
               "Enter your new password ,make sure \n that it should at least 8 characters \n started by _ ",
               style:
-                  AppTextStyle.textStyle16Regular.copyWith(color: Colors.grey),
+                  AppTextStyles.textStyle16Regular.copyWith(color: Colors.grey),
             ),
             const SizedBox(
               height: 23,
             ),
             Text(
               "password",
-              style: AppTextStyle.textStyle16Regular
+              style: AppTextStyles.textStyle16Regular
                   .copyWith(color: AppColors.primaryColor),
             ),
             CustomTextField(
@@ -69,7 +69,7 @@ class ResetPasswordViewBody extends StatelessWidget {
             ),
             Text(
               "Confirm password",
-              style: AppTextStyle.textStyle16Regular.copyWith(
+              style: AppTextStyles.textStyle16Regular.copyWith(
                 color: AppColors.primaryColor,
               ),
             ),

@@ -53,7 +53,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
         children: [
           Text(
             "E-mail",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
@@ -74,7 +74,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           ),
           Text(
             "Username",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
@@ -83,7 +83,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                 return 'email must not be empty';
               }
               if (value.length < 6) {
-                return "must be more than 5 charater";
+                return "must be more than 5 character";
               }
               return null;
             },
@@ -96,7 +96,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           ),
           Text(
             "password",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
@@ -129,7 +129,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           ),
           Text(
             "Confirm password",
-            style: AppTextStyle.textStyle16Regular
+            style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
