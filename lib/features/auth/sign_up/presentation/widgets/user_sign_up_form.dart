@@ -91,9 +91,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             inputType: TextInputType.name,
             hintText: 'Enter  your username',
           ),
-          const SizedBox(
-            height: 35,
-          ),
+          const SizedBox(height: 35),
           Text(
             "password",
             style: AppTextStyles.textStyle16Regular
