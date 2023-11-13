@@ -68,7 +68,7 @@ class VerificationViewBody extends StatelessWidget {
               fieldWidth: 45,
               fieldStyle: FieldStyle.box,
               outlineBorderRadius: 15,
-              style: const TextStyle(fontSize: 17, color: AppColors.titleColor),
+              style: const TextStyle(fontSize: 17, color: Colors.black),
             ),
           ),
           const SizedBox(

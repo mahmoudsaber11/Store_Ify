@@ -10,15 +10,17 @@ import 'package:store_ify/core/models/user_model.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
 
 class LoginRepoImpl implements LoginRepo {
-  final DioConsumer apiService;
+  final DioConsumer dioConsumer;
 
-  LoginRepoImpl(this.apiService);
+  LoginRepoImpl({required this.dioConsumer});
 
   @override
-  Future<Either<Failure, UserModel>> userLoginIn(
-      {required String email, required String password}) async {
+  Future<Either<Failure, UserModel>> userLoginIn({
+    required String email,
+    required String password,
+  }) async {
     try {
-      final response = await apiService.postData(EndPoints.login,
+      final response = await dioConsumer.postData(EndPoints.login,
           data: {"email": email, "password": password});
       final UserModel user = UserModel.fromJson(response);
       return right(user);
