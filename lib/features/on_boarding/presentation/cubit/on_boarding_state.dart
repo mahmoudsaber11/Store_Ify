@@ -21,5 +21,3 @@ class PageViewIndexChangedState extends OnBoardingState {
 class SkipToSignInOrHome extends OnBoardingState {}
 
 class NavigateBetweenPages extends OnBoardingState {}
-
-class MoveToPreviousPage extends OnBoardingState {}

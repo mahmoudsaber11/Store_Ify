@@ -59,12 +59,4 @@ class OnBoardingRepoImpl implements OnBoardingRepo {
       },
     );
   }
-
-  @override
-  void previousPage({required PageController pageController}) {
-    pageController.previousPage(
-      duration: const Duration(seconds: 1),
-      curve: Curves.fastEaseInToSlowEaseOut,
-    );
-  }
 }

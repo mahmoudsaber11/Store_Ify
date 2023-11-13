@@ -45,10 +45,4 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
 
     emit(SkipToSignInOrHome());
   }
-
-  void previousPage({required PageController pageController}) {
-    onBoardingRepo.previousPage(pageController: pageController);
-
-    emit(MoveToPreviousPage());
-  }
 }

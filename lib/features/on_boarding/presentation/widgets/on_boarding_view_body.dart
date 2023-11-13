@@ -1,61 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/config/routes/routes.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_navigator.dart';
 
 import 'package:store_ify/core/widgets/custom_general_button.dart';
+import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/widgets/custom_indicator.dart';
-import 'package:store_ify/features/on_boarding/presentation/widgets/custom_page_view.dart';
+import 'package:store_ify/features/on_boarding/presentation/widgets/page_view_item.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
-  const OnBoardingViewBody({super.key});
+  const OnBoardingViewBody({super.key, required this.cubit});
+
+  final OnBoardingCubit cubit;
 
   @override
   State<OnBoardingViewBody> createState() => _OnBoardingViewBodyState();
 }
 
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: 0)
-      ..addListener(() {
-        setState(() {});
-      });
-    super.initState();
-  }
+  PageController pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        CustomPageView(
-          pageController: _pageController,
+        Flexible(
+          flex: 4,
+          child: LayoutBuilder(
+            builder: (_, __) {
+              return PageView.builder(
+                controller: pageController,
+                itemCount: widget.cubit.onBoardingPages().length,
+                itemBuilder: (context, index) => PageViewItem(
+                  pageInfo: widget.cubit.onBoardingPages()[index],
+                ),
+                onPageChanged: (int index) {
+                  widget.cubit.onChangePageIndex(index);
+                },
+              );
+            },
+          ),
         ),
+        const SizedBox(height: 24),
         Align(
           alignment: Alignment.center,
           child: CustomIndicator(
-            pageController: _pageController,
-            dotIndex: _pageController.hasClients ? _pageController.page : 0,
+            pageController: pageController,
+            dotIndex: pageController.hasClients ? pageController.page : 0,
           ),
         ),
+        const SizedBox(height: 40),
         CustomGeneralButton(
-          onPressed: () {
-            if (_pageController.page! < 2) {
-              _pageController.nextPage(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeIn,
-              );
-            } else {
-              context.navigateTo(routeName: Routes.loginViewRoute);
-            }
-          },
-          text: _pageController.hasClients
-              ? (_pageController.page == 2 ? 'Get Started' : 'Next')
+          onPressed: () => _navigateAmongOnBoarding(context),
+          text: pageController.hasClients
+              ? (pageController.page == 2 ? 'Get Started' : 'Next')
               : 'Next',
         ),
+        const Spacer(),
       ],
     );
+  }
+
+  void _navigateAmongOnBoarding(BuildContext context) {
+    if (widget.cubit.isLastBoarding) {
+      widget.cubit.navigateToLoginOrHome(context: context);
+    } else {
+      widget.cubit.navigateBetweenPages(
+        context: context,
+        pageController: pageController,
+      );
+    }
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/Features/auth/forget_password/presentation/view/forget_password_view.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/auth/login/presentation/views/login_view.dart';
 import 'package:store_ify/features/auth/reset_password/reset_password_view.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/verification/verification_view.dart';
 import 'package:store_ify/features/layout/presentation/views/store_ify_layout.dart';
+import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
 
@@ -16,7 +19,12 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => const SplashView());
 
       case Routes.onBoardingViewRoute:
-        return MaterialPageRoute(builder: (context) => const OnBoardingView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => serviceLocator.get<OnBoardingCubit>(),
+            child: const OnBoardingView(),
+          ),
+        );
 
       case Routes.loginViewRoute:
         return MaterialPageRoute(builder: (context) => const LoginView());
