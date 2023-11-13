@@ -11,7 +11,7 @@ class CheckEmailRepoImpl implements CheckEmailRepo {
 
   CheckEmailRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, String>> checkEmailRepo(
+  Future<Either<Failure, dynamic>> checkEmailRepo(
       {required String email}) async {
     try {
       final response = await apiService
