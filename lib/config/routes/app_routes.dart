@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_ify/Features/auth/forget_password/presentation/view/forget_password_view.dart';
 import 'package:store_ify/config/routes/routes.dart';
-import 'package:store_ify/features/auth/forget_password/forget_password_view.dart';
 import 'package:store_ify/features/auth/login/presentation/views/login_view.dart';
 import 'package:store_ify/features/auth/reset_password/reset_password_view.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';

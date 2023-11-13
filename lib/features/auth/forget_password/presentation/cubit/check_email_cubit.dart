@@ -15,8 +15,8 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
     checkEmailRepo.checkEmailRepo(email: email).then((value) {
       value.fold((failure) {
         emit(ErrorCheckEmailState(failure.errMessage.toString()));
-      }, (user) {
-        emit(SuccessCheckEmailState());
+      }, (message) {
+        emit(SuccessCheckEmailState(message.toString()));
       });
     });
   }

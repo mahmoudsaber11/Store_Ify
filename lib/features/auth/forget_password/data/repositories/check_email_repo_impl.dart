@@ -5,14 +5,13 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
-import 'package:store_ify/core/models/user_model.dart';
 
 class CheckEmailRepoImpl implements CheckEmailRepo {
   final DioConsumer apiService;
 
   CheckEmailRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, String>> checkEmailRepo(
+  Future<Either<Failure, dynamic>> checkEmailRepo(
       {required String email}) async {
     try {
       final response = await apiService
