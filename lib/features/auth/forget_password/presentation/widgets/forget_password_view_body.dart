@@ -1,13 +1,8 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/Features/auth/forget_password/presentation/cubit/check_email_cubit.dart';
-import 'package:store_ify/Features/auth/forget_password/presentation/cubit/check_email_state.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
-import 'package:store_ify/core/widgets/custom_buttons.dart';
+import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
@@ -17,92 +12,63 @@ class ForgetPasswordViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var formKey = GlobalKey<FormState>();
-    return BlocConsumer<CheckEmailCubit, CheckEmailState>(
-      listener: (context, state) {
-        if (state is SuccessCheckEmailState) {
-          showToast(text: state.message, state: ToastStates.SUCCESS);
-          context.navigateTo(routeName: Routes.verificationViewRoute);
-        }
-        if (state is ErrorCheckEmailState) {
-          showToast(text: state.errorMessage, state: ToastStates.ERROR);
-        }
-      },
-      builder: (context, state) {
-        return Form(
-          key: formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: Column(
+    return Form(
+      key: formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Center(
+              child: TextTitleApp(text: "Forget Password"),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const TitleTextFieldAndTextButton(text: "E-mail"),
+            CustomTextField(
+              validate: (String? value) {
+                if (value!.isEmpty) {
+                  return 'email must not be empty';
+                }
+                if (!value.contains('@')) {
+                  return "email should contains @";
+                }
+                return null;
+              },
+              controller: emailController,
+              inputType: TextInputType.emailAddress,
+              hintText: 'Example@gmail.com',
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            CustomGeneralButton(
+                text: 'Verify Email',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    context.navigateTo(routeName: Routes.verificationViewRoute);
+                  }
+                }),
+            const SizedBox(
+              height: 23,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Center(
-                  child: TextTitleApp(text: "Forget Password"),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const TitleTextFieldAndTextButton(text: "E-mail"),
-                CustomTextField(
-                  onSubmitted: (value) {
-                    if (formKey.currentState!.validate()) {
-                      CheckEmailCubit.get(context)
-                          .checkEmail(email: emailController.text);
-                    }
+                const TextGeneralApp(text: "Don’t have an account ? "),
+                InkWell(
+                  onTap: () {
+                    context.navigateTo(routeName: Routes.signUpViewRoute);
                   },
-                  validate: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'email must not be empty';
-                    }
-                    if (!value.contains('@')) {
-                      return "email should contains @";
-                    }
-                    return null;
-                  },
-                  controller: emailController,
-                  inputType: TextInputType.emailAddress,
-                  hintText: 'Example@gmail.com',
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                ConditionalBuilder(
-                  condition: state is! LoadingCheckEmailState,
-                  builder: (context) {
-                    return CustomGeneralButton(
-                        text: 'Verify Email',
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            CheckEmailCubit.get(context)
-                                .checkEmail(email: emailController.text);
-                          }
-                        });
-                  },
-                  fallback: (context) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                const SizedBox(
-                  height: 23,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TextGeneralApp(text: "Don’t have an account ? "),
-                    InkWell(
-                      onTap: () {
-                        context.navigateTo(routeName: Routes.signUpViewRoute);
-                      },
-                      child:
-                          const TitleTextFieldAndTextButton(text: "Sign up "),
-                    ),
-                  ],
+                  child: const TitleTextFieldAndTextButton(text: "Sign up "),
                 ),
               ],
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 }

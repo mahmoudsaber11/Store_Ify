@@ -15,11 +15,11 @@ class OnBoardingViewBody extends StatefulWidget {
 }
 
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
-  late PageController pageController;
+  late PageController _pageController;
 
   @override
   void initState() {
-    pageController = PageController(initialPage: 0)
+    _pageController = PageController(initialPage: 0)
       ..addListener(() {
         setState(() {});
       });
@@ -31,7 +31,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
     return Stack(
       children: [
         CustomPageView(
-          pageController: pageController,
+          pageController: _pageController,
         ),
         Positioned(
           left: 0,
@@ -40,14 +40,14 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           child: Align(
             alignment: Alignment.center,
             child: CustomIndicator(
-              pageController: pageController,
-              dotIndex: pageController.hasClients ? pageController.page : 0,
+              pageController: _pageController,
+              dotIndex: _pageController.hasClients ? _pageController.page : 0,
             ),
           ),
         ),
         Visibility(
-          visible: pageController.hasClients
-              ? (pageController.page == 2 ? false : true)
+          visible: _pageController.hasClients
+              ? (_pageController.page == 2 ? false : true)
               : true,
           child: Positioned(
             top: 66,
@@ -72,8 +72,8 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           right: 80,
           child: CustomGeneralButton(
             onPressed: () {
-              if (pageController.page! < 2) {
-                pageController.nextPage(
+              if (_pageController.page! < 2) {
+                _pageController.nextPage(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeIn,
                 );
@@ -81,8 +81,8 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                 context.navigateTo(routeName: Routes.loginViewRoute);
               }
             },
-            text: pageController.hasClients
-                ? (pageController.page == 2 ? 'Get Started' : 'Next')
+            text: _pageController.hasClients
+                ? (_pageController.page == 2 ? 'Get Started' : 'Next')
                 : 'Next',
           ),
         ),
