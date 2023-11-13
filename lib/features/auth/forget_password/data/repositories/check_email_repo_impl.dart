@@ -12,13 +12,12 @@ class CheckEmailRepoImpl implements CheckEmailRepo {
 
   CheckEmailRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, UserModel>> checkEmailRepo(
-      {required String message}) async {
+  Future<Either<Failure, String>> checkEmailRepo(
+      {required String email}) async {
     try {
       final response = await apiService
-          .patchData(EndPoints.forgetPassword, data: {"message": message});
-      final UserModel user = UserModel.fromJson(response);
-      return right(user);
+          .patchData(EndPoints.forgetPassword, data: {"email": email});
+      return right(response);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
