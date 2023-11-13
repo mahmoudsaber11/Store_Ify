@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:store_ify/Features/auth/forget_password/data/repositories/check_email_repo.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
-import 'package:store_ify/features/auth/forget_password/data/repositories/check_email_repo.dart';
 
 class CheckEmailRepoImpl implements CheckEmailRepo {
   final DioConsumer dioConsumer;

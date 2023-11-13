@@ -13,8 +13,9 @@ class ForgetPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (BuildContext context) =>
-            CheckEmailCubit(CheckEmailRepoImpl(DioConsumer(Dio()))),
+        create: (BuildContext context) => CheckEmailCubit(
+          CheckEmailRepoImpl(DioConsumer(Dio())),
+        ),
         child: const ForgetPasswordViewBody(),
       ),
     );
