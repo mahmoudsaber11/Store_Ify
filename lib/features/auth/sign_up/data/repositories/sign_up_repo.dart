@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/models/user_model.dart';
 
-abstract class RegisterRepo {
+abstract class SignUpRepo {
   Future<Either<Failure, UserModel>> userSingUp({
     required String userName,
     required String email,

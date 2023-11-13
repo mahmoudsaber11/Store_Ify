@@ -12,5 +12,4 @@ abstract class OnBoardingRepo {
 
   void navigateToLoginOrHome({required BuildContext context});
 
-  void previousPage({required PageController pageController});
 }

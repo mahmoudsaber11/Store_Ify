@@ -9,10 +9,10 @@ import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/models/user_model.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
 
-class RegisterRepoImpl implements RegisterRepo {
+class SingUpRepoImpl implements SignUpRepo {
   final DioConsumer dioConsumer;
 
-  RegisterRepoImpl(this.dioConsumer);
+  SingUpRepoImpl({required this.dioConsumer});
   @override
   Future<Either<Failure, UserModel>> userSingUp({
     required String userName,

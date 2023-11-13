@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextInputType? inputType;
@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   final bool? isPassword;
   final Widget? suffix;
   final ValueSetter? onSubmitted;
+
   const CustomTextField({
     super.key,
     this.inputType,
@@ -21,6 +22,7 @@ class CustomTextField extends StatelessWidget {
     this.suffix,
     this.onSubmitted,
   });
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -30,49 +32,23 @@ class CustomTextField extends StatelessWidget {
       onFieldSubmitted: onSubmitted,
       controller: controller,
       keyboardType: inputType,
+      cursorColor: Colors.black,
+      textAlign: TextAlign.center,
       decoration: InputDecoration(
         suffixIcon: suffix,
         focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.titleColor)),
+          borderSide: BorderSide(color: Colors.black),
+        ),
         hintText: hintText!,
-        labelStyle: const TextStyle(color: AppColors.titleColor),
+        hintStyle: AppTextStyles.textStyle16Medium.copyWith(color: Colors.grey),
+        labelStyle: AppTextStyles.textStyle16Medium,
         filled: true,
         fillColor: Colors.transparent,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.titleColor),
+          borderSide: const BorderSide(color: Colors.black),
         ),
       ),
     );
   }
 }
-
-// Widget defaultFormField({
-//   context,
-//   required final TextInputType? inputType,
-//   required final String? hintText,
-//   required final TextEditingController controller,
-//   required final String? Function(String?)? validate,
-//   final ValueSetter? onChange,
-//   bool? isPassword,
-//   Widget? suffix,
-// }) =>
-//     TextFormField(
-//       obscureText: isPassword ?? false,
-//       validator: validate,
-//       onChanged: onChange,
-//       controller: controller,
-//       keyboardType: inputType,
-//       decoration: InputDecoration(
-//           suffixIcon: suffix,
-//           focusedBorder:
-//               OutlineInputBorder(borderSide: BorderSide(color: kTitleColor)),
-//           hintText: hintText!,
-//           labelStyle: TextStyle(color: kTitleColor),
-//           filled: true,
-//           fillColor: Colors.transparent,
-//           border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(8),
-//             borderSide: BorderSide(color: kTitleColor),
-//           )),
-//     );
