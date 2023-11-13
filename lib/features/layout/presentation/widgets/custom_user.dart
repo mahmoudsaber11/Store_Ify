@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/assets_data.dart';
 
 class CustomUser extends StatelessWidget {
   const CustomUser({
@@ -12,7 +12,7 @@ class CustomUser extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(AssetsData.person),
+        Image.asset(AppAssets.imagesPerson),
         const Column(
           children: [
             Text(
