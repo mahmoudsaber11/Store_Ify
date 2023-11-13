@@ -3,7 +3,7 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 
-import 'package:store_ify/core/widgets/custom_buttons.dart';
+import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/on_boarding/presentation/widgets/custom_indicator.dart';
 import 'package:store_ify/features/on_boarding/presentation/widgets/custom_page_view.dart';
 
@@ -15,7 +15,7 @@ class OnBoardingViewBody extends StatefulWidget {
 }
 
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
-  PageController? pageController;
+  late PageController pageController;
 
   @override
   void initState() {
@@ -37,13 +37,17 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           left: 0,
           right: 0,
           bottom: 210,
-          child: CustomIndicator(
-            dotIndex: pageController!.hasClients ? pageController?.page : 0,
+          child: Align(
+            alignment: Alignment.center,
+            child: CustomIndicator(
+              pageController: pageController,
+              dotIndex: pageController.hasClients ? pageController.page : 0,
+            ),
           ),
         ),
         Visibility(
-          visible: pageController!.hasClients
-              ? (pageController?.page == 2 ? false : true)
+          visible: pageController.hasClients
+              ? (pageController.page == 2 ? false : true)
               : true,
           child: Positioned(
             top: 66,
@@ -63,24 +67,25 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           ),
         ),
         Positioned(
-            bottom: 140,
-            left: 80,
-            right: 80,
-            child: CustomGeneralButton(
-              onPressed: () {
-                if (pageController!.page! < 2) {
-                  pageController?.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                  );
-                } else {
-                  context.navigateTo(routeName: Routes.loginViewRoute);
-                }
-              },
-              text: pageController!.hasClients
-                  ? (pageController?.page == 2 ? 'Get Started' : 'Next')
-                  : 'Next',
-            ))
+          bottom: 140,
+          left: 80,
+          right: 80,
+          child: CustomGeneralButton(
+            onPressed: () {
+              if (pageController.page! < 2) {
+                pageController.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                );
+              } else {
+                context.navigateTo(routeName: Routes.loginViewRoute);
+              }
+            },
+            text: pageController.hasClients
+                ? (pageController.page == 2 ? 'Get Started' : 'Next')
+                : 'Next',
+          ),
+        ),
       ],
     );
   }

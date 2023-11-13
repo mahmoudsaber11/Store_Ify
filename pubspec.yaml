@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dots_indicator: ^3.0.0
   otp_text_field: ^1.1.3
   flutter_bloc: ^8.1.3
   dio: ^5.3.3
@@ -26,6 +25,7 @@ dependencies:
   get_it: ^7.6.4
   internet_connection_checker: ^1.0.0+1
   flutter_launcher_icons: ^0.13.1
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -35,7 +35,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
   assets:
+    - assets/
     - assets/images/
     - assets/icons/
 
@@ -52,6 +54,11 @@ flutter:
           weight: 700
         - asset: assets/fonts/Poppins-ExtraBold.ttf
           weight: 900
+
+    - family: Potta One
+      fonts:
+        - asset: assets/fonts/PottaOne-Regular.ttf
+          weight: 400
 
 flutter_assets:
   assets_path: assets/

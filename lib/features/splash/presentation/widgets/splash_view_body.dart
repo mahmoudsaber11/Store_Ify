@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
+import 'package:store_ify/core/utils/app_strings.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -12,19 +14,19 @@ class SplashViewBody extends StatefulWidget {
 
 class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-  late Animation<Offset> slidingAnimation;
+  late AnimationController _animationController;
+  late Animation<Offset> _slidingAnimation;
   @override
   void initState() {
     super.initState();
-    initSlidingAnimation();
-    navigateToHome();
+    _initSlidingAnimation();
+    _navigateToHome();
   }
 
   @override
   void dispose() {
     super.dispose();
-    animationController.dispose();
+    _animationController.dispose();
   }
 
   @override
@@ -33,17 +35,22 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 192, child: Image.asset('assets/images/logo 1.png')),
+        Image.asset(
+          AppAssets.appIcon,
+          height: 192,
+        ),
+        const SizedBox(height: 16),
         AnimatedBuilder(
-          animation: slidingAnimation,
+          animation: _slidingAnimation,
           builder: (BuildContext context, Widget? child) {
             return SlideTransition(
-              position: slidingAnimation,
+              position: _slidingAnimation,
               child: const Text(
                 textAlign: TextAlign.center,
                 "Store-ify",
                 style: TextStyle(
                   fontSize: 24,
+                  fontFamily: AppStrings.pottaOneFont,
                   fontWeight: FontWeight.w400,
                   color: AppColors.primaryColor,
                 ),
@@ -55,16 +62,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
     );
   }
 
-  void initSlidingAnimation() {
-    animationController =
+  void _initSlidingAnimation() {
+    _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    slidingAnimation =
+    _slidingAnimation =
         Tween<Offset>(begin: const Offset(0, 10), end: Offset.zero)
-            .animate(animationController);
-    animationController.forward();
+            .animate(_animationController);
+    _animationController.forward();
   }
 
-  void navigateToHome() {
+  void _navigateToHome() {
     Future.delayed(const Duration(seconds: 2), (() {
       context.navigateAndReplacement(newRoute: Routes.onBoardingViewRoute);
     }));

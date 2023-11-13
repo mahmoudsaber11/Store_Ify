@@ -16,7 +16,7 @@ class CustomUser extends StatelessWidget {
         const Column(
           children: [
             Text(
-              "Hello,Yasmeen",
+              "Hello, Yasmeen",
               style: TextStyle(
                 color: AppColors.appColor,
                 fontWeight: FontWeight.w400,
