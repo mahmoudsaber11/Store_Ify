@@ -20,4 +20,8 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
+  static const TextStyle textStyle8Regular = TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.w400,
+  );
 }

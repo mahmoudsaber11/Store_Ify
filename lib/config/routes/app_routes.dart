@@ -5,7 +5,7 @@ import 'package:store_ify/features/auth/login/presentation/views/login_view.dart
 import 'package:store_ify/features/auth/reset_password/reset_password_view.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/verification/verification_view.dart';
-import 'package:store_ify/features/layout/presentation/views/store_ify_layout.dart';
+import 'package:store_ify/features/layout/presentation/views/store_ify_layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
 
@@ -13,7 +13,7 @@ class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(builder: (context) => const OnBoardingView());
@@ -36,8 +36,8 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => const VerificationView());
 
-      case Routes.storeifyLayoutViewRoute:
-        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
+      // case Routes.storeifyLayoutViewRoute:
+      //   return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
 
       default:
         return _unFoundRoute();
