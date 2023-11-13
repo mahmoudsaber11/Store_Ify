@@ -1,9 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
@@ -50,7 +50,11 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const TitleTextFieldAndTextButton(text: "E-mail"),
+          Text(
+            "E-mail",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.primaryColor),
+          ),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
@@ -67,7 +71,11 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           const SizedBox(
             height: 35,
           ),
-          const TitleTextFieldAndTextButton(text: "Username"),
+          Text(
+            "Username",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.primaryColor),
+          ),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
@@ -85,7 +93,11 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           const SizedBox(
             height: 35,
           ),
-          const TitleTextFieldAndTextButton(text: "password"),
+          Text(
+            "password",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.primaryColor),
+          ),
           CustomTextField(
             isPassword: SignUpCubit.get(context).isPassword,
             suffix: IconButton(
@@ -114,7 +126,11 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
           const SizedBox(
             height: 35,
           ),
-          const TitleTextFieldAndTextButton(text: " Confirm password"),
+          Text(
+            "Confirm password",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.primaryColor),
+          ),
           CustomTextField(
             isPassword: SignUpCubit.get(context).isPassword,
             suffix: IconButton(

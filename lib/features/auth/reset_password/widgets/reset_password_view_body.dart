@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
@@ -23,19 +24,28 @@ class ResetPasswordViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Align(
-                alignment: Alignment.center,
-                child: TextTitleApp(text: "Reset Password")),
+              alignment: Alignment.center,
+              child: Text(
+                "Reset Password",
+                style: AppTextStyle.textStyle24Medium,
+              ),
+            ),
             const SizedBox(
               height: 13,
             ),
-            const TextResetAndForgetPassword(
-              text:
-                  "Enter your new password ,make sure \n that it should at least 8 characters \n started by _ ",
+            Text(
+              "Enter your new password ,make sure \n that it should at least 8 characters \n started by _ ",
+              style:
+                  AppTextStyle.textStyle16Regular.copyWith(color: Colors.grey),
             ),
             const SizedBox(
               height: 23,
             ),
-            const TitleTextFieldAndTextButton(text: "password"),
+            Text(
+              "password",
+              style: AppTextStyle.textStyle16Regular
+                  .copyWith(color: AppColors.primaryColor),
+            ),
             CustomTextField(
               isPassword: true,
               onChange: (value) {
@@ -57,7 +67,12 @@ class ResetPasswordViewBody extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            const TitleTextFieldAndTextButton(text: "Confirm password"),
+            Text(
+              "Confirm password",
+              style: AppTextStyle.textStyle16Regular.copyWith(
+                color: AppColors.primaryColor,
+              ),
+            ),
             CustomTextField(
               isPassword: true,
               onChange: (value) {

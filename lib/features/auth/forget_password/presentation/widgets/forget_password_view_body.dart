@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/Features/auth/forget_password/presentation/cubit/check_email_cubit.dart';
 import 'package:store_ify/Features/auth/forget_password/presentation/cubit/check_email_state.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
@@ -37,12 +38,18 @@ class ForgetPasswordViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Center(
-                  child: TextTitleApp(text: "Forget Password"),
+                  child: Text(
+                    "Forget Password",
+                    style: AppTextStyle.textStyle24Medium,
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                const TitleTextFieldAndTextButton(text: "E-mail"),
+                const Text(
+                  "E-mail",
+                  style: AppTextStyle.textStyle16Regular,
+                ),
                 CustomTextField(
                   onSubmitted: (value) {
                     if (formKey.currentState!.validate()) {
@@ -88,13 +95,19 @@ class ForgetPasswordViewBody extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const TextGeneralApp(text: "Don’t have an account ? "),
+                    const Text(
+                      "Don’t have an account ? ",
+                      style: AppTextStyle.textStyle16Regular,
+                    ),
                     InkWell(
                       onTap: () {
                         context.navigateTo(routeName: Routes.signUpViewRoute);
                       },
-                      child:
-                          const TitleTextFieldAndTextButton(text: "Sign up "),
+                      child: Text(
+                        "Sign up ",
+                        style: AppTextStyle.textStyle16Regular
+                            .copyWith(color: AppColors.primaryColor),
+                      ),
                     ),
                   ],
                 ),

@@ -7,7 +7,7 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 
 class VerificationViewBody extends StatelessWidget {
@@ -26,12 +26,17 @@ class VerificationViewBody extends StatelessWidget {
           ),
           const Align(
               alignment: Alignment.center,
-              child: TextTitleApp(text: "OTP Verification ")),
+              child: Text(
+                "OTP Verification ",
+                style: AppTextStyle.textStyle24Medium,
+              )),
           const SizedBox(
             height: 8,
           ),
-          const TextResetAndForgetPassword(
-            text: "We’ve sent a code to Example@gmail.com",
+          Text(
+            "We’ve sent a code to Example@gmail.com",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.subTitleColor),
           ),
           const SizedBox(
             height: 19,
@@ -42,7 +47,10 @@ class VerificationViewBody extends StatelessWidget {
           ),
           const Align(
               alignment: Alignment.center,
-              child: TextGeneralApp(text: "OTP Code")),
+              child: Text(
+                "OTP Code",
+                style: AppTextStyle.textStyle16Medium,
+              )),
           const SizedBox(
             height: 13,
           ),

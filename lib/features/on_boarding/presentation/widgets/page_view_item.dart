@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
@@ -21,11 +21,17 @@ class PageViewItem extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          TextGeneralApp(text: title),
+          Text(
+            title,
+            style: AppTextStyle.textStyle16Medium,
+          ),
           const SizedBox(
             height: 16,
           ),
-          TextSubTitleOnBoarding(text: subTitle)
+          Text(
+            subTitle,
+            style: AppTextStyle.textStyle12Medium,
+          ),
         ],
       ),
     );

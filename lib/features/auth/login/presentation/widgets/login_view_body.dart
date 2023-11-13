@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
@@ -41,11 +41,17 @@ class LoginViewBody extends StatelessWidget {
               const SizedBox(
                 height: 122,
               ),
-              const TextTitleApp(text: "Sign in to Continue "),
+              const Text(
+                "Sign in to Continue ",
+                style: AppTextStyle.textStyle24Medium,
+              ),
               const SizedBox(
                 height: 5,
               ),
-              const TextGeneralApp(text: "Welcome "),
+              const Text(
+                "Welcome ",
+                style: AppTextStyle.textStyle16Medium,
+              ),
               const SizedBox(
                 height: 22,
               ),
@@ -58,8 +64,9 @@ class LoginViewBody extends StatelessWidget {
                     onPressed: () {
                       context.navigateTo(routeName: Routes.forgetPasswordRoute);
                     },
-                    child: const TextResetAndForgetPassword(
-                      text: "Forget password?",
+                    child: const Text(
+                      "Forget password?",
+                      style: AppTextStyle.textStyle16Regular,
                     ),
                   ),
                   const Spacer(),
@@ -67,11 +74,18 @@ class LoginViewBody extends StatelessWidget {
                     onPressed: () {
                       context.navigateTo(routeName: Routes.signUpViewRoute);
                     },
-                    child: const TitleTextFieldAndTextButton(text: "Sign up "),
+                    child: const Text(
+                      "Sign up ",
+                      style: AppTextStyle.textStyle16Regular,
+                    ),
                   )
                 ],
               ),
-              const Center(child: TextGeneralApp(text: "Or sign in with")),
+              const Center(
+                  child: Text(
+                "Or sign in with",
+                style: AppTextStyle.textStyle16Medium,
+              )),
               const SizedBox(
                 height: 24,
               ),

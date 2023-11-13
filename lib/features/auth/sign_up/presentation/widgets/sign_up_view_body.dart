@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/widgets/user_sign_up_form.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
 
 class SignUpViewBody extends StatelessWidget {
@@ -43,11 +44,17 @@ class SignUpViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const TextTitleApp(text: "Sign Up"),
+                const Text(
+                  "Sign Up",
+                  style: AppTextStyle.textStyle24Medium,
+                ),
                 const SizedBox(
                   height: 5,
                 ),
-                const TextGeneralApp(text: "Create an account"),
+                const Text(
+                  "Create an account",
+                  style: AppTextStyle.textStyle16Medium,
+                ),
                 const SizedBox(
                   height: 22,
                 ),
@@ -60,16 +67,23 @@ class SignUpViewBody extends StatelessWidget {
                       children: [
                         const Spacer(),
                         TextButton(
-                          onPressed: () {
-                            context.navigateTo(
-                                routeName: Routes.loginViewRoute);
-                          },
-                          child:
-                              const TitleTextFieldAndTextButton(text: "Login"),
-                        ),
+                            onPressed: () {
+                              context.navigateTo(
+                                  routeName: Routes.loginViewRoute);
+                            },
+                            child: Text(
+                              "Login",
+                              style: AppTextStyle.textStyle16Regular.copyWith(
+                                color: AppColors.primaryColor,
+                              ),
+                            )),
                       ],
                     )),
-                const Center(child: TextGeneralApp(text: "Or sign in with")),
+                const Center(
+                    child: Text(
+                  "Or sign in with",
+                  style: AppTextStyle.textStyle16Medium,
+                )),
                 const SizedBox(
                   height: 24,
                 ),

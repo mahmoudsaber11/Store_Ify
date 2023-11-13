@@ -1,9 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
-import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
@@ -41,7 +41,11 @@ class _UserLoginFormState extends State<UserLoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const TitleTextFieldAndTextButton(text: "E-mail"),
+          Text(
+            "E-mail",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.primaryColor),
+          ),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
@@ -59,7 +63,11 @@ class _UserLoginFormState extends State<UserLoginForm> {
           const SizedBox(
             height: 38,
           ),
-          const TitleTextFieldAndTextButton(text: "password"),
+          Text(
+            "password",
+            style: AppTextStyle.textStyle16Regular
+                .copyWith(color: AppColors.primaryColor),
+          ),
           CustomTextField(
             validate: (String? value) {
               if (value!.isEmpty) {
