@@ -3,10 +3,10 @@ import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo.d
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit(this.registerRepo) : super(SignUpInitial());
+  SignUpCubit({required this.registerRepo}) : super(SignUpInitial());
   static SignUpCubit get(context) => BlocProvider.of(context);
 
-  final RegisterRepo registerRepo;
+  final SignUpRepo registerRepo;
 
   void userSignUP({
     required String userName,

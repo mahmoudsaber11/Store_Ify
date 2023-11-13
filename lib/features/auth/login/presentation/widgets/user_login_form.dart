@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
@@ -19,17 +20,17 @@ class UserLoginForm extends StatefulWidget {
 }
 
 class _UserLoginFormState extends State<UserLoginForm> {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     super.dispose();
-    disposeController();
+    _disposeController();
   }
 
-  void disposeController() {
+  void _disposeController() {
     emailController.dispose();
     passwordController.dispose();
   }
@@ -46,16 +47,9 @@ class _UserLoginFormState extends State<UserLoginForm> {
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
+          const SizedBox(height: 9),
           CustomTextField(
-            validate: (String? value) {
-              if (value!.isEmpty) {
-                return 'email must not be empty';
-              }
-              if (!value.contains('@')) {
-                return "email should contains @";
-              }
-              return null;
-            },
+            validate: (String? value) => Helper.validateEmailField(value),
             controller: emailController,
             inputType: TextInputType.emailAddress,
             hintText: 'Example@gmail.com',
@@ -68,21 +62,10 @@ class _UserLoginFormState extends State<UserLoginForm> {
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
+          const SizedBox(height: 9),
           CustomTextField(
-            validate: (String? value) {
-              if (value!.isEmpty) {
-                return 'Please enter password';
-              } else {
-                return null;
-              }
-            },
-            onSubmitted: (value) {
-              if (formKey.currentState!.validate()) {
-                LoginCubit.get(context).userSignIn(
-                    email: emailController.text,
-                    password: passwordController.text);
-              }
-            },
+            validate: (String? value) => Helper.validatePasswordField(value),
+            onSubmitted: (_) => _login(context),
             controller: passwordController,
             inputType: TextInputType.visiblePassword,
             hintText: '*********',
@@ -106,14 +89,9 @@ class _UserLoginFormState extends State<UserLoginForm> {
             condition: widget.state is! SignInLoadingState,
             builder: (context) {
               return CustomGeneralButton(
-                  text: 'Log in',
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      LoginCubit.get(context).userSignIn(
-                          email: emailController.text,
-                          password: passwordController.text);
-                    }
-                  });
+                text: 'Log in',
+                onPressed: () => _login(context),
+              );
             },
             fallback: (context) => const Center(
               child: CircularProgressIndicator(
@@ -124,5 +102,14 @@ class _UserLoginFormState extends State<UserLoginForm> {
         ],
       ),
     );
+  }
+
+  void _login(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      LoginCubit.get(context).userSignIn(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+    }
   }
 }

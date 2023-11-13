@@ -3,9 +3,19 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_ify/core/api/app_interceptors.dart';
+import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/network/network_info_impl.dart';
+import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo.dart';
+import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo_impl.dart';
+import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
+import 'package:store_ify/features/auth/login/data/repositories/login_repo.dart';
+import 'package:store_ify/features/auth/login/data/repositories/login_repo_impl.dart';
+import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
+import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo.dart';
+import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
+import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/on_boarding/data/repositories/on_boarding_repo.dart';
 import 'package:store_ify/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
@@ -60,14 +70,20 @@ class ServiceLocator {
       () => CacheHelper(serviceLocator<SharedPreferences>()),
     );
 
-    // serviceLocator.registerLazySingleton<Di>(
-    //   () => DioConsumer(client: serviceLocator.get<Dio>()),
-    // );
+    serviceLocator.registerLazySingleton<DioConsumer>(
+        () => DioConsumer(serviceLocator.get()));
   }
 
   void _setupForRepos() {
     serviceLocator
         .registerLazySingleton<OnBoardingRepo>(() => OnBoardingRepoImpl());
+
+    serviceLocator.registerLazySingleton<ForgetPasswordRepo>(
+        () => ForgetPasswordRepoImpl(dioConsumer: serviceLocator.get()));
+    serviceLocator.registerLazySingleton<LoginRepo>(
+        () => LoginRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()));
+    serviceLocator.registerLazySingleton<SignUpRepo>(
+        () => SingUpRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()));
   }
 
   void _setupForCubits() {
@@ -75,5 +91,13 @@ class ServiceLocator {
       () =>
           OnBoardingCubit(onBoardingRepo: serviceLocator.get<OnBoardingRepo>()),
     );
+
+    serviceLocator.registerFactory<ForgetPasswordCubit>(() =>
+        ForgetPasswordCubit(
+            forgetPasswordRepo: serviceLocator.get<ForgetPasswordRepo>()));
+    serviceLocator.registerFactory<LoginCubit>(
+        () => LoginCubit(serviceLocator.get<LoginRepo>()));
+    serviceLocator.registerFactory<SignUpCubit>(
+        () => SignUpCubit(registerRepo: serviceLocator.get<SignUpRepo>()));
   }
 }
