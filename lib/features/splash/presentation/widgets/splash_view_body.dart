@@ -44,7 +44,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
                 "Store-ify",
                 style: TextStyle(
                   fontSize: 24,
-                  fontFamily: 'PottaOne-Regular',
                   fontWeight: FontWeight.w400,
                   color: AppColors.primaryColor,
                 ),

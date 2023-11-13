@@ -4,9 +4,9 @@ import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/assets_data.dart';
 import 'package:store_ify/core/widgets/app_text.dart';
 import 'package:store_ify/core/widgets/custom_buttons.dart';
 
@@ -36,7 +36,7 @@ class VerificationViewBody extends StatelessWidget {
           const SizedBox(
             height: 19,
           ),
-          Image.asset(AssetsData.verification),
+          Image.asset(AppAssets.imagesOtpVerification),
           const SizedBox(
             height: 19,
           ),

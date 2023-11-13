@@ -25,6 +25,7 @@ dependencies:
   google_sign_in: ^6.1.6
   get_it: ^7.6.4
   internet_connection_checker: ^1.0.0+1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -51,3 +52,14 @@ flutter:
           weight: 700
         - asset: assets/fonts/Poppins-ExtraBold.ttf
           weight: 900
+
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/core/utils/
+  filename: app_assets.dart
+  field_prefix: null
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.png"
