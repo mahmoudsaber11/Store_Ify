@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
-import 'package:store_ify/features/auth/login/doman/repositories/login_repo.dart';
+import 'package:store_ify/features/auth/login/data/repositories/login_repo.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/utils/service_locator.dart';
