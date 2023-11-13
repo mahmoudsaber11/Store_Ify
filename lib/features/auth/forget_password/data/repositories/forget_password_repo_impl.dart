@@ -6,10 +6,10 @@ import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 
-class CheckEmailRepoImpl implements CheckEmailRepo {
+class ForgetPasswordRepoImpl implements CheckEmailRepo {
   final DioConsumer dioConsumer;
 
-  const CheckEmailRepoImpl(this.dioConsumer);
+  const ForgetPasswordRepoImpl({required this.dioConsumer});
 
   @override
   Future<Either<Failure, String>> checkEmailRepo({
