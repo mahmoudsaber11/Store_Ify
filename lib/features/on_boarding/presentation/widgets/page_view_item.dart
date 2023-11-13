@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 
 class PageViewItem extends StatelessWidget {
-  const PageViewItem(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.subTitle});
+  const PageViewItem({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.subTitle,
+  });
   final String image;
   final String title;
   final String subTitle;

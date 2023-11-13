@@ -1,6 +1,7 @@
 class AppStrings {
   static const String appTitle = 'Storeify';
   static const String fontFamily = 'Poppins';
+  static const String pottaOneFont = 'Potta One';
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
   static const String opps =

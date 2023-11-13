@@ -31,17 +31,18 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       keyboardType: inputType,
       decoration: InputDecoration(
-          suffixIcon: suffix,
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.titleColor)),
-          hintText: hintText!,
-          labelStyle: const TextStyle(color: AppColors.titleColor),
-          filled: true,
-          fillColor: Colors.transparent,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.titleColor),
-          )),
+        suffixIcon: suffix,
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.titleColor)),
+        hintText: hintText!,
+        labelStyle: const TextStyle(color: AppColors.titleColor),
+        filled: true,
+        fillColor: Colors.transparent,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColors.titleColor),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/features/auth/sign_up/domain/repositories/register_repo.dart';
+import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {

@@ -4,7 +4,12 @@ import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
+<<<<<<< HEAD
 import 'package:store_ify/core/widgets/custom_buttons.dart';
+=======
+import 'package:store_ify/core/widgets/app_text.dart';
+import 'package:store_ify/core/widgets/custom_general_button.dart';
+>>>>>>> 2cd3f08924f7a22590fccbac82ea9449784c1542
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 
 class UserLoginForm extends StatefulWidget {
