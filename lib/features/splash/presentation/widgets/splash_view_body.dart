@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
@@ -21,6 +22,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
     super.initState();
     _initSlidingAnimation();
     _navigateToHome();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _setSystemUIOverlayStyle();
+    super.didChangeDependencies();
   }
 
   @override
@@ -75,5 +82,24 @@ class _SplashViewBodyState extends State<SplashViewBody>
     Future.delayed(const Duration(seconds: 2), (() {
       context.navigateAndReplacement(newRoute: Routes.onBoardingViewRoute);
     }));
+  }
+
+  void _setSystemUIOverlayStyle() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    final double bottomPadding = View.of(context).viewPadding.bottom;
+
+    // Set the color based on the presence of the system navigation bar
+    final Color? systemNavigationBarColor =
+        bottomPadding > 0 ? null : Colors.transparent;
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: systemNavigationBarColor,
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
+    
   }
 }
