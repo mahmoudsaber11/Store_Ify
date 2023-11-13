@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/Features/auth/forget_password/data/repositories/check_email_repo.dart';
-import 'package:store_ify/Features/auth/forget_password/presentation/cubit/check_email_state.dart';
+import 'package:store_ify/features/auth/forget_password/presentation/cubit/check_email_state.dart';
 
 class CheckEmailCubit extends Cubit<CheckEmailState> {
   CheckEmailCubit(this.checkEmailRepo) : super((InitialCheckEmailState()));
