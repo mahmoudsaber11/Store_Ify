@@ -18,7 +18,7 @@ class VerificationCubit extends Cubit<VerificationState> {
         emit(ErrorVerificationState(failure.errMessage.toString()));
         print(failure.errMessage);
       }, (verify) {
-        emit(SuccessVerificationState(userModel: verify));
+        emit(SuccessVerificationState(verify));
       });
     });
   }

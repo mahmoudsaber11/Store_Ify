@@ -7,12 +7,9 @@ class InitialCheckVerificationState extends VerificationState {}
 class LoadingVerificationState extends VerificationState {}
 
 class SuccessVerificationState extends VerificationState {
-  final UserModel userModel;
+  final String message;
 
-  SuccessVerificationState({required this.userModel});
-  // final String message;
-
-  // SuccessVerificationState(this.message);
+  SuccessVerificationState(this.message);
 }
 
 class ErrorVerificationState extends VerificationState {

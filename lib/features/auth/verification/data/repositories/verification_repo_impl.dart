@@ -14,7 +14,7 @@ class VerificationRepoImpl implements VerificationRepo {
 
   VerificationRepoImpl({required this.dioConsumer});
   @override
-  Future<Either<Failure, UserModel>> otpVerification({
+  Future<Either<Failure, dynamic>> otpVerification({
     required String email,
     required String forgetCode,
   }) async {

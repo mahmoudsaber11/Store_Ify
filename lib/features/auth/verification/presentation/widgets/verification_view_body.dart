@@ -24,7 +24,7 @@ class VerificationViewBody extends StatelessWidget {
     return BlocConsumer<VerificationCubit, VerificationState>(
       listener: (context, state) {
         if (state is SuccessVerificationState) {
-          showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
+          showToast(text: state.message, state: ToastStates.SUCCESS);
           context.navigateTo(routeName: Routes.resetPasswordViewRoute);
         }
       },
