@@ -10,7 +10,6 @@ import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_state.dart';
@@ -23,10 +22,7 @@ class VerificationViewBody extends StatelessWidget {
     OtpFieldController otpController = OtpFieldController();
     return BlocConsumer<VerificationCubit, VerificationState>(
       listener: (context, state) {
-        if (state is SuccessVerificationState) {
-          showToast(text: state.message, state: ToastStates.SUCCESS);
-          context.navigateTo(routeName: Routes.resetPasswordViewRoute);
-        }
+        _handleVerificationState(state, context);
       },
       builder: (context, state) {
         return SingleChildScrollView(
@@ -92,9 +88,10 @@ class VerificationViewBody extends StatelessWidget {
                 child: CustomGeneralButton(
                     text: 'Verify',
                     onPressed: () {
-                      serviceLocator.get<VerificationCubit>().otpVerification(
-                          email: otpController.toString(),
-                          forgetCode: otpController.toString());
+                      BlocProvider.of<VerificationCubit>(context)
+                          .otpVerification(
+                              email: otpController.toString(),
+                              forgetCode: otpController.toString());
                     }),
               )
             ],
@@ -102,5 +99,15 @@ class VerificationViewBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _handleVerificationState(VerificationState state, BuildContext context) {
+    if (state is SuccessVerificationState) {
+      showToast(text: state.message, state: ToastStates.SUCCESS);
+      context.navigateTo(routeName: Routes.resetPasswordViewRoute);
+    }
+    if (state is ErrorVerificationState) {
+      showToast(text: state.errorMessage, state: ToastStates.SUCCESS);
+    }
   }
 }

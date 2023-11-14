@@ -61,7 +61,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                 ),
                 CustomTextField(
                   onSubmitted: (_) {
-                    _foregtPassword(context);
+                    _foregtPassword();
                   },
                   validate: (String? value) => Helper.validateEmailField(value),
                   controller: emailController,
@@ -77,7 +77,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                     return CustomGeneralButton(
                         text: 'Verify Email',
                         onPressed: () {
-                          _foregtPassword(context);
+                          _foregtPassword();
                         });
                   },
                   fallback: (context) => const Center(
@@ -113,12 +113,9 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
     );
   }
 
-  void _foregtPassword(
-    BuildContext context,
-  ) {
+  void _foregtPassword() {
     if (formKey.currentState!.validate()) {
-      serviceLocator
-          .get<ForgetPasswordCubit>()
+      BlocProvider.of<ForgetPasswordCubit>(context)
           .checkEmail(email: emailController.text);
     }
   }

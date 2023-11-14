@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
@@ -156,12 +157,12 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
 
   void _signUp() {
     if (formKey.currentState!.validate()) {
-      serviceLocator.get<SignUpCubit>().userSignUP(
-            userName: nameController.text,
-            email: emailController.text,
-            password: passwordController.text,
-            confirmPassword: confirmController.text,
-          );
+      BlocProvider.of<SignUpCubit>(context).userSignUP(
+        userName: nameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        confirmPassword: confirmController.text,
+      );
     }
   }
 }

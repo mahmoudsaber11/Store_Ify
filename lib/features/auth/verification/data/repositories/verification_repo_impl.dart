@@ -21,8 +21,7 @@ class VerificationRepoImpl implements VerificationRepo {
     try {
       final response = await dioConsumer.postData(EndPoints.verfiyCode,
           data: {"email": email, "forgetCode": forgetCode});
-      final UserModel user = UserModel.fromJson(response);
-      return right(user);
+      return right(response);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

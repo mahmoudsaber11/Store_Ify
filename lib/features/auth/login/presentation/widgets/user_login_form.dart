@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
@@ -107,7 +108,7 @@ class _UserLoginFormState extends State<UserLoginForm> {
 
   void _login(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      serviceLocator.get<LoginCubit>().userSignIn(
+      BlocProvider.of<LoginCubit>(context).userSignIn(
           email: emailController.text.trim(),
           password: passwordController.text);
     }
