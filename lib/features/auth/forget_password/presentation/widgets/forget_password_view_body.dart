@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
@@ -12,22 +13,28 @@ import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_state.dart';
 
-class ForgetPasswordViewBody extends StatelessWidget {
+class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
 
   @override
+  State<ForgetPasswordViewBody> createState() => _ForgetPasswordViewBodyState();
+}
+
+class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
+  TextEditingController emailController = TextEditingController();
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var formKey = GlobalKey<FormState>();
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
-        if (state is SuccessCheckEmailState) {
-          showToast(text: state.message, state: ToastStates.SUCCESS);
-          context.navigateTo(routeName: Routes.verificationViewRoute);
-        }
-        if (state is ErrorCheckEmailState) {
-          showToast(text: state.errorMessage, state: ToastStates.ERROR);
-        }
+        _handleForgetPasswordState(state, context);
       },
       builder: (context, state) {
         return Form(
@@ -52,21 +59,10 @@ class ForgetPasswordViewBody extends StatelessWidget {
                   style: AppTextStyles.textStyle16Regular,
                 ),
                 CustomTextField(
-                  onSubmitted: (value) {
-                    if (formKey.currentState!.validate()) {
-                      ForgetPasswordCubit.get(context)
-                          .checkEmail(email: emailController.text);
-                    }
+                  onSubmitted: (_) {
+                    _foregtPassword(context);
                   },
-                  validate: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'email must not be empty';
-                    }
-                    if (!value.contains('@')) {
-                      return "email should contains @";
-                    }
-                    return null;
-                  },
+                  validate: (String? value) => Helper.validateEmailField(value),
                   controller: emailController,
                   inputType: TextInputType.emailAddress,
                   hintText: 'Example@gmail.com',
@@ -80,10 +76,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
                     return CustomGeneralButton(
                         text: 'Verify Email',
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            ForgetPasswordCubit.get(context)
-                                .checkEmail(email: emailController.text);
-                          }
+                          _foregtPassword(context);
                         });
                   },
                   fallback: (context) => const Center(
@@ -117,5 +110,24 @@ class ForgetPasswordViewBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _foregtPassword(
+    BuildContext context,
+  ) {
+    if (formKey.currentState!.validate()) {
+      ForgetPasswordCubit.get(context).checkEmail(email: emailController.text);
+    }
+  }
+
+  void _handleForgetPasswordState(
+      ForgetPasswordState state, BuildContext context) {
+    if (state is SuccessCheckEmailState) {
+      showToast(text: state.message, state: ToastStates.SUCCESS);
+      context.navigateTo(routeName: Routes.verificationViewRoute);
+    }
+    if (state is ErrorCheckEmailState) {
+      showToast(text: state.errorMessage, state: ToastStates.ERROR);
+    }
   }
 }
