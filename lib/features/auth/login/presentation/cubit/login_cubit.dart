@@ -7,7 +7,6 @@ import 'package:store_ify/core/utils/service_locator.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginRepo) : super(LoginInitial());
-  static LoginCubit get(context) => BlocProvider.of(context);
 
   final LoginRepo loginRepo;
 

@@ -5,7 +5,6 @@ import 'package:store_ify/features/auth/forget_password/presentation/cubit/forge
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit({required this.forgetPasswordRepo})
       : super((InitialCheckEmailState()));
-  static ForgetPasswordCubit get(context) => BlocProvider.of(context);
 
   final ForgetPasswordRepo forgetPasswordRepo;
 

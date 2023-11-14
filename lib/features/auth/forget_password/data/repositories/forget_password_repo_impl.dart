@@ -12,7 +12,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
   const ForgetPasswordRepoImpl({required this.dioConsumer});
 
   @override
-  Future<Either<Failure, String>> checkEmailRepo({
+  Future<Either<Failure, dynamic>> checkEmailRepo({
     required String email,
   }) async {
     try {

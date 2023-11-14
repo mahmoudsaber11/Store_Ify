@@ -4,6 +4,7 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/widgets/user_sign_up_form.dart';
@@ -20,21 +21,7 @@ class SignUpViewBody extends StatelessWidget {
 
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
-        if (state is SignUpSuccessState) {
-          showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
-
-          context.navigateAndReplacement(
-            newRoute: Routes.storeifyLayoutViewRoute,
-          );
-        }
-        if (state is SignUpWithGoogleSuccessState) {
-          context.navigateAndReplacement(
-            newRoute: Routes.storeifyLayoutViewRoute,
-          );
-        }
-        if (state is SignUpErrorState) {
-          showToast(text: state.error, state: ToastStates.ERROR);
-        }
+        _handleSignUpState(state, context);
       },
       builder: (context, state) {
         return Padding(
@@ -89,7 +76,7 @@ class SignUpViewBody extends StatelessWidget {
                 ),
                 SignWithSocial(
                   onTap: () {
-                    SignUpCubit.get(context).signUpWithGoogle();
+                    serviceLocator.get<SignUpCubit>().signUpWithGoogle();
                   },
                 ),
               ],
@@ -98,5 +85,23 @@ class SignUpViewBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _handleSignUpState(SignUpState state, BuildContext context) {
+    if (state is SignUpSuccessState) {
+      showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
+
+      context.navigateAndReplacement(
+        newRoute: Routes.storeifyLayoutViewRoute,
+      );
+    }
+    if (state is SignUpWithGoogleSuccessState) {
+      context.navigateAndReplacement(
+        newRoute: Routes.storeifyLayoutViewRoute,
+      );
+    }
+    if (state is SignUpErrorState) {
+      showToast(text: state.error, state: ToastStates.ERROR);
+    }
   }
 }

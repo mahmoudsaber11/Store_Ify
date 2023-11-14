@@ -5,6 +5,7 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
+import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/core/widgets/sign_with_social.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
@@ -67,8 +68,8 @@ class LoginViewBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 SignWithSocial(
-                  onTap: () => LoginCubit.get(context).signInWithGoogle(),
-                ),
+                    onTap: () =>
+                        serviceLocator.get<LoginCubit>().signInWithGoogle()),
               ],
             ),
           ),

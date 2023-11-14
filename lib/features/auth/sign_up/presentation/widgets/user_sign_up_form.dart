@@ -1,7 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
@@ -46,6 +48,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = serviceLocator.get<SignUpCubit>();
     return Form(
       key: formKey,
       child: Column(
@@ -57,14 +60,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
-            validate: (String? value) {
-              if (value!.isEmpty) {
-                return 'email must not be empty';
-              } else if (!value.contains('@')) {
-                return "email should contains @";
-              }
-              return null;
-            },
+            validate: (String? value) => Helper.validateEmailField(value),
             controller: emailController,
             inputType: TextInputType.emailAddress,
             hintText: 'Example@gmail.com',
@@ -78,15 +74,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
-            validate: (String? value) {
-              if (value!.isEmpty) {
-                return 'email must not be empty';
-              }
-              if (value.length < 6) {
-                return "must be more than 5 character";
-              }
-              return null;
-            },
+            validate: (String? value) => Helper.validateUserNameField(value),
             controller: nameController,
             inputType: TextInputType.name,
             hintText: 'Enter  your username',
@@ -98,26 +86,18 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
-            isPassword: SignUpCubit.get(context).isPassword,
+            isPassword: cubit.isPassword,
             suffix: IconButton(
                 onPressed: () {
-                  SignUpCubit.get(context).switchPassVisibility();
+                  cubit.switchPassVisibility();
                 },
                 icon: Icon(
-                  SignUpCubit.get(context).isPassword
+                  cubit.isPassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
                   color: AppColors.primaryColor,
                 )),
-            validate: (value) {
-              var passNonNullValue = value ?? "";
-              if (passNonNullValue.isEmpty) {
-                return ("Password is required");
-              } else if (passNonNullValue.length < 6) {
-                return ("Password Must be more than 5 characters");
-              }
-              return null;
-            },
+            validate: (value) => Helper.validatePasswordField(value),
             controller: passwordController,
             inputType: TextInputType.visiblePassword,
             hintText: '*********',
@@ -131,38 +111,22 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
                 .copyWith(color: AppColors.primaryColor),
           ),
           CustomTextField(
-            isPassword: SignUpCubit.get(context).isPassword,
+            isPassword: cubit.isPassword,
             suffix: IconButton(
                 onPressed: () {
-                  SignUpCubit.get(context).switchPassVisibility();
+                  cubit.switchPassVisibility();
                 },
                 icon: Icon(
-                  SignUpCubit.get(context).isPassword
+                  cubit.isPassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
                   color: AppColors.primaryColor,
                 )),
-            onSubmitted: (value) {
-              if (formKey.currentState!.validate()) {
-                SignUpCubit.get(context).userSignUP(
-                  userName: nameController.text,
-                  email: emailController.text,
-                  password: passwordController.text,
-                  confirmPassword: confirmController.text,
-                );
-              }
+            onSubmitted: (_) {
+              _signUp();
             },
-            validate: (value) {
-              var passNonNullValue = value ?? "";
-              if (passNonNullValue.isEmpty) {
-                return ("Password is required");
-              } else if (passNonNullValue.length < 6) {
-                return ("Password Must be more than 5 characters");
-              } else if (value != password) {
-                return 'Confirm password not matching';
-              }
-              return null;
-            },
+            validate: (value) =>
+                Helper.validateConfirmPasswordField(value, password),
             controller: confirmController,
             inputType: TextInputType.visiblePassword,
             hintText: '*********',
@@ -176,14 +140,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
               return CustomGeneralButton(
                   text: 'Sign up',
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      SignUpCubit.get(context).userSignUP(
-                        userName: nameController.text,
-                        email: emailController.text,
-                        password: passwordController.text,
-                        confirmPassword: confirmController.text,
-                      );
-                    }
+                    _signUp();
                   });
             },
             fallback: (context) => const Center(
@@ -195,5 +152,16 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
         ],
       ),
     );
+  }
+
+  void _signUp() {
+    if (formKey.currentState!.validate()) {
+      serviceLocator.get<SignUpCubit>().userSignUP(
+            userName: nameController.text,
+            email: emailController.text,
+            password: passwordController.text,
+            confirmPassword: confirmController.text,
+          );
+    }
   }
 }

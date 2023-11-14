@@ -9,7 +9,8 @@ import 'package:store_ify/features/auth/login/presentation/views/login_view.dart
 import 'package:store_ify/features/auth/reset_password/reset_password_view.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
-import 'package:store_ify/features/auth/verification/verification_view.dart';
+import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
+import 'package:store_ify/features/auth/verification/presentation/view/verification_view.dart';
 import 'package:store_ify/features/layout/presentation/views/store_ify_layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
@@ -60,7 +61,10 @@ class AppRoutes {
 
       case Routes.verificationViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const VerificationView(),
+          builder: (context) => BlocProvider(
+            create: (context) => serviceLocator.get<VerificationCubit>(),
+            child: const VerificationView(),
+          ),
         );
 
       case Routes.storeifyLayoutViewRoute:

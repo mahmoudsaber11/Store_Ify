@@ -4,7 +4,6 @@ import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({required this.registerRepo}) : super(SignUpInitial());
-  static SignUpCubit get(context) => BlocProvider.of(context);
 
   final SignUpRepo registerRepo;
 
