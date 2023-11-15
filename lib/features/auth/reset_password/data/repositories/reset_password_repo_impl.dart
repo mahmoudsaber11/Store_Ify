@@ -11,7 +11,7 @@ class ResetPasswordRepoImpl implements ResetPasswordRepo {
 
   ResetPasswordRepoImpl(this.dioConsumer);
   @override
-  Future<Either<Failure, dynamic>> otpVerification(
+  Future<Either<Failure, dynamic>> resetPassword(
       {required String email,
       required String password,
       required String confirmPassword}) async {

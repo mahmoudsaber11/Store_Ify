@@ -5,7 +5,6 @@ import 'package:store_ify/features/auth/verification/presentation/cubit/verifica
 class VerificationCubit extends Cubit<VerificationState> {
   VerificationCubit({required this.verificationRepo})
       : super((InitialCheckVerificationState()));
-  static VerificationCubit get(context) => BlocProvider.of(context);
 
   final VerificationRepo verificationRepo;
 
