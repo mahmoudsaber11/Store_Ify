@@ -6,6 +6,7 @@ import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/views/login_view.dart';
+import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/view/reset_password_view.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
@@ -21,7 +22,10 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(
-            builder: (context) => const ResetPasswordView());
+            builder: (context) => BlocProvider(
+                  create: (context) => serviceLocator.get<ResetPasswordCubit>(),
+                  child: const ResetPasswordView(),
+                ));
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(

@@ -10,6 +10,9 @@ import 'package:store_ify/features/auth/forget_password/presentation/cubit/forge
 import 'package:store_ify/features/auth/login/data/repositories/login_repo.dart';
 import 'package:store_ify/features/auth/login/data/repositories/login_repo_impl.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
+import 'package:store_ify/features/auth/reset_password/data/repositories/reset_password_repo.dart';
+import 'package:store_ify/features/auth/reset_password/data/repositories/reset_password_repo_impl.dart';
+import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
@@ -86,6 +89,11 @@ class ServiceLocator {
         () => SingUpRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()));
     serviceLocator.registerLazySingleton<VerificationRepo>(() =>
         VerificationRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()));
+    serviceLocator.registerLazySingleton<ResetPasswordRepo>(
+      () => ResetPasswordRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+      ),
+    );
   }
 
   void _setupForCubits() {
@@ -103,5 +111,7 @@ class ServiceLocator {
         () => SignUpCubit(registerRepo: serviceLocator.get<SignUpRepo>()));
     serviceLocator.registerFactory<VerificationCubit>(() => VerificationCubit(
         verificationRepo: serviceLocator.get<VerificationRepo>()));
+    serviceLocator.registerFactory<ResetPasswordCubit>(() => ResetPasswordCubit(
+        resetPasswordRepo: serviceLocator.get<ResetPasswordRepo>()));
   }
 }

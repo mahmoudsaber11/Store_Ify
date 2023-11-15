@@ -9,7 +9,7 @@ import 'package:store_ify/features/auth/reset_password/data/repositories/reset_p
 class ResetPasswordRepoImpl implements ResetPasswordRepo {
   final DioConsumer dioConsumer;
 
-  ResetPasswordRepoImpl(this.dioConsumer);
+  ResetPasswordRepoImpl({required this.dioConsumer});
   @override
   Future<Either<Failure, dynamic>> resetPassword(
       {required String email,
