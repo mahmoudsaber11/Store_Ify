@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/helpers/helper.dart';
-import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
+import 'package:store_ify/features/auth/reset_password/widgets/dialog_succes_password.dart';
 
 class ResetPasswordForm extends StatefulWidget {
   const ResetPasswordForm({
@@ -39,6 +39,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
     return Form(
       key: formKey,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             "password",
@@ -85,13 +87,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   await showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
-                          content: Column(
-                            children: [
-                              Image.asset(AppAssets.successResetPassword),
-                            ],
-                          ),
-                        );
+                        return const DialogSuccesPassword();
                       });
                 }
               }),
