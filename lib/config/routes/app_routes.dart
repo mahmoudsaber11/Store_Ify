@@ -20,7 +20,8 @@ class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+        return MaterialPageRoute(
+            builder: (context) => const ResetPasswordView());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(
@@ -54,10 +55,10 @@ class AppRoutes {
           ),
         );
 
-      case Routes.resetPasswordViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const ResetPasswordView(),
-        );
+      // case Routes.resetPasswordViewRoute:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const ResetPasswordView(),
+      //   );
 
       case Routes.verificationViewRoute:
         return MaterialPageRoute(

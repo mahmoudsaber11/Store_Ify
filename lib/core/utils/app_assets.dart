@@ -40,4 +40,7 @@ abstract class AppAssets {
   /// Assets for imagesTwitter
   /// assets/images/twitter.png
   static const String imagesTwitter = "assets/images/twitter.png";
+
+  static const String successResetPassword =
+      "assets/icons/icon-park_correct.png";
 }

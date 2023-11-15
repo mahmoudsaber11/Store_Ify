@@ -1,5 +1,3 @@
-import 'package:store_ify/core/models/user_model.dart';
-
 abstract class VerificationState {}
 
 class InitialCheckVerificationState extends VerificationState {}
