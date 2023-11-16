@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/otp_field_style.dart';
-import 'package:otp_text_field/style.dart';
+import 'package:pinput/pinput.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_state.dart';
+import 'package:store_ify/features/auth/verification/presentation/widgets/verification_form.dart';
 
 class VerificationViewBody extends StatelessWidget {
-  const VerificationViewBody({super.key});
-
+  const VerificationViewBody({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
-    OtpFieldController otpController = OtpFieldController();
     return BlocConsumer<VerificationCubit, VerificationState>(
       listener: (context, state) {
-        _handleVerificationState(state, context);
+        _handleVerificationState(state, context, email);
       },
       builder: (context, state) {
         return SingleChildScrollView(
@@ -63,37 +59,7 @@ class VerificationViewBody extends StatelessWidget {
               const SizedBox(
                 height: 13,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: OTPTextField(
-                  otpFieldStyle: OtpFieldStyle(
-                    focusBorderColor: Colors.red,
-                    enabledBorderColor: Colors.red,
-                  ),
-                  controller: otpController,
-                  length: 4,
-                  width: MediaQuery.of(context).size.width,
-                  textFieldAlignment: MainAxisAlignment.spaceAround,
-                  fieldWidth: 45,
-                  fieldStyle: FieldStyle.box,
-                  outlineBorderRadius: 15,
-                  style: const TextStyle(fontSize: 17, color: Colors.black),
-                ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 19),
-                child: CustomGeneralButton(
-                    text: 'Verify',
-                    onPressed: () {
-                      BlocProvider.of<VerificationCubit>(context)
-                          .otpVerification(
-                              email: otpController.toString(),
-                              forgetCode: otpController.toString());
-                    }),
-              )
+              VerificationForm(email: email)
             ],
           ),
         );
@@ -101,13 +67,30 @@ class VerificationViewBody extends StatelessWidget {
     );
   }
 
-  void _handleVerificationState(VerificationState state, BuildContext context) {
+  PinTheme pinTheme() {
+    return PinTheme(
+      width: 56,
+      height: 52,
+      textStyle: const TextStyle(
+        fontSize: 22,
+        color: AppColors.textProfileColor,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(19),
+        border: Border.all(color: AppColors.primaryColor),
+      ),
+    );
+  }
+
+  void _handleVerificationState(
+      VerificationState state, BuildContext context, String email) {
     if (state is SuccessVerificationState) {
       showToast(text: state.message, state: ToastStates.SUCCESS);
-      context.navigateTo(routeName: Routes.resetPasswordViewRoute);
+      context.navigateTo(
+          routeName: Routes.resetPasswordViewRoute, arguments: email);
     }
     if (state is ErrorVerificationState) {
-      showToast(text: state.errorMessage, state: ToastStates.SUCCESS);
+      showToast(text: state.errorMessage, state: ToastStates.ERROR);
     }
   }
 }

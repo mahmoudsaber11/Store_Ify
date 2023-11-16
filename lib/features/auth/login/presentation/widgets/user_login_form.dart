@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
@@ -71,13 +70,13 @@ class _UserLoginFormState extends State<UserLoginForm> {
             controller: passwordController,
             inputType: TextInputType.visiblePassword,
             hintText: '*********',
-            isPassword: serviceLocator.get<LoginCubit>().isPassword,
+            isPassword: BlocProvider.of<LoginCubit>(context).isPassword,
             suffix: IconButton(
               onPressed: () {
-                serviceLocator.get<LoginCubit>().changePasswordVisibility();
+                BlocProvider.of<LoginCubit>(context).changePasswordVisibility();
               },
               icon: Icon(
-                serviceLocator.get<LoginCubit>().isPassword
+                BlocProvider.of<LoginCubit>(context).isPassword
                     ? Icons.visibility_outlined
                     : Icons.visibility_off_outlined,
                 color: AppColors.primaryColor,

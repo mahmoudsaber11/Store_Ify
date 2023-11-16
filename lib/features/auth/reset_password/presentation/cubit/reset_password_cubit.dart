@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/features/auth/reset_password/data/repositories/reset_password_repo.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_state.dart';
+import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/core/helpers/cache_helper.dart';
 
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   ResetPasswordCubit({required this.resetPasswordRepo})
@@ -23,6 +26,9 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       value.fold((failure) {
         emit(ErrorResetPasswordState(failure.errMessage.toString()));
       }, (message) {
+        serviceLocator
+            .get<CacheHelper>()
+            .saveData(key: 'uid', value: Helper.uId);
         emit(SuccessResetPasswordState(message.toString()));
       });
     });

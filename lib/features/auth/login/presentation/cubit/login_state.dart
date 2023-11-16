@@ -14,8 +14,7 @@ class SignInLoadingState extends LoginState {}
 
 class SignInSuccessState extends LoginState {
   final UserModel userModel;
-  final String uId;
-  SignInSuccessState(this.uId, {required this.userModel});
+  SignInSuccessState({required this.userModel});
 }
 
 class SignInErrorState extends LoginState {

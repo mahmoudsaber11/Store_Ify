@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
@@ -29,9 +28,6 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
   var passwordController = TextEditingController();
   var confirmController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-  String password = '';
-  // ignore: unused_local_variable
-  String confirmPassword = '';
 
   @override
   void dispose() {
@@ -49,7 +45,8 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = serviceLocator.get<SignUpCubit>();
+    var cubit = BlocProvider.of<SignUpCubit>(context);
+
     return Form(
       key: formKey,
       child: Column(
@@ -126,8 +123,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             onSubmitted: (_) {
               _signUp();
             },
-            validate: (value) =>
-                Helper.validateConfirmPasswordField(value, password),
+            validate: (value) => Helper.validateConfirmPasswordField(value),
             controller: confirmController,
             inputType: TextInputType.visiblePassword,
             hintText: '*********',

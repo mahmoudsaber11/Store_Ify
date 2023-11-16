@@ -34,7 +34,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
-        _handleForgetPasswordState(state, context);
+        _handleForgetPasswordState(state, context, emailController.text);
       },
       builder: (context, state) {
         return Form(
@@ -120,10 +120,11 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   }
 
   void _handleForgetPasswordState(
-      ForgetPasswordState state, BuildContext context) {
+      ForgetPasswordState state, BuildContext context, String email) {
     if (state is SuccessCheckEmailState) {
       showToast(text: state.message, state: ToastStates.SUCCESS);
-      context.navigateTo(routeName: Routes.verificationViewRoute);
+      context.navigateTo(
+          routeName: Routes.verificationViewRoute, arguments: email);
     }
     if (state is ErrorCheckEmailState) {
       showToast(text: state.errorMessage, state: ToastStates.ERROR);

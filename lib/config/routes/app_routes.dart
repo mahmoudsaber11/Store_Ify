@@ -8,6 +8,7 @@ import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dar
 import 'package:store_ify/features/auth/login/presentation/views/login_view.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/view/reset_password_view.dart';
+import 'package:store_ify/features/auth/reset_password/widgets/dialog_succes_password.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
@@ -21,11 +22,7 @@ class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => serviceLocator.get<ResetPasswordCubit>(),
-                  child: const ResetPasswordView(),
-                ));
+        return MaterialPageRoute(builder: (context) => const SplashView());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(
@@ -59,21 +56,31 @@ class AppRoutes {
           ),
         );
 
-      // case Routes.resetPasswordViewRoute:
-      //   return MaterialPageRoute(
-      //     builder: (context) => const ResetPasswordView(),
-      //   );
+      case Routes.resetPasswordViewRoute:
+        final args = routeSettings.arguments as String;
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => serviceLocator.get<ResetPasswordCubit>(),
+                  child: const ResetPasswordView(),
+                ));
 
       case Routes.verificationViewRoute:
+        final args = routeSettings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => serviceLocator.get<VerificationCubit>(),
-            child: const VerificationView(),
+            child: VerificationView(
+              email: args,
+            ),
           ),
         );
 
       case Routes.storeifyLayoutViewRoute:
         return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
+
+      case Routes.dialogSuccessPassword:
+        return MaterialPageRoute(
+            builder: (context) => const DialogSuccesPassword());
 
       default:
         return _unFoundRoute();

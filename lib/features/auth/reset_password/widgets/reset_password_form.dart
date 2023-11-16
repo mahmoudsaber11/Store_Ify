@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/features/auth/reset_password/widgets/dialog_succes_password.dart';
+import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 
 class ResetPasswordForm extends StatefulWidget {
   const ResetPasswordForm({
@@ -16,6 +17,7 @@ class ResetPasswordForm extends StatefulWidget {
 }
 
 class _ResetPasswordFormState extends State<ResetPasswordForm> {
+  var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmController = TextEditingController();
   var formKey = GlobalKey<FormState>();
@@ -71,8 +73,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             onChange: (value) {
               confirmPassword = value;
             },
-            validate: (value) =>
-                Helper.validateConfirmPasswordField(value, password),
+            validate: (value) => Helper.validateConfirmPasswordField(value),
             controller: confirmController,
             inputType: TextInputType.visiblePassword,
             hintText: '*********',
@@ -84,11 +85,10 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               text: 'Reset Password',
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  await showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const DialogSuccesPassword();
-                      });
+                  BlocProvider.of<ResetPasswordCubit>(context).resetPassword(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      confirmPassword: confirmController.text);
                 }
               }),
         ],

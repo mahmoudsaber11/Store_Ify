@@ -29,15 +29,16 @@ class Helper {
     return null;
   }
 
-  static String? validateConfirmPasswordField(String? value, String password) {
+  static String? validateConfirmPasswordField(String? value) {
     var passNonNullValue = value ?? "";
     if (passNonNullValue.isEmpty) {
       return ("Password is required");
     } else if (passNonNullValue.length < 6) {
       return ("Password Must be more than 5 characters");
-    } else if (value != password) {
-      return 'Confirm password not matching';
     }
+    // else if (value != password) {
+    //   return 'Confirm password not matching';
+    // }
     return null;
   }
 }
