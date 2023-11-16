@@ -16,13 +16,12 @@ import 'package:store_ify/features/auth/verification/presentation/view/verificat
 import 'package:store_ify/features/layout/presentation/views/store_ify_layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
-import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(
@@ -78,8 +77,8 @@ class AppRoutes {
           ),
         );
 
-      case Routes.storeifyLayoutViewRoute:
-        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
+      // case Routes.storeifyLayoutViewRoute:
+      //   return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
 
       default:
         return _unFoundRoute();

@@ -9,6 +9,7 @@ class AppThemes {
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
       fontFamily: AppStrings.fontFamily,
       brightness: Brightness.light,
+      appBarTheme:const AppBarTheme(backgroundColor: Colors.white),
       bottomNavigationBarTheme:
           const BottomNavigationBarThemeData(backgroundColor: Colors.white));
 }
