@@ -25,6 +25,7 @@ class _VerificationFormState extends State<VerificationForm> {
     return Form(
       key: formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -53,8 +54,7 @@ class _VerificationFormState extends State<VerificationForm> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     BlocProvider.of<VerificationCubit>(context).otpVerification(
-                        email: widget.email,
-                        forgetCode: otpController.toString());
+                        email: widget.email, forgetCode: otpController.text);
                   }
                 }),
           ),

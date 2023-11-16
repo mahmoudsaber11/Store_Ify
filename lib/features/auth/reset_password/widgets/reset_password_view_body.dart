@@ -6,16 +6,17 @@ import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_state.dart';
+import 'package:store_ify/features/auth/reset_password/widgets/login_dialog.dart';
 import 'package:store_ify/features/auth/reset_password/widgets/reset_password_form.dart';
 
 class ResetPasswordViewBody extends StatelessWidget {
-  const ResetPasswordViewBody({super.key});
-
+  const ResetPasswordViewBody({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
       listener: (context, state) {
-        _handleSuccessResetState(state, context);
+        _handleSuccessResetState(state, context, email);
       },
       builder: (context, state) {
         return Padding(
@@ -51,9 +52,14 @@ class ResetPasswordViewBody extends StatelessWidget {
   }
 
   void _handleSuccessResetState(
-      ResetPasswordState state, BuildContext context) {
+      ResetPasswordState state, BuildContext context, String email) {
     if (state is SuccessResetPasswordState) {
-      context.navigateAndReplacement(newRoute: Routes.dialogSuccessPassword);
+      // context.navigateAndReplacement(newRoute: Routes.dialogSuccessPassword,arguments: email);
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const LoginDialog();
+          });
     }
     if (state is ErrorResetPasswordState) {
       showToast(text: state.errorMessage, state: ToastStates.ERROR);
