@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/config/routes/routes.dart';
-import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
@@ -10,8 +8,10 @@ import 'package:store_ify/features/auth/reset_password/widgets/login_dialog.dart
 import 'package:store_ify/features/auth/reset_password/widgets/reset_password_form.dart';
 
 class ResetPasswordViewBody extends StatelessWidget {
-  const ResetPasswordViewBody({super.key, required this.email});
+  const ResetPasswordViewBody(
+      {super.key, required this.email, required this.password});
   final String email;
+  final String password;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
@@ -54,11 +54,13 @@ class ResetPasswordViewBody extends StatelessWidget {
   void _handleSuccessResetState(
       ResetPasswordState state, BuildContext context, String email) {
     if (state is SuccessResetPasswordState) {
-      // context.navigateAndReplacement(newRoute: Routes.dialogSuccessPassword,arguments: email);
       showDialog(
           context: context,
           builder: (context) {
-            return const LoginDialog();
+            return LoginDialog(
+              email: email,
+              password: password,
+            );
           });
     }
     if (state is ErrorResetPasswordState) {

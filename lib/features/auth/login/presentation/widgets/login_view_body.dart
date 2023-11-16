@@ -10,7 +10,6 @@ import 'package:store_ify/core/widgets/sign_with_social.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_state.dart';
 import 'package:store_ify/features/auth/login/presentation/widgets/user_login_form.dart';
-import 'package:store_ify/features/auth/reset_password/widgets/login_dialog.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -82,14 +81,10 @@ class LoginViewBody extends StatelessWidget {
   void _handleLoginStates(LoginState state, BuildContext context) {
     if (state is SignInSuccessState) {
       showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
-      showDialog(
-          context: context,
-          builder: (context) {
-            return const LoginDialog();
-          });
-      // context.navigateAndRemoveUntil(
-      //   newRoute: Routes.storeifyLayoutViewRoute,
-      // );
+
+      context.navigateAndRemoveUntil(
+        newRoute: Routes.storeifyLayoutViewRoute,
+      );
     }
     if (state is SignInWithGoogleSuccessState) {
       context.navigateAndRemoveUntil(

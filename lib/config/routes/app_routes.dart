@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/Features/auth/forget_password/presentation/view/forget_password_view.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/models/login_params.dart';
 import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
@@ -56,12 +57,13 @@ class AppRoutes {
         );
 
       case Routes.resetPasswordViewRoute:
-        final args = routeSettings.arguments as String;
+        final args = routeSettings.arguments as LoginParams;
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                   create: (context) => serviceLocator.get<ResetPasswordCubit>(),
                   child: ResetPasswordView(
-                    email: args,
+                    email: args.email,
+                    password: args.password,
                   ),
                 ));
 
