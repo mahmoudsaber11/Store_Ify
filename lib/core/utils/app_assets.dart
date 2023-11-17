@@ -44,4 +44,6 @@ abstract class AppAssets {
   static const String successResetPassword =
       "assets/icons/icon-park_correct.png";
   static const String locationDialog = "assets/icons/carbon_map.png";
+  static const String search = "assets/icons/Search.png";
+  static const String edit = "assets/icons/Filter.png";
 }

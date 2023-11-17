@@ -2,25 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
-import 'package:store_ify/features/home/presentation/widgets/location_dialog.dart';
+import 'package:store_ify/core/widgets/custom_search_text_field.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  @override
-  void initState() {
-    super.initState();
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const LocationDialog();
-        });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +33,13 @@ class _HomeViewState extends State<HomeView> {
                           .copyWith(fontSize: 10),
                     ),
                   ],
-                )
+                ),
               ],
             ),
+            const SizedBox(
+              height: 22,
+            ),
+            CustomSearchTextField()
           ],
         ),
       ),
