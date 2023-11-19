@@ -28,12 +28,9 @@ class _SectionUpperState extends State<SectionUpper> {
           children: [
             CustomUser(location: 'Location:$_locationName'),
             const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 21),
-              child: Icon(
-                Icons.notifications_none,
-                color: buttonColor,
-              ),
+            const Icon(
+              Icons.notifications_none,
+              color: AppColors.iconsColor,
             ),
           ],
         ),
@@ -43,30 +40,33 @@ class _SectionUpperState extends State<SectionUpper> {
         Row(
           children: [
             const Expanded(child: CustomSearchTextField()),
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    buttonColor = AppColors.primaryColor;
-                  });
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return LocationDialog(
-                          onPressedButton: () async {
-                            setState(() {
-                              context.getBack();
-                              buttonColor = AppColors.iconsColor;
-                            });
-                            _getLocation();
-                          },
-                        );
-                      });
-                },
-                icon: Icon(
-                  Icons.location_on_outlined,
-                  size: 30,
-                  color: buttonColor,
-                )),
+            SizedBox(
+              width: 30,
+              child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      buttonColor = AppColors.primaryColor;
+                    });
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return LocationDialog(
+                            onPressedButton: () async {
+                              setState(() {
+                                context.getBack();
+                                buttonColor = AppColors.iconsColor;
+                              });
+                              _getLocation();
+                            },
+                          );
+                        });
+                  },
+                  icon: Icon(
+                    Icons.location_on_outlined,
+                    size: 30,
+                    color: buttonColor,
+                  )),
+            ),
           ],
         ),
       ],

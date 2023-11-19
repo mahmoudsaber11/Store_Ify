@@ -73,7 +73,7 @@ class VerificationViewBody extends StatelessWidget {
       height: 52,
       textStyle: const TextStyle(
         fontSize: 22,
-        color: AppColors.textProfileColor,
+        color: AppColors.textColor,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(19),

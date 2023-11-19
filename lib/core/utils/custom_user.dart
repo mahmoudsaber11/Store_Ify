@@ -28,7 +28,7 @@ class CustomUser extends StatelessWidget {
             Text(
               location,
               style: const TextStyle(
-                color: AppColors.textProfileColor,
+                color: AppColors.textColor,
                 fontWeight: FontWeight.w300,
                 fontSize: 10,
               ),

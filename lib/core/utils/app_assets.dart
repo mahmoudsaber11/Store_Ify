@@ -46,4 +46,6 @@ abstract class AppAssets {
   static const String locationDialog = "assets/icons/carbon_map.png";
   static const String search = "assets/icons/Search.png";
   static const String edit = "assets/icons/Filter.png";
+  static const String textProduct = "assets/images/product1.png";
+  static const String testcategories = "assets/images/testcategories.png";
 }
