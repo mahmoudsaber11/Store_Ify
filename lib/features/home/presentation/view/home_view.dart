@@ -1,105 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/custom_user.dart';
-import 'package:store_ify/core/widgets/custom_search_text_field.dart';
-import 'package:store_ify/features/home/presentation/widgets/location_dialog.dart';
-import 'package:location/location.dart' as location;
-import 'package:geocoding/geocoding.dart' as geocoding;
+import 'package:store_ify/features/home/presentation/widgets/section_upper.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  Color buttonColor = AppColors.iconsColor;
-  final location.Location _location = location.Location();
-  // ignore: unused_field
-  location.LocationData? _currentLocation;
-  String? _locationName;
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(left: 13),
+        padding: EdgeInsets.only(left: 13),
         child: Column(
-          children: [
-            Column(
-              children: [
-                Row(
-                  children: [
-                    CustomUser(location: 'Location:$_locationName'),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 21),
-                      child: Icon(
-                        Icons.notifications_none,
-                        color: buttonColor,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 22,
-                ),
-                Row(
-                  children: [
-                    const Expanded(child: CustomSearchTextField()),
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            buttonColor = AppColors.primaryColor;
-                          });
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return LocationDialog(
-                                  onPressedButton: () async {
-                                    setState(() {
-                                      context.getBack();
-                                      buttonColor = AppColors.iconsColor;
-                                    });
-                                    _getLocation();
-                                  },
-                                );
-                              });
-                        },
-                        icon: Icon(
-                          Icons.location_on_outlined,
-                          size: 30,
-                          color: buttonColor,
-                        )),
-                  ],
-                ),
-              ],
-            ),
-          ],
+          children: [SectionUpper()],
         ),
       ),
     );
-  }
-
-  Future<void> _getLocation() async {
-    location.LocationData currentLocation = await _location.getLocation();
-    List<geocoding.Placemark> placemarks =
-        await geocoding.placemarkFromCoordinates(
-      currentLocation.latitude!,
-      currentLocation.longitude!,
-    );
-
-    // Using the first placemark to get the address
-    geocoding.Placemark firstPlacemark =
-        placemarks.isNotEmpty ? placemarks[0] : geocoding.Placemark();
-
-    // You can use other properties of Placemark, such as `street`, `locality`, `administrativeArea`, etc.
-    String address = firstPlacemark.name ?? 'Unknown Location';
-
-    setState(() {
-      _currentLocation = currentLocation;
-      _locationName = address;
-    });
   }
 }
