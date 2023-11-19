@@ -6,8 +6,8 @@ import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 
 class LocationDialog extends StatelessWidget {
-  const LocationDialog({super.key});
-
+  const LocationDialog({super.key, required this.onPressedButton});
+  final void Function()? onPressedButton;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +35,8 @@ class LocationDialog extends StatelessWidget {
               return SizedBox(
                   height: 33,
                   width: 200,
-                  child: CustomGeneralButton(text: "Log in", onPressed: () {}));
+                  child: CustomGeneralButton(
+                      text: "Ok", onPressed: onPressedButton));
             },
             fallback: (context) => const Center(
               child: CircularProgressIndicator(

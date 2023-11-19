@@ -29,7 +29,8 @@ class StoreIfyLayout extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             elevation: 20,
             selectedItemColor: AppColors.primaryColor,
-            unselectedIconTheme: const IconThemeData(color: Colors.grey),
+            unselectedIconTheme:
+                const IconThemeData(color: AppColors.iconsColor),
             unselectedLabelStyle: AppTextStyles.textStyle8Regular.copyWith(
               fontWeight: FontWeight.bold,
             ),
