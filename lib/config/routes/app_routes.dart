@@ -13,7 +13,7 @@ import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
 import 'package:store_ify/features/auth/verification/presentation/view/verification_view.dart';
-import 'package:store_ify/features/layout/presentation/views/store_ify_layout_view.dart';
+import 'package:store_ify/features/layout/presentation/views/layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
