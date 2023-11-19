@@ -16,13 +16,13 @@ class StoreIfyLayout extends StatelessWidget {
         return Scaffold(
           // appBar: AppBar(
           //   actions: const [
-          //     Padding(
-          //       padding: EdgeInsets.symmetric(horizontal: 21),
-          //       child: Icon(
-          //         Icons.notifications_none,
-          //         color: Colors.grey,
-          //       ),
-          //     ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 21),
+          //   child: Icon(
+          //     Icons.notifications_none,
+          //     color: Colors.grey,
+          //   ),
+          // ),
           //   ],
           // ),
           body: cubit.views()[cubit.currentIndex],

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/utils/custom_user.dart';
 import 'package:store_ify/core/widgets/custom_search_text_field.dart';
 import 'package:store_ify/features/home/presentation/widgets/location_dialog.dart';
 import 'package:location/location.dart' as location;
@@ -33,24 +31,14 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 Row(
                   children: [
-                    Image.asset(AppAssets.imagesPerson),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          "Hello,Yasmeen",
-                          style: AppTextStyles.textStyle8Regular.copyWith(
-                              color: AppColors.appColor, fontSize: 12),
-                        ),
-                        if (_locationName != null)
-                          Text(
-                            'Location:$_locationName',
-                            style: AppTextStyles.textStyle8Regular
-                                .copyWith(fontSize: 10),
-                          ),
-                      ],
+                    CustomUser(location: 'Location:$_locationName'),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 21),
+                      child: Icon(
+                        Icons.notifications_none,
+                        color: buttonColor,
+                      ),
                     ),
                   ],
                 ),

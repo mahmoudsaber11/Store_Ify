@@ -5,7 +5,9 @@ import 'package:store_ify/core/utils/app_colors.dart';
 class CustomUser extends StatelessWidget {
   const CustomUser({
     super.key,
+    required this.location,
   });
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +15,9 @@ class CustomUser extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(AppAssets.imagesPerson),
-        const Column(
+        Column(
           children: [
-            Text(
+            const Text(
               "Hello, Yasmeen",
               style: TextStyle(
                 color: AppColors.appColor,
@@ -24,8 +26,8 @@ class CustomUser extends StatelessWidget {
               ),
             ),
             Text(
-              "Alexandria,Egypt",
-              style: TextStyle(
+              location,
+              style: const TextStyle(
                 color: AppColors.textProfileColor,
                 fontWeight: FontWeight.w300,
                 fontSize: 10,
