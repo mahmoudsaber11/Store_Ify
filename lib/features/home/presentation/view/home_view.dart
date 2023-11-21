@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/home/presentation/widgets/best_seller_list_view.dart';
 import 'package:store_ify/features/home/presentation/widgets/categories_list_view.dart';
@@ -43,10 +45,16 @@ class HomeView extends StatelessWidget {
                           style: AppTextStyles.textStyle16Regular,
                         ),
                         const Spacer(),
-                        Text(
-                          "View all",
-                          style: AppTextStyles.textStyle16Regular
-                              .copyWith(color: AppColors.iconsColor),
+                        InkWell(
+                          onTap: () {
+                            context.navigateTo(
+                                routeName: Routes.categoriesViewRoute);
+                          },
+                          child: Text(
+                            "View all",
+                            style: AppTextStyles.textStyle16Regular
+                                .copyWith(color: AppColors.iconsColor),
+                          ),
                         )
                       ],
                     ),
@@ -60,7 +68,7 @@ class HomeView extends StatelessWidget {
                     Row(
                       children: [
                         const Text(
-                          "Categories",
+                          "Top Stores",
                           style: AppTextStyles.textStyle16Regular,
                         ),
                         const Spacer(),
@@ -74,7 +82,7 @@ class HomeView extends StatelessWidget {
                     const SizedBox(
                       height: 23,
                     ),
-                    StoreslistView(),
+                    const StoreslistView(),
                   ],
                 ),
               ),

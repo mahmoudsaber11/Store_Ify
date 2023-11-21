@@ -13,6 +13,7 @@ import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit
 import 'package:store_ify/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
 import 'package:store_ify/features/auth/verification/presentation/view/verification_view.dart';
+import 'package:store_ify/features/categories/presentation/view/categories_view.dart';
 import 'package:store_ify/features/layout/presentation/views/layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
@@ -80,6 +81,9 @@ class AppRoutes {
 
       case Routes.storeifyLayoutViewRoute:
         return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
+
+      case Routes.categoriesViewRoute:
+        return MaterialPageRoute(builder: (context) => const CategoriesView());
 
       default:
         return _unFoundRoute();

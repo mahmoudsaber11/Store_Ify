@@ -8,15 +8,24 @@ class CustomSearchTextField extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.circular(24.0), // Adjust the radius as needed
+    return Container(
+      height: 45,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 0,
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
-      color: Colors.white,
       child: TextField(
         onChanged: onChanged,
         decoration: InputDecoration(
+            contentPadding: EdgeInsets.zero,
             enabledBorder: buildOutlineInputBorder(),
             focusedBorder: buildOutlineInputBorder(),
             hintText: 'Search',

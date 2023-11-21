@@ -49,4 +49,6 @@ abstract class AppAssets {
   static const String textProduct = "assets/images/product1.png";
   static const String testcategories = "assets/images/testcategories.png";
   static const String testStores = "assets/images/teststores.png";
+  static const String profile = "assets/images/profile.png";
+  static const String testcategories2 = "assets/images/clothess.png";
 }

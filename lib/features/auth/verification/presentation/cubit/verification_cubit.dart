@@ -15,7 +15,6 @@ class VerificationCubit extends Cubit<VerificationState> {
         .then((value) {
       value.fold((failure) {
         emit(ErrorVerificationState(failure.errMessage.toString()));
-        print(failure.errMessage);
       }, (verify) {
         emit(SuccessVerificationState(verify.toString()));
       });
