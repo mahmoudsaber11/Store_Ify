@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/widgets/custom_categoriy_item.dart';
 
 class AllCategoriesListView extends StatelessWidget {
@@ -12,6 +14,10 @@ class AllCategoriesListView extends StatelessWidget {
             itemCount: 20,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 10),
-            itemBuilder: (context, index) => const CustomCategoriyItem()));
+            itemBuilder: (context, index) => CustomCategoriyItem(
+                  onTap: () {
+                    context.navigateTo(routeName: Routes.productsViewRoute);
+                  },
+                )));
   }
 }

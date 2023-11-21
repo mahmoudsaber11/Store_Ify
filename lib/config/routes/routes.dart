@@ -8,5 +8,6 @@ class Routes {
   static const String forgetPasswordRoute = '/forgetPassword';
   static const String resetPasswordViewRoute = '/resetPasswordView';
   static const String dialogSuccessPassword = '/dialogSuccessPassword';
-  static const String categoriesViewRoute = "/categoriesViewRoute";
+  static const String categoriesViewRoute = "/categoriesView";
+  static const String productsViewRoute = "/productsView";
 }
