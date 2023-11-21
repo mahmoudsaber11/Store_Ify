@@ -44,11 +44,20 @@ abstract class AppAssets {
   static const String successResetPassword =
       "assets/icons/icon-park_correct.png";
   static const String locationDialog = "assets/icons/carbon_map.png";
+
   static const String search = "assets/icons/Search.png";
+
   static const String edit = "assets/icons/Filter.png";
-  static const String textProduct = "assets/images/product1.png";
+
   static const String testcategories = "assets/images/testcategories.png";
+
   static const String testStores = "assets/images/teststores.png";
+
+  static const String testBestSelling = "assets/images/Best_Selling.png";
+
   static const String profile = "assets/images/profile.png";
-  static const String testcategories2 = "assets/images/clothess.png";
+
+  static const String testClothesMan = "assets/images/test_clothes.png";
+
+  static const String testClothesWoman = "assets/images/test_clothes_woman.png";
 }

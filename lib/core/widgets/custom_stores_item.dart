@@ -19,7 +19,7 @@ class CustomStoresItem extends StatelessWidget {
           width: 169,
         ),
         Card(
-          elevation: 5,
+          elevation: 2,
           child: Container(
             width: 165,
             height: 43,
