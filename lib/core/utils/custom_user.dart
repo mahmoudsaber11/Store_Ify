@@ -11,31 +11,34 @@ class CustomUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.asset(AppAssets.imagesPerson),
-        Column(
-          children: [
-            const Text(
-              "Hello, Yasmeen",
-              style: TextStyle(
-                color: AppColors.appColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 12,
+    return GestureDetector(
+      onTap: () {},
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(AppAssets.imagesPerson),
+          Column(
+            children: [
+              const Text(
+                "Hello, Yasmeen",
+                style: TextStyle(
+                  color: AppColors.appColor,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                ),
               ),
-            ),
-            Text(
-              location,
-              style: const TextStyle(
-                color: AppColors.textColor,
-                fontWeight: FontWeight.w300,
-                fontSize: 10,
+              Text(
+                location,
+                style: const TextStyle(
+                  color: AppColors.textColor,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 10,
+                ),
               ),
-            ),
-          ],
-        )
-      ],
+            ],
+          )
+        ],
+      ),
     );
   }
 }

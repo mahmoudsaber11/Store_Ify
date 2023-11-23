@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -25,28 +26,33 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: isPassword ?? false,
-      validator: validate,
-      onChanged: onChange,
-      onFieldSubmitted: onSubmitted,
-      controller: controller,
-      keyboardType: inputType,
-      cursorColor: Colors.black,
-      textAlign: TextAlign.center,
-      decoration: InputDecoration(
-        suffixIcon: suffix,
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black),
-        ),
-        hintText: hintText!,
-        hintStyle: AppTextStyles.textStyle16Medium.copyWith(color: Colors.grey),
-        labelStyle: AppTextStyles.textStyle16Medium,
-        filled: true,
-        fillColor: Colors.transparent,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.black),
+    return SizedBox(
+      height: 44,
+      child: TextFormField(
+        obscureText: isPassword ?? false,
+        validator: validate,
+        onChanged: onChange,
+        onFieldSubmitted: onSubmitted,
+        controller: controller,
+        keyboardType: inputType,
+        cursorColor: Colors.black,
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+          suffixIcon: suffix,
+          contentPadding: EdgeInsets.zero,
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.titleColor),
+          ),
+          hintText: hintText!,
+          hintStyle:
+              AppTextStyles.textStyle16Medium.copyWith(color: Colors.grey),
+          labelStyle: AppTextStyles.textStyle16Medium,
+          filled: true,
+          fillColor: Colors.transparent,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: AppColors.titleColor),
+          ),
         ),
       ),
     );

@@ -3,9 +3,7 @@ import 'package:store_ify/core/utils/app_colors.dart';
 
 class AppTextStyles {
   static const TextStyle textStyle16Medium = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-  );
+      fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.titleColor);
 
   static const TextStyle textStyle12Medium = TextStyle(
     fontSize: 12,
@@ -13,9 +11,7 @@ class AppTextStyles {
   );
 
   static const TextStyle textStyle24Medium = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.w500,
-  );
+      fontSize: 24, fontWeight: FontWeight.w500, color: AppColors.titleColor);
 
   static const TextStyle textStyle16Regular = TextStyle(
       fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.textColor);
