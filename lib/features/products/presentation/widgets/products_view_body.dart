@@ -6,7 +6,7 @@ import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
-import 'package:store_ify/core/widgets/custom_button_app.dart';
+import 'package:store_ify/core/widgets/custom_outlined_button.dart';
 import 'package:store_ify/features/products/presentation/widgets/products_list_view.dart';
 
 class ProductsViewBody extends StatelessWidget {
@@ -45,7 +45,7 @@ class ProductsViewBody extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CustomButtonOutliendApp(
+                      CustomButtonOutlinedApp(
                         text: "Man",
                         onPressed: () {
                           cubit.toggleListView1();
@@ -60,7 +60,7 @@ class ProductsViewBody extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      CustomButtonOutliendApp(
+                      CustomButtonOutlinedApp(
                         text: "Woman",
                         onPressed: () {
                           cubit.toggleListView2();
@@ -75,7 +75,7 @@ class ProductsViewBody extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      CustomButtonOutliendApp(
+                      CustomButtonOutlinedApp(
                         text: "Kids",
                         onPressed: () {
                           cubit.toggleListView3();

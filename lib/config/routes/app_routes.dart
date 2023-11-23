@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/Features/auth/forget_password/presentation/view/forget_password_view.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/models/login_params.dart';
 import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
+import 'package:store_ify/features/auth/presentation/views/forget_password_view.dart';
 import 'package:store_ify/features/auth/presentation/views/login_view.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/views/reset_password_view.dart';

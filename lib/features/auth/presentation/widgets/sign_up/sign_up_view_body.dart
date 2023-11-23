@@ -8,7 +8,7 @@ import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubi
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_state.dart';
 import 'package:store_ify/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/sign_with_social.dart';
+import 'package:store_ify/features/auth/presentation/widgets/sign_with_social.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});

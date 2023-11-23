@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/widgets/custom_categoriy_item.dart';
+import 'package:store_ify/core/widgets/custom_category_item.dart';
 
 class CategorieslistView extends StatelessWidget {
   const CategorieslistView({
@@ -15,7 +15,7 @@ class CategorieslistView extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return const CustomCategoriyItem();
+            return const CustomCategoryItem();
           },
           separatorBuilder: ((context, index) => const SizedBox(
                 height: 10,

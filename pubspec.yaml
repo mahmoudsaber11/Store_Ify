@@ -9,6 +9,8 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   conditional_builder_null_safety: ^0.0.6
   dartz: ^0.10.1
   dio: ^5.3.4

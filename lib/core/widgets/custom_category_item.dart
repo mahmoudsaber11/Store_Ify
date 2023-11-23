@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 
-class CustomCategoriyItem extends StatelessWidget {
-  const CustomCategoriyItem({
+class CustomCategoryItem extends StatelessWidget {
+  const CustomCategoryItem({
     super.key,
     this.onTap,
   });
@@ -16,7 +16,7 @@ class CustomCategoriyItem extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
-            AppAssets.testcategories,
+            AppAssets.testCategories,
             alignment: Alignment.topRight,
             height: 165,
             width: 169,
