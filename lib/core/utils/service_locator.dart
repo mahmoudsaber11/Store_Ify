@@ -7,21 +7,21 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/network/network_info_impl.dart';
-import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo.dart';
-import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo_impl.dart';
-import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
-import 'package:store_ify/features/auth/login/data/repositories/login_repo.dart';
-import 'package:store_ify/features/auth/login/data/repositories/login_repo_impl.dart';
-import 'package:store_ify/features/auth/login/presentation/cubit/login_cubit.dart';
-import 'package:store_ify/features/auth/reset_password/data/repositories/reset_password_repo.dart';
-import 'package:store_ify/features/auth/reset_password/data/repositories/reset_password_repo_impl.dart';
-import 'package:store_ify/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
-import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo.dart';
-import 'package:store_ify/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
-import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
-import 'package:store_ify/features/auth/verification/data/repositories/verification_repo.dart';
-import 'package:store_ify/features/auth/verification/data/repositories/verification_repo_impl.dart';
-import 'package:store_ify/features/auth/verification/presentation/cubit/verification_cubit.dart';
+import 'package:store_ify/features/auth/data/repositories/forget_password/forget_password_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/forget_password/forget_password_repo_impl.dart';
+import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
+import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/login/login_repo_impl.dart';
+import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
+import 'package:store_ify/features/auth/data/repositories/reset_password/reset_password_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/reset_password/reset_password_repo_impl.dart';
+import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
+import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo_impl.dart';
+import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
+import 'package:store_ify/features/auth/data/repositories/verification/verification_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/verification/verification_repo_impl.dart';
+import 'package:store_ify/features/auth/presentation/cubits/verification/verification_cubit.dart';
 import 'package:store_ify/features/layout/data/repositories/layout_repo.dart';
 import 'package:store_ify/features/layout/data/repositories/layout_repo_impl.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
@@ -88,7 +88,10 @@ class ServiceLocator {
         .registerLazySingleton<OnBoardingRepo>(() => OnBoardingRepoImpl());
 
     serviceLocator.registerLazySingleton<ForgetPasswordRepo>(
-        () => ForgetPasswordRepoImpl(dioConsumer: serviceLocator.get()));
+      () => ForgetPasswordRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+      ),
+    );
     serviceLocator.registerLazySingleton<LoginRepo>(
         () => LoginRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()));
     serviceLocator.registerLazySingleton<SignUpRepo>(
