@@ -7,6 +7,7 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/network/network_info_impl.dart';
+
 import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo.dart';
 import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo_impl.dart';
 import 'package:store_ify/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
@@ -88,7 +89,10 @@ class ServiceLocator {
         .registerLazySingleton<OnBoardingRepo>(() => OnBoardingRepoImpl());
 
     serviceLocator.registerLazySingleton<ForgetPasswordRepo>(
-        () => ForgetPasswordRepoImpl(dioConsumer: serviceLocator.get()));
+      () => ForgetPasswordRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+      ),
+    );
     serviceLocator.registerLazySingleton<LoginRepo>(
         () => LoginRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()));
     serviceLocator.registerLazySingleton<SignUpRepo>(
