@@ -6,7 +6,7 @@ import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/sign_with_social.dart';
+import 'package:store_ify/features/auth/presentation/widgets/sign_with_social.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
 import 'package:store_ify/features/auth/presentation/widgets/login/user_login_form.dart';
