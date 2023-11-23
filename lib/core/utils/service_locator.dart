@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
-import 'package:store_ify/core/app_cubit/custom_tabs_cubit/custom_tabs_cubit.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo.dart';
 import 'package:store_ify/features/auth/forget_password/data/repositories/forget_password_repo_impl.dart';

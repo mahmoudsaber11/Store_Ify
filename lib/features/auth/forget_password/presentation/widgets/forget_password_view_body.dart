@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/helpers/helper.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
@@ -54,9 +55,13 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                 const SizedBox(
                   height: 30,
                 ),
-                const Text(
+                Text(
                   "E-mail",
-                  style: AppTextStyles.textStyle16Regular,
+                  style: AppTextStyles.textStyle16Regular
+                      .copyWith(color: AppColors.primaryColor),
+                ),
+                const SizedBox(
+                  height: 16,
                 ),
                 CustomTextField(
                   onSubmitted: (_) {
@@ -97,9 +102,10 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                       onTap: () {
                         context.navigateTo(routeName: Routes.signUpViewRoute);
                       },
-                      child: const Text(
+                      child: Text(
                         "Sign up ",
-                        style: AppTextStyles.textStyle16Regular,
+                        style: AppTextStyles.textStyle16Regular
+                            .copyWith(color: AppColors.primaryColor),
                       ),
                     ),
                   ],

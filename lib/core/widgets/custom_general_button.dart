@@ -15,6 +15,7 @@ class CustomGeneralButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 42,
+      width: 213,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(8),

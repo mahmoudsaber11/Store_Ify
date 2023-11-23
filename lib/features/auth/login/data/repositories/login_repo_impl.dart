@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/features/auth/login/data/repositories/login_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
@@ -29,26 +27,6 @@ class LoginRepoImpl implements LoginRepo {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Exception, UserCredential>> loginWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser!.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      return right(
-          await FirebaseAuth.instance.signInWithCredential(credential));
-    } catch (e) {
-      return Left(Exception(e.toString()));
     }
   }
 }

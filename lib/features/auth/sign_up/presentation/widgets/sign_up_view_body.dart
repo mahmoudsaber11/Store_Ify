@@ -4,7 +4,6 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:store_ify/features/auth/sign_up/presentation/widgets/user_sign_up_form.dart';
@@ -31,6 +30,9 @@ class SignUpViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                const SizedBox(
+                  height: 41,
+                ),
                 const Text(
                   "Sign Up",
                   style: AppTextStyles.textStyle24Medium,
@@ -43,7 +45,7 @@ class SignUpViewBody extends StatelessWidget {
                   style: AppTextStyles.textStyle16Medium,
                 ),
                 const SizedBox(
-                  height: 22,
+                  height: 45,
                 ),
                 UserSignUpForm(state: state),
                 TextButton(
@@ -74,11 +76,7 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                SignWithSocial(
-                  onTap: () {
-                    serviceLocator.get<SignUpCubit>().signUpWithGoogle();
-                  },
-                ),
+                const SignWithSocial(),
               ],
             ),
           ),
@@ -91,11 +89,6 @@ class SignUpViewBody extends StatelessWidget {
     if (state is SignUpSuccessState) {
       showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
 
-      context.navigateAndReplacement(
-        newRoute: Routes.storeifyLayoutViewRoute,
-      );
-    }
-    if (state is SignUpWithGoogleSuccessState) {
       context.navigateAndReplacement(
         newRoute: Routes.storeifyLayoutViewRoute,
       );
