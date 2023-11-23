@@ -3,9 +3,9 @@ import 'package:store_ify/core/utils/app_text_styles.dart';
 
 class CustomSaleItem extends StatelessWidget {
   const CustomSaleItem({
-    Key? key,
+    super.key,
     required this.image, // Corrected the parameter name
-  }) : super(key: key);
+  });
   final String image;
   @override
   Widget build(BuildContext context) {

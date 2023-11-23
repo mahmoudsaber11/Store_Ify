@@ -2,7 +2,7 @@ class EndPoints {
   static const String baseUrl = "https://store-ify.vercel.app/";
   static const String login = "${baseUrl}auth/login";
   static const String register = "${baseUrl}auth/signup";
-  static const String forgetPassword = "${baseUrl}auth/sendCode";
+  static const String forgetPassword = "${baseUrl}auth/forgetPassword";
   static const String verfiyCode = "${baseUrl}auth/CheckCode";
   static const String resetPassword = "${baseUrl}auth/RestePassword";
 }

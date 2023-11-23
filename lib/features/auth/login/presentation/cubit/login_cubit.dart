@@ -38,18 +38,6 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
-  void signInWithGoogle() {
-    emit(SignInWithGoogleLoadingState());
-    loginRepo.loginWithGoogle().then((value) {
-      value.fold(
-        (failure) {
-          SignInWithGoogleErrorState(error: failure.toString());
-        },
-        (user) => emit(SignInWithGoogleSuccessState(user.user!.uid)),
-      );
-    });
-  }
-
   bool isPassword = true;
   void changePasswordVisibility() {
     isPassword = !isPassword;

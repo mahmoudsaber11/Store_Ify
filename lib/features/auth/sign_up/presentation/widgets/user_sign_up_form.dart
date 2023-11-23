@@ -57,6 +57,9 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
+          const SizedBox(
+            height: 9,
+          ),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
             controller: emailController,
@@ -64,12 +67,15 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             hintText: 'Example@gmail.com',
           ),
           const SizedBox(
-            height: 35,
+            height: 24,
           ),
           Text(
             "Username",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
+          ),
+          const SizedBox(
+            height: 9,
           ),
           CustomTextField(
             validate: (String? value) => Helper.validateUserNameField(value),
@@ -77,11 +83,16 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             inputType: TextInputType.name,
             hintText: 'Enter  your username',
           ),
-          const SizedBox(height: 35),
+          const SizedBox(
+            height: 24,
+          ),
           Text(
             "password",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
+          ),
+          const SizedBox(
+            height: 9,
           ),
           CustomTextField(
             isPassword: cubit.isPassword,
@@ -101,12 +112,15 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             hintText: '*********',
           ),
           const SizedBox(
-            height: 35,
+            height: 24,
           ),
           Text(
             "Confirm password",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
+          ),
+          const SizedBox(
+            height: 9,
           ),
           CustomTextField(
             isPassword: cubit.isPassword,
@@ -129,7 +143,7 @@ class _UserSignUpFormState extends State<UserSignUpForm> {
             hintText: '*********',
           ),
           const SizedBox(
-            height: 32,
+            height: 24,
           ),
           ConditionalBuilder(
             condition: widget.state is! SignUpLoadingState,
