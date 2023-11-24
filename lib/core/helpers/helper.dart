@@ -4,9 +4,11 @@ class Helper {
   static String? validatePasswordField(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';
-    } else {
-      return null;
+    } else if (value.length < 6) {
+      return "Password must be more than 5 characters";
     }
+
+    return null;
   }
 
   static String? validateEmailField(String? value) {
@@ -21,24 +23,27 @@ class Helper {
 
   static String? validateUserNameField(String? value) {
     if (value!.isEmpty) {
-      return 'email must not be empty';
+      return 'Username must not be empty';
     }
     if (value.length < 6) {
-      return "must be more than 5 character";
+      return "Username must be more than 5 character";
     }
     return null;
   }
 
-  static String? validateConfirmPasswordField(String? value) {
-    var passNonNullValue = value ?? "";
-    if (passNonNullValue.isEmpty) {
-      return ("Password is required");
-    } else if (passNonNullValue.length < 6) {
-      return ("Password Must be more than 5 characters");
+  static String? validateConfirmPasswordField({
+    String? value,
+    required String password,
+    required String confirmPassword,
+  }) {
+    if (value!.isEmpty) {
+      return "Password is required";
+    } else if (value.length < 6) {
+      return "Password must be more than 5 characters";
+    } else if (password != confirmPassword) {
+      return "Doesn't match password";
     }
-    // else if (value != password) {
-    //   return 'Confirm password not matching';
-    // }
+
     return null;
   }
 }
