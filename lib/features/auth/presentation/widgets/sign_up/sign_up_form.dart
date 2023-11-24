@@ -1,9 +1,10 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_state.dart';
@@ -23,17 +24,43 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  var emailController = TextEditingController();
-  var nameController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmController = TextEditingController();
+
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+  final FocusNode _confirmPasswordFocusNode = FocusNode();
+
+  late final GlobalKey<FormState> _formKey;
+  late AutovalidateMode autovalidateMode;
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autovalidateMode = AutovalidateMode.disabled;
+  }
+
+  @override
+  void initState() {
+    _initFormAttributes();
+    super.initState();
+  }
 
   @override
   void dispose() {
     super.dispose();
 
     disposeControllers();
+
+    _disposeFocusNodes();
+  }
+
+  void _disposeFocusNodes() {
+    _emailFocusNode.dispose();
+    _nameFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _confirmPasswordFocusNode.dispose();
   }
 
   void disposeControllers() {
@@ -48,7 +75,7 @@ class _SignUpFormState extends State<SignUpForm> {
     var cubit = BlocProvider.of<SignUpCubit>(context);
 
     return Form(
-      key: formKey,
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -57,42 +84,50 @@ class _SignUpFormState extends State<SignUpForm> {
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
-          const SizedBox(
-            height: 9,
+          SizedBox(
+            height: 9.h,
           ),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
             hintText: 'Example@gmail.com',
+            autofillHints: const <String>[AutofillHints.email],
+            focusNode: _emailFocusNode,
+            onEditingComplete: () =>
+                FocusScope.of(context).requestFocus(_nameFocusNode),
           ),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 24.h,
           ),
           Text(
             "Username",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
-          const SizedBox(
-            height: 9,
+          SizedBox(
+            height: 9.h,
           ),
           CustomTextField(
             validate: (String? value) => Helper.validateUserNameField(value),
             controller: nameController,
             keyboardType: TextInputType.name,
             hintText: 'Enter  your username',
+            autofillHints: const <String>[AutofillHints.name],
+            focusNode: _nameFocusNode,
+            onEditingComplete: () =>
+                FocusScope.of(context).requestFocus(_passwordFocusNode),
           ),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 24.h,
           ),
           Text(
             "password",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
-          const SizedBox(
-            height: 9,
+          SizedBox(
+            height: 9.h,
           ),
           CustomTextField(
             isPassword: cubit.isPassword,
@@ -110,17 +145,21 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
+            autofillHints: const <String>[AutofillHints.password],
+            focusNode: _passwordFocusNode,
+            onEditingComplete: () =>
+                FocusScope.of(context).requestFocus(_confirmPasswordFocusNode),
           ),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 24.h,
           ),
           Text(
             "Confirm password",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
-          const SizedBox(
-            height: 9,
+          SizedBox(
+            height: 9.h,
           ),
           CustomTextField(
             isPassword: cubit.isPassword,
@@ -145,24 +184,24 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: confirmController,
             keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
+            autofillHints: const <String>[AutofillHints.password],
+            focusNode: _confirmPasswordFocusNode,
           ),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 24.h,
           ),
-          ConditionalBuilder(
-            condition: widget.state is! SignUpLoadingState,
-            builder: (context) {
-              return CustomGeneralButton(
-                  text: 'Sign up',
-                  onPressed: () {
-                    _signUp();
-                  });
+          BlocBuilder<SignUpCubit, SignUpState>(
+            builder: (context, state) {
+              if (state is SignUpLoadingState) {
+                return const CustomCircularProgressIndicator();
+              } else {
+                return CustomGeneralButton(
+                    text: 'Sign up',
+                    onPressed: () {
+                      _signUp();
+                    });
+              }
             },
-            fallback: (context) => const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.primaryColor,
-              ),
-            ),
           ),
         ],
       ),
@@ -170,13 +209,17 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _signUp() {
-    if (formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Helper.keyboardUnfocus(context);
       BlocProvider.of<SignUpCubit>(context).userSignUP(
         userName: nameController.text,
         email: emailController.text,
         password: passwordController.text,
         confirmPassword: confirmController.text,
       );
+    } else {
+      autovalidateMode = AutovalidateMode.always;
     }
   }
 }

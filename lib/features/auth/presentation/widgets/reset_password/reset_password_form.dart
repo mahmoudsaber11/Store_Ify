@@ -137,6 +137,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
 
   void resetPassword(BuildContext context) {
     if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Helper.keyboardUnfocus(context);
       BlocProvider.of<ResetPasswordCubit>(context).resetPassword(
           email: _emailController.text,
           password: _passwordController.text,

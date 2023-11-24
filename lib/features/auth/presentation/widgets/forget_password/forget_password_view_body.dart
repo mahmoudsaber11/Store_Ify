@@ -127,6 +127,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   void _forgetPassword() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      Helper.keyboardUnfocus(context);
       BlocProvider.of<ForgetPasswordCubit>(context)
           .checkEmail(email: _emailController.text);
     } else {
