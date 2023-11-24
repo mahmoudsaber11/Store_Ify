@@ -94,25 +94,34 @@ class ServiceLocator {
     serviceLocator.registerLazySingleton<ForgetPasswordRepo>(
       () => ForgetPasswordRepoImpl(
         dioConsumer: serviceLocator.get<DioConsumer>(),
+        networkInfo: serviceLocator.get<NetworkInfo>(),
       ),
     );
 
     serviceLocator.registerLazySingleton<LoginRepo>(
-      () => LoginRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()),
+      () => LoginRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+        networkInfo: serviceLocator.get<NetworkInfo>(),
+      ),
     );
 
     serviceLocator.registerLazySingleton<SignUpRepo>(
-      () => SingUpRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()),
+      () => SingUpRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+        networkInfo: serviceLocator.get<NetworkInfo>(),
+      ),
     );
 
     serviceLocator.registerLazySingleton<VerificationRepo>(
-      () =>
-          VerificationRepoImpl(dioConsumer: serviceLocator.get<DioConsumer>()),
+      () => VerificationRepoImpl(
+          dioConsumer: serviceLocator.get<DioConsumer>(),
+          networkInfo: serviceLocator.get<NetworkInfo>()),
     );
 
     serviceLocator.registerLazySingleton<ResetPasswordRepo>(
       () => ResetPasswordRepoImpl(
         dioConsumer: serviceLocator.get<DioConsumer>(),
+        networkInfo: serviceLocator.get<NetworkInfo>(),
       ),
     );
 

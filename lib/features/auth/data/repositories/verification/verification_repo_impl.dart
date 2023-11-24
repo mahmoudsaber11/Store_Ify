@@ -4,26 +4,32 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
+import 'package:store_ify/core/network/network_info.dart';
+import 'package:store_ify/core/utils/app_strings.dart';
 import 'package:store_ify/features/auth/data/repositories/verification/verification_repo.dart';
 
 class VerificationRepoImpl implements VerificationRepo {
   final DioConsumer dioConsumer;
-
-  VerificationRepoImpl({required this.dioConsumer});
+  final NetworkInfo networkInfo;
+  VerificationRepoImpl({required this.networkInfo, required this.dioConsumer});
   @override
   Future<Either<Failure, dynamic>> otpVerification({
     required String email,
     required String forgetCode,
   }) async {
-    try {
-      final response = await dioConsumer.postData(EndPoints.verifyCode,
-          data: {"email": email, "forgetCode": forgetCode});
-      return right(response);
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await dioConsumer.postData(EndPoints.verifyCode,
+            data: {"email": email, "forgetCode": forgetCode});
+        return right(response);
+      } catch (e) {
+        if (e is DioException) {
+          return left(ServerFailure.fromDioException(e));
+        }
+        return left(ServerFailure(e.toString()));
       }
-      return left(ServerFailure(e.toString()));
+    } else {
+      return Left(ServerFailure(AppStrings.noInternet));
     }
   }
 }

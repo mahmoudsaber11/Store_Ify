@@ -4,26 +4,33 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
+import 'package:store_ify/core/network/network_info.dart';
+import 'package:store_ify/core/utils/app_strings.dart';
 import 'package:store_ify/features/auth/data/repositories/forget_password/forget_password_repo.dart';
 
 class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
   final DioConsumer dioConsumer;
-
-  const ForgetPasswordRepoImpl({required this.dioConsumer});
+  final NetworkInfo networkInfo;
+  const ForgetPasswordRepoImpl(
+      {required this.networkInfo, required this.dioConsumer});
 
   @override
   Future<Either<Failure, dynamic>> checkEmailRepo({
     required String email,
   }) async {
-    try {
-      final response = await dioConsumer
-          .patchData(EndPoints.forgetPassword, data: {"email": email});
-      return right(response);
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await dioConsumer
+            .patchData(EndPoints.forgetPassword, data: {"email": email});
+        return right(response);
+      } catch (e) {
+        if (e is DioException) {
+          return left(ServerFailure.fromDioException(e));
+        }
+        return left(ServerFailure(e.toString()));
       }
-      return left(ServerFailure(e.toString()));
+    } else {
+      return Left(ServerFailure(AppStrings.noInternet));
     }
   }
 }
