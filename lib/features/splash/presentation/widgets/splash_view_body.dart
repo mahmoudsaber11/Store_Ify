@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
@@ -35,24 +36,23 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       children: <Widget>[
         Image.asset(
           AppAssets.appIcon,
-          // height: 192,
           fit: BoxFit.cover,
         ),
-        const SizedBox(height: 16),
-        const Text(
+        SizedBox(height: 16.h),
+        Text(
           textAlign: TextAlign.center,
           "Store-ify",
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 24.sp,
             fontFamily: AppStrings.pottaOneFont,
             fontWeight: FontWeight.w400,
             color: AppColors.primaryColor,
           ),
         ),
-        const SizedBox(height: 64),
-        const SpinKitRing(
+        SizedBox(height: 64.h),
+        SpinKitRing(
           color: AppColors.primaryColor,
-          size: 87,
+          size: 87.sp,
         ),
       ],
     );

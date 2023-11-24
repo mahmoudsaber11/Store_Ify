@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/app_cubit/custom_tabs_cubit/custom_tabs_cubit.dart';
 import 'package:store_ify/core/app_cubit/custom_tabs_cubit/custom_tabs_state.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
@@ -36,8 +37,8 @@ class ProductsViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 29,
+            SizedBox(
+              height: 29.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -57,8 +58,8 @@ class ProductsViewBody extends StatelessWidget {
                                   : AppColors.textColor),
                         ),
                       ),
-                      const SizedBox(
-                        width: 8,
+                      SizedBox(
+                        width: 8.w,
                       ),
                       CustomButtonOutlinedApp(
                         text: "Woman",
@@ -72,8 +73,8 @@ class ProductsViewBody extends StatelessWidget {
                                   : AppColors.textColor),
                         ),
                       ),
-                      const SizedBox(
-                        width: 8,
+                      SizedBox(
+                        width: 8.w,
                       ),
                       CustomButtonOutlinedApp(
                         text: "Kids",
@@ -92,8 +93,8 @@ class ProductsViewBody extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 16,
+            SizedBox(
+              height: 16.h,
             ),
             if (cubit.isListView1Visible == true)
               Expanded(
