@@ -10,6 +10,5 @@ abstract class OnBoardingRepo {
     required bool isLastBoarding,
   });
 
-  void navigateToLoginOrHome({required BuildContext context});
-
+  void skipToLogin({required BuildContext context});
 }
