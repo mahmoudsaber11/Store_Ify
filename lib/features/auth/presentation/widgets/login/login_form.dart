@@ -64,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: <Widget>[
           Text(
             "E-mail",
             style: AppTextStyles.textStyle16Regular
@@ -130,6 +130,7 @@ class _LoginFormState extends State<LoginForm> {
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      Helper.keyboardUnfocus(context);
       BlocProvider.of<LoginCubit>(context).userSignIn(
         email: _emailController.text.trim(),
         password: _passwordController.text,

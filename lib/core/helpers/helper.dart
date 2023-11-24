@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Helper {
   static String? uId = '';
 
@@ -45,5 +47,9 @@ class Helper {
     }
 
     return null;
+  }
+
+  static void keyboardUnfocus(BuildContext context) {
+    FocusScope.of(context).unfocus();
   }
 }
