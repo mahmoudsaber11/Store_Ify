@@ -12,7 +12,8 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 class LoginRepoImpl implements LoginRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
-  LoginRepoImpl({required this.networkInfo, required this.dioConsumer});
+
+  const LoginRepoImpl({required this.networkInfo, required this.dioConsumer});
 
   @override
   Future<Either<Failure, UserModel>> userLoginIn({
