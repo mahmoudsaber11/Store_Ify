@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
@@ -24,28 +25,28 @@ class SignUpViewBody extends StatelessWidget {
       },
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16).w,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(
-                  height: 41,
+                SizedBox(
+                  height: 41.h,
                 ),
                 const Text(
                   "Sign Up",
                   style: AppTextStyles.textStyle24Medium,
                 ),
-                const SizedBox(
-                  height: 5,
+                SizedBox(
+                  height: 5.h,
                 ),
                 const Text(
                   "Create an account",
                   style: AppTextStyles.textStyle16Medium,
                 ),
-                const SizedBox(
-                  height: 45,
+                SizedBox(
+                  height: 45.h,
                 ),
                 SignUpForm(state: state),
                 TextButton(
@@ -73,8 +74,8 @@ class SignUpViewBody extends StatelessWidget {
                   "Or sign in with",
                   style: AppTextStyles.textStyle16Medium,
                 )),
-                const SizedBox(
-                  height: 24,
+                SizedBox(
+                  height: 24.h,
                 ),
                 const SignWithSocial(),
               ],
