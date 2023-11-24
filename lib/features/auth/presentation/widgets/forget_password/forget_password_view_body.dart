@@ -1,6 +1,6 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/helpers/helper.dart';
@@ -8,11 +8,14 @@ import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
+import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_state.dart';
+import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
+import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
@@ -65,13 +68,13 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                     style: AppTextStyles.textStyle24Medium,
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 Text(
                   "E-mail",
                   style: AppTextStyles.textStyle16Regular
                       .copyWith(color: AppColors.primaryColor),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 CustomTextField(
                   onSubmitted: (_) => _forgetPassword(),
                   validate: (String? value) => Helper.validateEmailField(value),
@@ -79,20 +82,20 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                   keyboardType: TextInputType.emailAddress,
                   hintText: 'Example@gmail.com',
                 ),
-                const SizedBox(height: 32),
-                ConditionalBuilder(
-                  condition: state is! LoadingCheckEmailState,
-                  builder: (context) {
-                    return CustomGeneralButton(
-                      text: 'Verify Email',
-                      onPressed: () => _forgetPassword(),
-                    );
+                SizedBox(height: 32.h),
+                BlocBuilder<LoginCubit, LoginState>(
+                  builder: (context, state) {
+                    if (state is SignInLoadingState) {
+                      return const CustomCircularProgressIndicator();
+                    } else {
+                      return CustomGeneralButton(
+                        text: 'Verify Email',
+                        onPressed: () => _forgetPassword(),
+                      );
+                    }
                   },
-                  fallback: (context) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
                 ),
-                const SizedBox(height: 23),
+                SizedBox(height: 23.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
