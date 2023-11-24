@@ -63,7 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
             controller: emailController,
-            inputType: TextInputType.emailAddress,
+            keyboardType: TextInputType.emailAddress,
             hintText: 'Example@gmail.com',
           ),
           const SizedBox(
@@ -80,7 +80,7 @@ class _SignUpFormState extends State<SignUpForm> {
           CustomTextField(
             validate: (String? value) => Helper.validateUserNameField(value),
             controller: nameController,
-            inputType: TextInputType.name,
+            keyboardType: TextInputType.name,
             hintText: 'Enter  your username',
           ),
           const SizedBox(
@@ -108,7 +108,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 )),
             validate: (value) => Helper.validatePasswordField(value),
             controller: passwordController,
-            inputType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
           ),
           const SizedBox(
@@ -137,9 +137,13 @@ class _SignUpFormState extends State<SignUpForm> {
             onSubmitted: (_) {
               _signUp();
             },
-            validate: (value) => Helper.validateConfirmPasswordField(value),
+            validate: (value) => Helper.validateConfirmPasswordField(
+              value: value,
+              password: passwordController.text,
+              confirmPassword: confirmController.text,
+            ),
             controller: confirmController,
-            inputType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
           ),
           const SizedBox(

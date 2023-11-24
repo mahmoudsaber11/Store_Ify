@@ -3,13 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_constants.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
+import 'package:store_ify/features/auth/presentation/widgets/or_sign_in_with_text.dart';
 import 'package:store_ify/features/auth/presentation/widgets/sign_with_social.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
-import 'package:store_ify/features/auth/presentation/widgets/login/user_login_form.dart';
+import 'package:store_ify/features/auth/presentation/widgets/login/login_form.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -21,14 +23,16 @@ class LoginViewBody extends StatelessWidget {
       builder: (context, state) {
         return SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: AppConstants.authHorizontalPadding,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 122),
-                const Text(
-                  "Sign in to Continue ",
-                  style: AppTextStyles.textStyle24Medium,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(top: 122),
+                  child: const Text(
+                    "Sign in to Continue ",
+                    style: AppTextStyles.textStyle24Medium,
+                  ),
                 ),
                 const SizedBox(height: 5),
                 const Text(
@@ -36,9 +40,10 @@ class LoginViewBody extends StatelessWidget {
                   style: AppTextStyles.textStyle16Medium,
                 ),
                 const SizedBox(height: 22),
-                UserLoginForm(state: state),
+                LoginForm(state: state),
                 Row(
-                  children: [
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
                     TextButton(
                       onPressed: () => context.navigateTo(
                         routeName: Routes.forgetPasswordRoute,
@@ -49,7 +54,6 @@ class LoginViewBody extends StatelessWidget {
                             .copyWith(color: AppColors.iconsColor),
                       ),
                     ),
-                    const Spacer(),
                     TextButton(
                       onPressed: () {
                         context.navigateTo(routeName: Routes.signUpViewRoute);
@@ -62,12 +66,7 @@ class LoginViewBody extends StatelessWidget {
                     )
                   ],
                 ),
-                const Center(
-                  child: Text(
-                    "Or sign in with",
-                    style: AppTextStyles.textStyle16Medium,
-                  ),
-                ),
+                const OrSignInWithText(),
                 const SizedBox(height: 24),
                 const SignWithSocial(),
               ],
@@ -80,7 +79,7 @@ class LoginViewBody extends StatelessWidget {
 
   void _handleLoginStates(LoginState state, BuildContext context) {
     if (state is SignInSuccessState) {
-      showToast(text: state.userModel.message, state: ToastStates.SUCCESS);
+      showToast(text: state.userModel.message, state: ToastStates.success);
 
       context.navigateAndRemoveUntil(
         newRoute: Routes.storeifyLayoutViewRoute,
@@ -88,7 +87,7 @@ class LoginViewBody extends StatelessWidget {
     }
 
     if (state is SignInErrorState) {
-      showToast(text: state.error, state: ToastStates.ERROR);
+      showToast(text: state.error, state: ToastStates.error);
     }
   }
 }

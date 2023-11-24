@@ -22,24 +22,37 @@ class ForgetPasswordViewBody extends StatefulWidget {
 }
 
 class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
-  TextEditingController emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final GlobalKey<FormState> _formKey;
+  late final AutovalidateMode autoValidateMode;
+
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autoValidateMode = AutovalidateMode.disabled;
+  }
+
+  @override
+  void initState() {
+    _initFormAttributes();
+    super.initState();
+  }
+
   @override
   void dispose() {
     super.dispose();
-    emailController.dispose();
+    _emailController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
-        _handleForgetPasswordState(state, context, emailController.text);
+        _handleForgetPasswordState(state, context, _emailController.text);
       },
       builder: (context, state) {
         return Form(
-          key: formKey,
+          key: _formKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22),
             child: Column(
@@ -52,45 +65,34 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                     style: AppTextStyles.textStyle24Medium,
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 Text(
                   "E-mail",
                   style: AppTextStyles.textStyle16Regular
                       .copyWith(color: AppColors.primaryColor),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 CustomTextField(
-                  onSubmitted: (_) {
-                    _foregtPassword();
-                  },
+                  onSubmitted: (_) => _forgetPassword(),
                   validate: (String? value) => Helper.validateEmailField(value),
-                  controller: emailController,
-                  inputType: TextInputType.emailAddress,
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
                   hintText: 'Example@gmail.com',
                 ),
-                const SizedBox(
-                  height: 32,
-                ),
+                const SizedBox(height: 32),
                 ConditionalBuilder(
                   condition: state is! LoadingCheckEmailState,
                   builder: (context) {
                     return CustomGeneralButton(
-                        text: 'Verify Email',
-                        onPressed: () {
-                          _foregtPassword();
-                        });
+                      text: 'Verify Email',
+                      onPressed: () => _forgetPassword(),
+                    );
                   },
                   fallback: (context) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                 ),
-                const SizedBox(
-                  height: 23,
-                ),
+                const SizedBox(height: 23),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -118,22 +120,32 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
     );
   }
 
-  void _foregtPassword() {
-    if (formKey.currentState!.validate()) {
+  void _forgetPassword() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
       BlocProvider.of<ForgetPasswordCubit>(context)
-          .checkEmail(email: emailController.text);
+          .checkEmail(email: _emailController.text);
+    } else {
+      setState(() {
+        autoValidateMode = AutovalidateMode.always;
+      });
     }
   }
 
   void _handleForgetPasswordState(
-      ForgetPasswordState state, BuildContext context, String email) {
+    ForgetPasswordState state,
+    BuildContext context,
+    String email,
+  ) {
     if (state is SuccessCheckEmailState) {
-      showToast(text: state.message, state: ToastStates.SUCCESS);
+      showToast(text: state.message, state: ToastStates.success);
       context.navigateTo(
-          routeName: Routes.verificationViewRoute, arguments: email);
+        routeName: Routes.verificationViewRoute,
+        arguments: email,
+      );
     }
     if (state is ErrorCheckEmailState) {
-      showToast(text: state.errorMessage, state: ToastStates.ERROR);
+      showToast(text: state.errorMessage, state: ToastStates.error);
     }
   }
 }
