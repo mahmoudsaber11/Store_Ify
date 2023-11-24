@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
@@ -17,11 +18,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Offset> _slidingAnimation;
+
   @override
   void initState() {
     super.initState();
     _initSlidingAnimation();
-    _navigateToHome();
+    // _navigateToHome();
   }
 
   @override
@@ -40,8 +42,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
         Image.asset(
           AppAssets.appIcon,
           height: 192,
@@ -64,7 +66,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
               ),
             );
           },
-        )
+        ),
+        const SizedBox(height: 64),
       ],
     );
   }
@@ -79,7 +82,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void _navigateToHome() {
-    Future.delayed(const Duration(seconds: 2), (() {
+    Future.delayed(const Duration(milliseconds: 2500), (() {
       context.navigateAndReplacement(newRoute: Routes.onBoardingViewRoute);
     }));
   }

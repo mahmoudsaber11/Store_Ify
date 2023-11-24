@@ -5,7 +5,7 @@ import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
-import 'package:store_ify/core/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
 
 class SingUpRepoImpl implements SignUpRepo {

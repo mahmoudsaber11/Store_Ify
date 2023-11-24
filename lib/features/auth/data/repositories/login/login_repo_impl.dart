@@ -4,7 +4,7 @@ import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
-import 'package:store_ify/core/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
 
 class LoginRepoImpl implements LoginRepo {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/custom_user.dart';
+import 'package:store_ify/core/widgets/custom_user.dart';
 import 'package:location/location.dart' as location;
 import 'package:geocoding/geocoding.dart' as geocoding;
 import 'package:store_ify/core/widgets/custom_search_text_field.dart';
