@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
@@ -62,7 +63,7 @@ class CustomTextField extends StatelessWidget {
 
   OutlineInputBorder _buildTextFieldOutlinedBorder() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(8.r),
       borderSide: const BorderSide(color: AppColors.titleColor),
     );
   }

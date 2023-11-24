@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButtonOutlinedApp extends StatelessWidget {
   const CustomButtonOutlinedApp({
@@ -16,14 +17,14 @@ class CustomButtonOutlinedApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30,
-      width: 90,
+      height: 30.h,
+      width: 90.w,
       child: OutlinedButton(
         style: buttonStyle,
         onPressed: onPressed,
         child: Text(
           text,
-          style: AppTextStyles.textStyle8Regular.copyWith(fontSize: 10),
+          style: AppTextStyles.textStyle8Regular.copyWith(fontSize: 10.sp),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSaleItem extends StatelessWidget {
   const CustomSaleItem({
@@ -10,51 +11,51 @@ class CustomSaleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 209,
-      width: 149,
+      height: 209.h,
+      width: 149.w,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
             image,
             alignment: Alignment.topRight,
-            height: 209,
-            width: 149,
+            height: 209.h,
+            width: 149.w,
             fit: BoxFit.fill,
           ),
           Card(
             elevation: 2,
             child: Container(
-              width: 143,
-              height: 83,
-              decoration: const BoxDecoration(
+              width: 143.w,
+              height: 83.h,
+              decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10.r),
+                    bottomRight: Radius.circular(10.r),
                   )),
               child: Padding(
-                padding: const EdgeInsets.only(left: 9),
+                padding: EdgeInsets.only(left: 9.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: 10.h,
                     ),
                     const Text(
                       "Name of product",
                       style: AppTextStyles.textStyle14Regular,
                     ),
-                    const SizedBox(
-                      height: 4,
+                    SizedBox(
+                      height: 4.h,
                     ),
                     const Text(
                       "Description about Product",
                       style: AppTextStyles.textStyle8Regular,
                     ),
-                    const SizedBox(
-                      height: 8,
+                    SizedBox(
+                      height: 8.h,
                     ),
                     Row(
                       children: [
@@ -62,21 +63,21 @@ class CustomSaleItem extends StatelessWidget {
                           "250.00 LE",
                           style: AppTextStyles.textStyle9Medium,
                         ),
-                        const SizedBox(
-                          width: 16,
+                        SizedBox(
+                          width: 16.w,
                         ),
                         const Text(
                           "450.00 LE",
                           style: AppTextStyles.textStyle7Regular,
                         ),
-                        const SizedBox(
-                          width: 11,
+                        SizedBox(
+                          width: 11.w,
                         ),
                         InkWell(
                           onTap: () {},
-                          child: const Icon(
+                          child: Icon(
                             Icons.favorite_border_outlined,
-                            size: 19,
+                            size: 19.sp,
                           ),
                         ),
                       ],

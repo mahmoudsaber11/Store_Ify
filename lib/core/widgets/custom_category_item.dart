@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCategoryItem extends StatelessWidget {
   const CustomCategoryItem({
@@ -18,37 +19,37 @@ class CustomCategoryItem extends StatelessWidget {
           Image.asset(
             AppAssets.testCategories,
             alignment: Alignment.topRight,
-            height: 165,
-            width: 169,
+            height: 165.h,
+            width: 169.w,
           ),
           Card(
             elevation: 2,
             child: Container(
-              width: 165,
-              height: 53,
-              decoration: const BoxDecoration(
+              width: 165.w,
+              height: 53.h,
+              decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10.r),
+                    bottomRight: Radius.circular(10.r),
                   )),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 35),
-                    child: Text(
+                    padding: EdgeInsets.only(left: 35.w),
+                    child: const Text(
                       "Electronics",
                       style: AppTextStyles.textStyle14Regular,
                     ),
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 4.h,
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.center,
                     child: Text(
                       "Tv,mobile,laptop",
@@ -56,7 +57,7 @@ class CustomCategoryItem extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 8.h,
                   ),
                 ],
               ),

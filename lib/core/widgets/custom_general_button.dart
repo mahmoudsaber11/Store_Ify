@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGeneralButton extends StatelessWidget {
   const CustomGeneralButton({
@@ -14,11 +15,11 @@ class CustomGeneralButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 42,
-      width: 213,
+      height: 42.h,
+      width: 213.w,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
       ),
       child: MaterialButton(
           onPressed: onPressed,
