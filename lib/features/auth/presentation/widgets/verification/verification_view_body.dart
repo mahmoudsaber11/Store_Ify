@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
@@ -35,20 +36,20 @@ class VerificationViewBody extends StatelessWidget {
                     "OTP Verification ",
                     style: AppTextStyles.textStyle24Medium,
                   )),
-              const SizedBox(
-                height: 8,
+              SizedBox(
+                height: 8.h,
               ),
               Text(
                 "We’ve sent a code to Example@gmail.com",
                 style: AppTextStyles.textStyle16Regular
                     .copyWith(color: AppColors.subTitleColor),
               ),
-              const SizedBox(
-                height: 19,
+              SizedBox(
+                height: 19.h,
               ),
               Image.asset(AppAssets.imagesOtpVerification),
-              const SizedBox(
-                height: 19,
+              SizedBox(
+                height: 19.h,
               ),
               const Align(
                   alignment: Alignment.center,
@@ -56,8 +57,8 @@ class VerificationViewBody extends StatelessWidget {
                     "OTP Code",
                     style: AppTextStyles.textStyle16Medium,
                   )),
-              const SizedBox(
-                height: 13,
+              SizedBox(
+                height: 13.h,
               ),
               VerificationForm(email: email)
             ],
@@ -69,14 +70,14 @@ class VerificationViewBody extends StatelessWidget {
 
   PinTheme pinTheme() {
     return PinTheme(
-      width: 56,
-      height: 52,
-      textStyle: const TextStyle(
-        fontSize: 22,
+      width: 56.w,
+      height: 52.h,
+      textStyle: TextStyle(
+        fontSize: 22.sp,
         color: AppColors.textColor,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(19),
+        borderRadius: BorderRadius.circular(19).w,
         border: Border.all(color: AppColors.primaryColor),
       ),
     );

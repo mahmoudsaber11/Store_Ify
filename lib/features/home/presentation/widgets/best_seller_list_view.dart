@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/widgets/custom_sale_item.dart';
 
@@ -10,7 +11,7 @@ class BestSellerlistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 210,
+      height: 210.h,
       child: ListView.separated(
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
@@ -20,8 +21,8 @@ class BestSellerlistView extends StatelessWidget {
               image: AppAssets.testBestSelling,
             );
           },
-          separatorBuilder: ((context, index) => const SizedBox(
-                height: 19,
+          separatorBuilder: ((context, index) => SizedBox(
+                height: 19.h,
               )),
           itemCount: 5),
     );

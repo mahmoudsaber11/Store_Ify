@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/widgets/custom_user.dart';
@@ -34,14 +35,14 @@ class _SectionUpperState extends State<SectionUpper> {
             ),
           ],
         ),
-        const SizedBox(
-          height: 22,
+        SizedBox(
+          height: 22.h,
         ),
         Row(
           children: [
             const Expanded(child: CustomSearchTextField()),
             SizedBox(
-              width: 30,
+              width: 30.w,
               child: IconButton(
                   onPressed: () {
                     setState(() {

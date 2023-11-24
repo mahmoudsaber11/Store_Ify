@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/widgets/custom_stores_item.dart';
 
 class StoreslistView extends StatelessWidget {
@@ -9,7 +10,7 @@ class StoreslistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 166,
+      height: 166.h,
       child: ListView.separated(
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
@@ -17,8 +18,8 @@ class StoreslistView extends StatelessWidget {
           itemBuilder: (context, index) {
             return const CustomStoresItem();
           },
-          separatorBuilder: ((context, index) => const SizedBox(
-                height: 10,
+          separatorBuilder: ((context, index) => SizedBox(
+                height: 10.h,
               )),
           itemCount: 5),
     );

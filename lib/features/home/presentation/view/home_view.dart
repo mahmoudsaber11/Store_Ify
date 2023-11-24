@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
@@ -15,7 +16,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(left: 13, right: 10),
+        padding: const EdgeInsets.only(left: 13, right: 10).w,
         child: Column(
           children: [
             const SectionUpper(),
@@ -24,19 +25,19 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 40,
+                    SizedBox(
+                      height: 40.h,
                     ),
                     const Text(
                       "Best Selling",
                       style: AppTextStyles.textStyle16Regular,
                     ),
-                    const SizedBox(
-                      height: 25,
+                    SizedBox(
+                      height: 25.h,
                     ),
                     const BestSellerlistView(),
-                    const SizedBox(
-                      height: 14,
+                    SizedBox(
+                      height: 14.h,
                     ),
                     Row(
                       children: [
@@ -58,12 +59,12 @@ class HomeView extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(
-                      height: 30,
+                    SizedBox(
+                      height: 30.h,
                     ),
                     const CategorieslistView(),
-                    const SizedBox(
-                      height: 13,
+                    SizedBox(
+                      height: 13.h,
                     ),
                     Row(
                       children: [
@@ -79,8 +80,8 @@ class HomeView extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(
-                      height: 23,
+                    SizedBox(
+                      height: 23.h,
                     ),
                     const StoreslistView(),
                   ],
