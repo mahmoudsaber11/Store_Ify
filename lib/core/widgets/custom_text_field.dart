@@ -48,6 +48,7 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: suffix,
         contentPadding: EdgeInsets.zero,
         focusedBorder: _buildTextFieldOutlinedBorder(),
+        focusedErrorBorder: _buildTextFieldOutlinedBorder(),
         errorBorder: _buildTextFieldOutlinedBorder(),
         hintText: hintText!,
         hintStyle: AppTextStyles.textStyle16Medium.copyWith(color: Colors.grey),

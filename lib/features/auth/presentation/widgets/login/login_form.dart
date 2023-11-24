@@ -1,9 +1,9 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
@@ -12,9 +12,7 @@ import 'package:store_ify/features/auth/presentation/cubits/login/login_state.da
 class LoginForm extends StatefulWidget {
   const LoginForm({
     super.key,
-    required this.state,
   });
-  final LoginState state;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -112,19 +110,17 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           const SizedBox(height: 32),
-          ConditionalBuilder(
-            condition: widget.state is! SignInLoadingState,
-            builder: (context) {
-              return CustomGeneralButton(
-                text: 'Log in',
-                onPressed: () => _login(context),
-              );
+          BlocBuilder<LoginCubit, LoginState>(
+            builder: (context, state) {
+              if (state is SignInLoadingState) {
+                return const CustomCircularProgressIndicator();
+              } else {
+                return CustomGeneralButton(
+                  text: 'Log in',
+                  onPressed: () => _login(context),
+                );
+              }
             },
-            fallback: (context) => const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.primaryColor,
-              ),
-            ),
           ),
         ],
       ),

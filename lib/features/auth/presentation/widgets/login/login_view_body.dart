@@ -40,7 +40,7 @@ class LoginViewBody extends StatelessWidget {
                   style: AppTextStyles.textStyle16Medium,
                 ),
                 const SizedBox(height: 22),
-                LoginForm(state: state),
+                const LoginForm(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

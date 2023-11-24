@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
@@ -14,28 +14,17 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<Offset> _slidingAnimation;
-
+class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
+    _navigateToHome();
     super.initState();
-    _initSlidingAnimation();
-    // _navigateToHome();
   }
 
   @override
   void didChangeDependencies() {
     _setSystemUIOverlayStyle();
     super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
   }
 
   @override
@@ -46,43 +35,31 @@ class _SplashViewBodyState extends State<SplashViewBody>
       children: <Widget>[
         Image.asset(
           AppAssets.appIcon,
-          height: 192,
+          // height: 192,
+          fit: BoxFit.cover,
         ),
         const SizedBox(height: 16),
-        AnimatedBuilder(
-          animation: _slidingAnimation,
-          builder: (BuildContext context, Widget? child) {
-            return SlideTransition(
-              position: _slidingAnimation,
-              child: const Text(
-                textAlign: TextAlign.center,
-                "Store-ify",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontFamily: AppStrings.pottaOneFont,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            );
-          },
+        const Text(
+          textAlign: TextAlign.center,
+          "Store-ify",
+          style: TextStyle(
+            fontSize: 24,
+            fontFamily: AppStrings.pottaOneFont,
+            fontWeight: FontWeight.w400,
+            color: AppColors.primaryColor,
+          ),
         ),
         const SizedBox(height: 64),
+        const SpinKitRing(
+          color: AppColors.primaryColor,
+          size: 87,
+        ),
       ],
     );
   }
 
-  void _initSlidingAnimation() {
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    _slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 10), end: Offset.zero)
-            .animate(_animationController);
-    _animationController.forward();
-  }
-
   void _navigateToHome() {
-    Future.delayed(const Duration(milliseconds: 2500), (() {
+    Future.delayed(const Duration(seconds: 3), (() {
       context.navigateAndReplacement(newRoute: Routes.onBoardingViewRoute);
     }));
   }
