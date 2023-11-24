@@ -9,37 +9,61 @@ import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
 
-class UserLoginForm extends StatefulWidget {
-  const UserLoginForm({
+class LoginForm extends StatefulWidget {
+  const LoginForm({
     super.key,
     required this.state,
   });
   final LoginState state;
 
   @override
-  State<UserLoginForm> createState() => _UserLoginFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _UserLoginFormState extends State<UserLoginForm> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class _LoginFormState extends State<LoginForm> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
+  late final GlobalKey<FormState> _formKey;
+  late AutovalidateMode autovalidateMode;
+
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autovalidateMode = AutovalidateMode.disabled;
+  }
+
+  @override
+  void initState() {
+    _initFormAttributes();
+    super.initState();
+  }
 
   @override
   void dispose() {
     super.dispose();
     _disposeController();
+
+    _disposeFocusNodes();
+  }
+
+  void _disposeFocusNodes() {
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
   }
 
   void _disposeController() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: _formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -51,13 +75,15 @@ class _UserLoginFormState extends State<UserLoginForm> {
           const SizedBox(height: 9),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
-            controller: emailController,
-            inputType: TextInputType.emailAddress,
+            onEditingComplete: () =>
+                FocusScope.of(context).requestFocus(_passwordFocusNode),
+            controller: _emailController,
+            focusNode: _emailFocusNode,
+            keyboardType: TextInputType.emailAddress,
             hintText: 'Example@gmail.com',
+            autofillHints: const [AutofillHints.email],
           ),
-          const SizedBox(
-            height: 38,
-          ),
+          const SizedBox(height: 38),
           Text(
             "password",
             style: AppTextStyles.textStyle16Regular
@@ -65,10 +91,12 @@ class _UserLoginFormState extends State<UserLoginForm> {
           ),
           const SizedBox(height: 9),
           CustomTextField(
+            autofillHints: const <String>[AutofillHints.password],
             validate: (String? value) => Helper.validatePasswordField(value),
+            focusNode: _passwordFocusNode,
             onSubmitted: (_) => _login(context),
-            controller: passwordController,
-            inputType: TextInputType.visiblePassword,
+            controller: _passwordController,
+            keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
             isPassword: BlocProvider.of<LoginCubit>(context).isPassword,
             suffix: IconButton(
@@ -83,9 +111,7 @@ class _UserLoginFormState extends State<UserLoginForm> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 32,
-          ),
+          const SizedBox(height: 32),
           ConditionalBuilder(
             condition: widget.state is! SignInLoadingState,
             builder: (context) {
@@ -106,10 +132,16 @@ class _UserLoginFormState extends State<UserLoginForm> {
   }
 
   void _login(BuildContext context) {
-    if (formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
       BlocProvider.of<LoginCubit>(context).userSignIn(
-          email: emailController.text.trim(),
-          password: passwordController.text);
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+    } else {
+      setState(() {
+        autovalidateMode = AutovalidateMode.always;
+      });
     }
   }
 }

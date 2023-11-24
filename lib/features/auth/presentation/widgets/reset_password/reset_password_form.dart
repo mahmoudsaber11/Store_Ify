@@ -56,7 +56,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             },
             validate: (value) => Helper.validatePasswordField(value),
             controller: passwordController,
-            inputType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
           ),
           const SizedBox(
@@ -73,9 +73,13 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             onChange: (value) {
               confirmPassword = value;
             },
-            validate: (value) => Helper.validateConfirmPasswordField(value),
+            validate: (value) => Helper.validateConfirmPasswordField(
+              value: value,
+              password: passwordController.text,
+              confirmPassword: confirmPassword,
+            ),
             controller: confirmController,
-            inputType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
           ),
           const SizedBox(

@@ -64,7 +64,7 @@ class ResetPasswordViewBody extends StatelessWidget {
           });
     }
     if (state is ErrorResetPasswordState) {
-      showToast(text: state.errorMessage, state: ToastStates.ERROR);
+      showToast(text: state.errorMessage, state: ToastStates.error);
     }
   }
 }
