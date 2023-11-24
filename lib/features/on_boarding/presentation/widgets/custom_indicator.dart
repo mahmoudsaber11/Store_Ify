@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 
@@ -21,10 +22,10 @@ class CustomIndicator extends StatelessWidget {
       effect: ExpandingDotsEffect(
         dotColor: Colors.grey,
         activeDotColor: AppColors.primaryColor,
-        dotHeight: size.height * 0.01,
-        expansionFactor: size.width * 0.013,
-        dotWidth: size.width * 0.02,
-        spacing: size.width * 0.015,
+        dotHeight: size.height * 0.01.h,
+        expansionFactor: size.width * 0.013.w,
+        dotWidth: size.width * 0.02.w,
+        spacing: size.width * 0.015.w,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
@@ -39,7 +40,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             },
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24.h),
         Align(
           alignment: Alignment.center,
           child: CustomIndicator(
@@ -47,7 +48,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             dotIndex: pageController.hasClients ? pageController.page : 0,
           ),
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
         CustomGeneralButton(
           onPressed: () => _navigateAmongOnBoarding(context),
           text: pageController.hasClients

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/on_boarding/data/models/on_boarding_model.dart';
 
@@ -18,13 +19,13 @@ class PageViewItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(pageInfo.image),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Text(
             pageInfo.title,
             style: AppTextStyles.textStyle16Medium,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           Text(
             pageInfo.subTitle,
             style: AppTextStyles.textStyle12Medium,
