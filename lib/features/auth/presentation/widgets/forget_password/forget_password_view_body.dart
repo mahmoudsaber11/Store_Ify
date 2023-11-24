@@ -81,6 +81,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   hintText: 'Example@gmail.com',
+                  autofillHints: const [AutofillHints.email],
                 ),
                 SizedBox(height: 32.h),
                 BlocBuilder<LoginCubit, LoginState>(

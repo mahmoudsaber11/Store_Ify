@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
@@ -34,12 +35,12 @@ class LoginViewBody extends StatelessWidget {
                     style: AppTextStyles.textStyle24Medium,
                   ),
                 ),
-                const SizedBox(height: 5),
+                SizedBox(height: 5.h),
                 const Text(
                   "Welcome ",
                   style: AppTextStyles.textStyle16Medium,
                 ),
-                const SizedBox(height: 22),
+                SizedBox(height: 22.h),
                 const LoginForm(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +68,7 @@ class LoginViewBody extends StatelessWidget {
                   ],
                 ),
                 const OrSignInWithText(),
-                const SizedBox(height: 24),
+                SizedBox(height: 24.h),
                 const SignWithSocial(),
               ],
             ),

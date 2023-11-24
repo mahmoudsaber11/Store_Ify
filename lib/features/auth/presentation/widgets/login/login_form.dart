@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
@@ -70,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
-          const SizedBox(height: 9),
+          SizedBox(height: 9.h),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
             onEditingComplete: () =>
@@ -81,13 +82,13 @@ class _LoginFormState extends State<LoginForm> {
             hintText: 'Example@gmail.com',
             autofillHints: const [AutofillHints.email],
           ),
-          const SizedBox(height: 38),
+          SizedBox(height: 38.h),
           Text(
             "password",
             style: AppTextStyles.textStyle16Regular
                 .copyWith(color: AppColors.primaryColor),
           ),
-          const SizedBox(height: 9),
+          SizedBox(height: 9.h),
           CustomTextField(
             autofillHints: const <String>[AutofillHints.password],
             validate: (String? value) => Helper.validatePasswordField(value),
@@ -109,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           BlocBuilder<LoginCubit, LoginState>(
             builder: (context, state) {
               if (state is SignInLoadingState) {
