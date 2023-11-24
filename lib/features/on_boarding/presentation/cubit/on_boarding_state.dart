@@ -12,6 +12,6 @@ class PageViewIndexChangedState extends OnBoardingState {
   const PageViewIndexChangedState({required this.index});
 }
 
-class SkipToSignInOrHome extends OnBoardingState {}
+class SkipToLoginState extends OnBoardingState {}
 
 class NavigateBetweenPages extends OnBoardingState {}

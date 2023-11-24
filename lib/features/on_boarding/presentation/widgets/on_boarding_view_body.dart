@@ -61,7 +61,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
 
   void _navigateAmongOnBoarding(BuildContext context) {
     if (widget.cubit.isLastBoarding) {
-      widget.cubit.navigateToLoginOrHome(context: context);
+      widget.cubit.skipToLogin(context: context);
     } else {
       widget.cubit.navigateBetweenPages(
         context: context,

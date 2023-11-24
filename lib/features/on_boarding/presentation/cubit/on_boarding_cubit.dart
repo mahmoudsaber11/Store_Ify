@@ -39,9 +39,9 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
     emit(NavigateBetweenPages());
   }
 
-  void navigateToLoginOrHome({required BuildContext context}) {
-    onBoardingRepo.navigateToLoginOrHome(context: context);
+  void skipToLogin({required BuildContext context}) {
+    onBoardingRepo.skipToLogin(context: context);
 
-    emit(SkipToSignInOrHome());
+    emit(SkipToLoginState());
   }
 }

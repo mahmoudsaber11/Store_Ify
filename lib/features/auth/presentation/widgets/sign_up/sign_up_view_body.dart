@@ -89,9 +89,7 @@ class SignUpViewBody extends StatelessWidget {
     if (state is SignUpSuccessState) {
       showToast(text: state.userModel.message, state: ToastStates.success);
 
-      context.navigateAndReplacement(
-        newRoute: Routes.storeifyLayoutViewRoute,
-      );
+      context.navigateAndReplacement(newRoute: Routes.storeifyLayoutViewRoute);
     }
     if (state is SignUpErrorState) {
       showToast(text: state.error, state: ToastStates.error);

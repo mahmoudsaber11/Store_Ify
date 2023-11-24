@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/widgets/on_boarding_view_body.dart';
 
@@ -16,7 +14,8 @@ class OnBoardingView extends StatelessWidget {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              context.navigateTo(routeName: Routes.loginViewRoute);
+              BlocProvider.of<OnBoardingCubit>(context)
+                  .skipToLogin(context: context);
             },
             child: const Text(
               "Skip",

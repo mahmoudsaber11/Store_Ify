@@ -20,7 +20,7 @@ import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_vi
 import 'package:store_ify/features/products/presentation/view/products_view.dart';
 import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
 
-class AppRoutes {
+class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
