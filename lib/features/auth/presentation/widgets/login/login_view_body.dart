@@ -81,9 +81,7 @@ class LoginViewBody extends StatelessWidget {
     if (state is SignInSuccessState) {
       showToast(text: state.userModel.message, state: ToastStates.success);
 
-      context.navigateAndRemoveUntil(
-        newRoute: Routes.storeifyLayoutViewRoute,
-      );
+      context.navigateAndReplacement(newRoute: Routes.storeifyLayoutViewRoute);
     }
 
     if (state is SignInErrorState) {

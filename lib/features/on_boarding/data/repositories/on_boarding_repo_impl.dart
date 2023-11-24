@@ -38,7 +38,7 @@ class OnBoardingRepoImpl implements OnBoardingRepo {
     required PageController pageController,
     required bool isLastBoarding,
   }) {
-    if (isLastBoarding) navigateToLoginOrHome(context: context);
+    if (isLastBoarding) skipToLogin(context: context);
 
     pageController.nextPage(
       duration: const Duration(seconds: 1),
@@ -47,7 +47,7 @@ class OnBoardingRepoImpl implements OnBoardingRepo {
   }
 
   @override
-  void navigateToLoginOrHome({required BuildContext context}) {
+  void skipToLogin({required BuildContext context}) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'onBoarding', value: true)
