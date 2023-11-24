@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
@@ -20,7 +21,7 @@ class ResetPasswordViewBody extends StatelessWidget {
       },
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24).w,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,16 +33,16 @@ class ResetPasswordViewBody extends StatelessWidget {
                   style: AppTextStyles.textStyle24Medium,
                 ),
               ),
-              const SizedBox(
-                height: 13,
+              SizedBox(
+                height: 13.h,
               ),
               Text(
                 "Enter your new password ,make sure \n that it should at least 8 characters \n started by _ ",
                 style: AppTextStyles.textStyle16Regular
                     .copyWith(color: Colors.grey),
               ),
-              const SizedBox(
-                height: 23,
+              SizedBox(
+                height: 23.h,
               ),
               const ResetPasswordForm(),
             ],
