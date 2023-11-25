@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_navigator.dart';
+import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
@@ -58,61 +61,62 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      autovalidateMode: autovalidateMode,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const TextFieldLabel(label: 'E-mail'),
-          CustomTextField(
-            validate: (String? value) => Helper.validateEmailField(value),
-            onEditingComplete: () =>
-                FocusScope.of(context).requestFocus(_passwordFocusNode),
-            controller: _emailController,
-            focusNode: _emailFocusNode,
-            keyboardType: TextInputType.emailAddress,
-            hintText: 'Example@gmail.com',
-            autofillHints: const [AutofillHints.email],
-          ),
-          SizedBox(height: 38.h),
-          const TextFieldLabel(label: 'password'),
-          CustomTextField(
-            autofillHints: const <String>[AutofillHints.password],
-            validate: (String? value) => Helper.validatePasswordField(value),
-            focusNode: _passwordFocusNode,
-            onSubmitted: (_) => _login(context),
-            controller: _passwordController,
-            keyboardType: TextInputType.visiblePassword,
-            hintText: '*********',
-            isPassword: BlocProvider.of<LoginCubit>(context).isPassword,
-            suffix: IconButton(
-              onPressed: () {
-                BlocProvider.of<LoginCubit>(context).changePasswordVisibility();
-              },
-              icon: Icon(
-                BlocProvider.of<LoginCubit>(context).isPassword
-                    ? Icons.visibility_outlined
-                    : Icons.visibility_off_outlined,
-                color: AppColors.primaryColor,
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) => _handleLoginStates(state, context),
+      builder: (context, state) {
+        return Form(
+          key: _formKey,
+          autovalidateMode: autovalidateMode,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const TextFieldLabel(label: 'E-mail'),
+              CustomTextField(
+                validate: (String? value) => Helper.validateEmailField(value),
+                onEditingComplete: () =>
+                    FocusScope.of(context).requestFocus(_passwordFocusNode),
+                controller: _emailController,
+                focusNode: _emailFocusNode,
+                keyboardType: TextInputType.emailAddress,
+                hintText: 'Example@gmail.com',
+                autofillHints: const [AutofillHints.email],
               ),
-            ),
+              SizedBox(height: 38.h),
+              const TextFieldLabel(label: 'password'),
+              CustomTextField(
+                autofillHints: const <String>[AutofillHints.password],
+                validate: (String? value) =>
+                    Helper.validatePasswordField(value),
+                focusNode: _passwordFocusNode,
+                onSubmitted: (_) => _login(context),
+                controller: _passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                hintText: '*********',
+                isPassword: BlocProvider.of<LoginCubit>(context).isPassword,
+                suffix: IconButton(
+                  onPressed: () {
+                    BlocProvider.of<LoginCubit>(context)
+                        .changePasswordVisibility();
+                  },
+                  icon: Icon(
+                    BlocProvider.of<LoginCubit>(context).isPassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ),
+              SizedBox(height: 32.h),
+              state is SignInLoadingState
+                  ? const CustomCircularProgressIndicator()
+                  : CustomGeneralButton(
+                      text: 'Log in',
+                      onPressed: () => _login(context),
+                    ),
+            ],
           ),
-          SizedBox(height: 32.h),
-          BlocBuilder<LoginCubit, LoginState>(
-            builder: (context, state) {
-              if (state is SignInLoadingState) {
-                return const CustomCircularProgressIndicator();
-              } else {
-                return CustomGeneralButton(
-                  text: 'Log in',
-                  onPressed: () => _login(context),
-                );
-              }
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -128,6 +132,17 @@ class _LoginFormState extends State<LoginForm> {
       setState(() {
         autovalidateMode = AutovalidateMode.always;
       });
+    }
+  }
+
+  void _handleLoginStates(LoginState state, BuildContext context) {
+    if (state is SignInSuccessState) {
+      showToast(text: state.userModel.message, state: ToastStates.success);
+      context.navigateAndReplacement(newRoute: Routes.storeifyLayoutViewRoute);
+    }
+
+    if (state is SignInErrorState) {
+      showToast(text: state.error, state: ToastStates.error);
     }
   }
 }

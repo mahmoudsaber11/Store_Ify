@@ -11,10 +11,11 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   final ResetPasswordRepo resetPasswordRepo;
 
-  void resetPassword(
-      {required String email,
-      required String password,
-      required String confirmPassword}) async {
+  void resetPassword({
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
     emit(LoadingResetPasswordState());
     await resetPasswordRepo
         .resetPassword(

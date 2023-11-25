@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/helpers/helper.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_state.dart';
+import 'package:store_ify/features/auth/presentation/widgets/reset_password/login_dialog.dart';
+import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class ResetPasswordForm extends StatefulWidget {
-  const ResetPasswordForm({
-    super.key,
-  });
+  const ResetPasswordForm({super.key, required this.email});
+
+  final String email;
 
   @override
   State<ResetPasswordForm> createState() => _ResetPasswordFormState();
 }
 
 class _ResetPasswordFormState extends State<ResetPasswordForm> {
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmController = TextEditingController();
 
@@ -28,9 +28,9 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
   final FocusNode _confirmPasswordFocusNode = FocusNode();
 
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autovalidateMode;
+  late AutovalidateMode autovalidateMode;
+
   String password = '';
-  // ignore: unused_local_variable
   String confirmPassword = '';
 
   void _initFormAttributes() {
@@ -46,14 +46,12 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
 
   @override
   void dispose() {
-    super.dispose();
     _disposeController();
-
     _disposeFocusNodes();
+    super.dispose();
   }
 
   void _disposeController() {
-    _emailController.dispose();
     _passwordController.dispose();
     _confirmController.dispose();
   }
@@ -67,19 +65,17 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            "password",
-            style: AppTextStyles.textStyle16Regular
-                .copyWith(color: AppColors.primaryColor),
-          ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const TextFieldLabel(label: 'Password'),
           CustomTextField(
             isPassword: true,
             onChange: (value) {
-              password = value;
+              setState(() {
+                password = value;
+              });
             },
             validate: (value) => Helper.validatePasswordField(value),
             controller: _passwordController,
@@ -90,43 +86,40 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             onEditingComplete: () =>
                 FocusScope.of(context).requestFocus(_confirmPasswordFocusNode),
           ),
-          SizedBox(
-            height: 50.h,
-          ),
-          Text(
-            "Confirm password",
-            style: AppTextStyles.textStyle16Regular.copyWith(
-              color: AppColors.primaryColor,
-            ),
-          ),
+          SizedBox(height: 24.h),
+          const TextFieldLabel(label: 'Confirm password'),
           CustomTextField(
             isPassword: true,
             onChange: (value) {
-              confirmPassword = value;
+              setState(() {
+                confirmPassword = value;
+              });
             },
             validate: (value) => Helper.validateConfirmPasswordField(
               value: value,
-              password: _passwordController.text,
+              password: password,
               confirmPassword: confirmPassword,
             ),
             controller: _confirmController,
             keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
-            onSubmitted: (_) => resetPassword(context),
+            onSubmitted: (_) => _resetPassword(context),
             autofillHints: const <String>[AutofillHints.password],
             focusNode: _confirmPasswordFocusNode,
           ),
-          SizedBox(
-            height: 28.h,
-          ),
-          BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+          SizedBox(height: 28.h),
+          BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
+            listener: (context, state) {
+              _handleSuccessResetState(state, context, widget.email);
+            },
             builder: (context, state) {
               if (state is LoadingResetPasswordState) {
                 return const CustomCircularProgressIndicator();
               } else {
                 return CustomGeneralButton(
-                    text: 'Reset Password',
-                    onPressed: () => resetPassword(context));
+                  text: 'Reset Password',
+                  onPressed: () => _resetPassword(context),
+                );
               }
             },
           ),
@@ -135,18 +128,40 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
     );
   }
 
-  void resetPassword(BuildContext context) {
+  void _resetPassword(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
       BlocProvider.of<ResetPasswordCubit>(context).resetPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
-          confirmPassword: _confirmController.text);
+        email: widget.email,
+        password: password,
+        confirmPassword: confirmPassword,
+      );
     } else {
       setState(() {
         autovalidateMode = AutovalidateMode.always;
       });
+    }
+  }
+
+  void _handleSuccessResetState(
+    ResetPasswordState state,
+    BuildContext context,
+    String email,
+  ) {
+    if (state is SuccessResetPasswordState) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return LoginDialog(
+            email: email,
+            password: password,
+          );
+        },
+      );
+    }
+    if (state is ErrorResetPasswordState) {
+      showToast(text: state.errorMessage, state: ToastStates.error);
     }
   }
 }

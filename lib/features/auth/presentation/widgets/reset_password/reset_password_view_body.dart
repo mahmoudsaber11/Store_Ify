@@ -1,71 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_ify/core/utils/app_constants.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
-import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
-import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_state.dart';
-import 'package:store_ify/features/auth/presentation/widgets/reset_password/login_dialog.dart';
 import 'package:store_ify/features/auth/presentation/widgets/reset_password/reset_password_form.dart';
 
 class ResetPasswordViewBody extends StatelessWidget {
-  const ResetPasswordViewBody(
-      {super.key, required this.email, required this.password});
+  const ResetPasswordViewBody({
+    super.key,
+    required this.email,
+  });
+
   final String email;
-  final String password;
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
-      listener: (context, state) {
-        _handleSuccessResetState(state, context, email);
-      },
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.all(24).w,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Reset Password",
-                  style: AppTextStyles.textStyle24Medium,
-                ),
-              ),
-              SizedBox(
-                height: 13.h,
-              ),
-              Text(
-                "Enter your new password ,make sure \n that it should at least 8 characters \n started by _ ",
-                style: AppTextStyles.textStyle16Regular
-                    .copyWith(color: Colors.grey),
-              ),
-              SizedBox(
-                height: 23.h,
-              ),
-              const ResetPasswordForm(),
-            ],
+    return Padding(
+      padding: AppConstants.authHorizontalPadding,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+            "Reset Password",
+            style: AppTextStyles.textStyle24Medium,
           ),
-        );
-      },
+          SizedBox(height: 13.h),
+          Text(
+            "Enter your new password, make sure\nthat it should at least 8 characters\nstarted by _ ",
+            style:
+                AppTextStyles.textStyle16Regular.copyWith(color: Colors.grey),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 23.h),
+          ResetPasswordForm(email: email),
+        ],
+      ),
     );
-  }
-
-  void _handleSuccessResetState(
-      ResetPasswordState state, BuildContext context, String email) {
-    if (state is SuccessResetPasswordState) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return LoginDialog(
-              email: email,
-              password: password,
-            );
-          });
-    }
-    if (state is ErrorResetPasswordState) {
-      showToast(text: state.errorMessage, state: ToastStates.error);
-    }
   }
 }
