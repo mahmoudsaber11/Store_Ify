@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_constants.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
@@ -14,8 +15,7 @@ import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_state.dart';
-import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
-import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
+import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
@@ -28,7 +28,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   final TextEditingController _emailController = TextEditingController();
 
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autoValidateMode;
+  late AutovalidateMode autoValidateMode;
 
   void _initFormAttributes() {
     _formKey = GlobalKey<FormState>();
@@ -56,12 +56,13 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
       builder: (context, state) {
         return Form(
           key: _formKey,
+          autovalidateMode: autoValidateMode,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
+            padding: AppConstants.authHorizontalPadding,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
                 const Center(
                   child: Text(
                     "Forget Password",
@@ -69,14 +70,9 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                   ),
                 ),
                 SizedBox(height: 30.h),
-                Text(
-                  "E-mail",
-                  style: AppTextStyles.textStyle16Regular
-                      .copyWith(color: AppColors.primaryColor),
-                ),
-                SizedBox(height: 16.h),
+                const TextFieldLabel(label: 'E-mail'),
                 CustomTextField(
-                  onSubmitted: (_) => _forgetPassword(),
+                  onSubmitted: (_) => _forgetPassword(context),
                   validate: (String? value) => Helper.validateEmailField(value),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -84,19 +80,19 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                   autofillHints: const [AutofillHints.email],
                 ),
                 SizedBox(height: 32.h),
-                BlocBuilder<LoginCubit, LoginState>(
+                BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
                   builder: (context, state) {
-                    if (state is SignInLoadingState) {
+                    if (state is LoadingCheckEmailState) {
                       return const CustomCircularProgressIndicator();
                     } else {
                       return CustomGeneralButton(
                         text: 'Verify Email',
-                        onPressed: () => _forgetPassword(),
+                        onPressed: () => _forgetPassword(context),
                       );
                     }
                   },
                 ),
-                SizedBox(height: 23.h),
+                SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -104,10 +100,9 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                       "Don’t have an account ? ",
                       style: AppTextStyles.textStyle16Regular,
                     ),
-                    InkWell(
-                      onTap: () {
-                        context.navigateTo(routeName: Routes.signUpViewRoute);
-                      },
+                    TextButton(
+                      onPressed: () =>
+                          context.navigateTo(routeName: Routes.signUpViewRoute),
                       child: Text(
                         "Sign up ",
                         style: AppTextStyles.textStyle16Regular
@@ -124,7 +119,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
     );
   }
 
-  void _forgetPassword() {
+  void _forgetPassword(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);

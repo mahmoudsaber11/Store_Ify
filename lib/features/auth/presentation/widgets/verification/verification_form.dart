@@ -20,73 +20,70 @@ class VerificationForm extends StatefulWidget {
 }
 
 class _VerificationFormState extends State<VerificationForm> {
-  TextEditingController otpController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final focusNode = FocusNode();
+  final TextEditingController _otpController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: <Widget>[
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Pinput(
-                controller: otpController,
-                focusNode: focusNode,
-                androidSmsAutofillMethod:
-                    AndroidSmsAutofillMethod.smsUserConsentApi,
-                listenForMultipleSmsOnAndroid: true,
-                defaultPinTheme: pinTheme(),
-                separatorBuilder: (index) => SizedBox(width: 34.w),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Pin Is Empty";
-                  }
-                  return null;
-                },
-              )),
-          SizedBox(
-            height: 40.h,
+            padding: EdgeInsets.symmetric(horizontal: 40.w),
+            child: Pinput(
+              controller: _otpController,
+              androidSmsAutofillMethod:
+                  AndroidSmsAutofillMethod.smsUserConsentApi,
+              listenForMultipleSmsOnAndroid: true,
+              defaultPinTheme: PinTheme(
+                width: 52.w,
+                height: 52.w,
+                textStyle: TextStyle(
+                  fontSize: 22.sp,
+                  color: AppColors.textColor,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(19).w,
+                  border: Border.all(color: AppColors.primaryColor),
+                ),
+              ),
+              separatorBuilder: (index) => SizedBox(width: 34.w),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Pin Is Empty";
+                }
+                return null;
+              },
+            ),
           ),
+          SizedBox(height: 40.h),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 19),
+            padding: EdgeInsets.symmetric(horizontal: 19.w),
             child: BlocBuilder<VerificationCubit, VerificationState>(
               builder: (context, state) {
                 if (state is LoadingVerificationState) {
                   return const CustomCircularProgressIndicator();
                 } else {
                   return CustomGeneralButton(
-                      text: 'Verify',
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          BlocProvider.of<VerificationCubit>(context)
-                              .otpVerification(
-                                  email: widget.email,
-                                  forgetCode: otpController.text);
-                        }
-                      });
+                    text: 'Verify',
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        BlocProvider.of<VerificationCubit>(context)
+                            .otpVerification(
+                          email: widget.email,
+                          forgetCode: _otpController.text,
+                        );
+                      }
+                    },
+                  );
                 }
               },
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  PinTheme pinTheme() {
-    return PinTheme(
-      width: 56,
-      height: 52,
-      textStyle: TextStyle(
-        fontSize: 22.sp,
-        color: AppColors.textColor,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(19).w,
-        border: Border.all(color: AppColors.primaryColor),
       ),
     );
   }
