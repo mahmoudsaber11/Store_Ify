@@ -65,7 +65,6 @@ class _LoginFormState extends State<LoginForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const TextFieldLabel(label: 'E-mail'),
-          SizedBox(height: 9.h),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
             onEditingComplete: () =>
@@ -78,7 +77,6 @@ class _LoginFormState extends State<LoginForm> {
           ),
           SizedBox(height: 38.h),
           const TextFieldLabel(label: 'password'),
-          SizedBox(height: 9.h),
           CustomTextField(
             autofillHints: const <String>[AutofillHints.password],
             validate: (String? value) => Helper.validatePasswordField(value),

@@ -77,7 +77,6 @@ class _SignUpFormState extends State<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextFieldLabel(label: 'Email'),
-          SizedBox(height: 9.h),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
             controller: _emailController,
@@ -90,7 +89,6 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           SizedBox(height: 24.h),
           const TextFieldLabel(label: 'Username'),
-          SizedBox(height: 9.h),
           CustomTextField(
             validate: (String? value) => Helper.validateUserNameField(value),
             controller: _nameController,
@@ -103,7 +101,6 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           SizedBox(height: 24.h),
           const TextFieldLabel(label: 'password'),
-          SizedBox(height: 9.h),
           CustomTextField(
             isPassword: cubit.isPassword,
             suffix: IconButton(
@@ -126,7 +123,6 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           SizedBox(height: 24.h),
           const TextFieldLabel(label: 'Confirm password'),
-          SizedBox(height: 9.h),
           CustomTextField(
             isPassword: cubit.isPassword,
             suffix: IconButton(
