@@ -49,73 +49,70 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-      listener: (context, state) {
-        _handleForgetPasswordState(state, context, _emailController.text);
-      },
-      builder: (context, state) {
-        return Form(
-          key: _formKey,
-          autovalidateMode: autoValidateMode,
-          child: Padding(
-            padding: AppConstants.authHorizontalPadding,
-            child: Column(
+    return Form(
+      key: _formKey,
+      autovalidateMode: autoValidateMode,
+      child: Padding(
+        padding: AppConstants.authHorizontalPadding,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Center(
+              child: Text(
+                "Forget Password",
+                style: AppTextStyles.textStyle24Medium,
+              ),
+            ),
+            SizedBox(height: 30.h),
+            const TextFieldLabel(label: 'E-mail'),
+            CustomTextField(
+              onSubmitted: (_) => _forgetPassword(context),
+              validate: (String? value) => Helper.validateEmailField(value),
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              hintText: 'Example@gmail.com',
+              autofillHints: const [AutofillHints.email],
+            ),
+            SizedBox(height: 32.h),
+            BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+              listener: (context, state) {
+                _handleForgetPasswordState(
+                    state, context, _emailController.text);
+              },
+              builder: (context, state) {
+                if (state is LoadingCheckEmailState) {
+                  return const CustomCircularProgressIndicator();
+                } else {
+                  return CustomGeneralButton(
+                    text: 'Verify Email',
+                    onPressed: () => _forgetPassword(context),
+                  );
+                }
+              },
+            ),
+            SizedBox(height: 16.h),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const Center(
+              children: [
+                const Text(
+                  "Don’t have an account ?",
+                  style: AppTextStyles.textStyle16Regular,
+                ),
+                TextButton(
+                  onPressed: () =>
+                      context.navigateTo(routeName: Routes.signUpViewRoute),
                   child: Text(
-                    "Forget Password",
-                    style: AppTextStyles.textStyle24Medium,
+                    "Sign up",
+                    style: AppTextStyles.textStyle16Regular
+                        .copyWith(color: AppColors.primaryColor),
                   ),
-                ),
-                SizedBox(height: 30.h),
-                const TextFieldLabel(label: 'E-mail'),
-                CustomTextField(
-                  onSubmitted: (_) => _forgetPassword(context),
-                  validate: (String? value) => Helper.validateEmailField(value),
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  hintText: 'Example@gmail.com',
-                  autofillHints: const [AutofillHints.email],
-                ),
-                SizedBox(height: 32.h),
-                BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
-                  builder: (context, state) {
-                    if (state is LoadingCheckEmailState) {
-                      return const CustomCircularProgressIndicator();
-                    } else {
-                      return CustomGeneralButton(
-                        text: 'Verify Email',
-                        onPressed: () => _forgetPassword(context),
-                      );
-                    }
-                  },
-                ),
-                SizedBox(height: 16.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don’t have an account ? ",
-                      style: AppTextStyles.textStyle16Regular,
-                    ),
-                    TextButton(
-                      onPressed: () =>
-                          context.navigateTo(routeName: Routes.signUpViewRoute),
-                      child: Text(
-                        "Sign up ",
-                        style: AppTextStyles.textStyle16Regular
-                            .copyWith(color: AppColors.primaryColor),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 

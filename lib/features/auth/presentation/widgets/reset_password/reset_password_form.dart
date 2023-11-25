@@ -68,7 +68,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           const TextFieldLabel(label: 'Password'),
           CustomTextField(
             isPassword: true,
@@ -103,7 +103,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             controller: _confirmController,
             keyboardType: TextInputType.visiblePassword,
             hintText: '*********',
-            onSubmitted: (_) => resetPassword(context),
+            onSubmitted: (_) => _resetPassword(context),
             autofillHints: const <String>[AutofillHints.password],
             focusNode: _confirmPasswordFocusNode,
           ),
@@ -118,7 +118,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               } else {
                 return CustomGeneralButton(
                   text: 'Reset Password',
-                  onPressed: () => resetPassword(context),
+                  onPressed: () => _resetPassword(context),
                 );
               }
             },
@@ -128,7 +128,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
     );
   }
 
-  void resetPassword(BuildContext context) {
+  void _resetPassword(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
