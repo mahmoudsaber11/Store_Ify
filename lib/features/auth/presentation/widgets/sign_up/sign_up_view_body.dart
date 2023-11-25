@@ -40,7 +40,7 @@ class SignUpViewBody extends StatelessWidget {
                   style: AppTextStyles.textStyle16Medium,
                 ),
                 SizedBox(height: 45.h),
-                SignUpForm(state: state),
+                const SignUpForm(),
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
                   child: TextButton(

@@ -3,17 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
+import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({
-    super.key,
-  });
+  const LoginForm({super.key});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -64,13 +62,9 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            "E-mail",
-            style: AppTextStyles.textStyle16Regular
-                .copyWith(color: AppColors.primaryColor),
-          ),
+          const TextFieldLabel(label: 'E-mail'),
           SizedBox(height: 9.h),
           CustomTextField(
             validate: (String? value) => Helper.validateEmailField(value),
@@ -83,11 +77,7 @@ class _LoginFormState extends State<LoginForm> {
             autofillHints: const [AutofillHints.email],
           ),
           SizedBox(height: 38.h),
-          Text(
-            "password",
-            style: AppTextStyles.textStyle16Regular
-                .copyWith(color: AppColors.primaryColor),
-          ),
+          const TextFieldLabel(label: 'password'),
           SizedBox(height: 9.h),
           CustomTextField(
             autofillHints: const <String>[AutofillHints.password],

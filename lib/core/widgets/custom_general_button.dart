@@ -8,15 +8,17 @@ class CustomGeneralButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
+    this.width,
   });
   final String text;
+  final double? width;
 
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 42.h,
-      width: 213.w,
+      width: width ?? double.infinity,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(8.r),

@@ -50,6 +50,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         ),
         SizedBox(height: 40.h),
         CustomGeneralButton(
+          width: 213.w,
           onPressed: () => _navigateAmongOnBoarding(context),
           text: pageController.hasClients
               ? (pageController.page == 2 ? 'Get Started' : 'Next')
