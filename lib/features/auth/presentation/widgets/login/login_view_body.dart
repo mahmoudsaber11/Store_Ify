@@ -29,7 +29,7 @@ class LoginViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(top: 122),
+                  margin: EdgeInsets.only(top: 122.h),
                   child: const Text(
                     "Sign in to Continue ",
                     style: AppTextStyles.textStyle24Medium,
