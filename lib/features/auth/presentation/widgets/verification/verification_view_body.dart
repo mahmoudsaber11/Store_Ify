@@ -68,7 +68,9 @@ class VerificationViewBody extends StatelessWidget {
     if (state is SuccessVerificationState) {
       showToast(text: state.message, state: ToastStates.success);
       context.navigateTo(
-          routeName: Routes.resetPasswordViewRoute, arguments: email);
+        routeName: Routes.resetPasswordViewRoute,
+        arguments: email,
+      );
     }
     if (state is ErrorVerificationState) {
       showToast(text: state.errorMessage, state: ToastStates.error);

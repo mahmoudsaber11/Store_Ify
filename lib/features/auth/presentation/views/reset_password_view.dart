@@ -5,19 +5,14 @@ class ResetPasswordView extends StatelessWidget {
   const ResetPasswordView({
     super.key,
     required this.email,
-    required this.password,
   });
 
   final String email;
-  final String password;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ResetPasswordViewBody(
-        email: email,
-        password: password,
-      ),
+      body: ResetPasswordViewBody(email: email),
     );
   }
 }

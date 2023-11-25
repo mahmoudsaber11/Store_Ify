@@ -69,6 +69,14 @@ class _VerificationFormState extends State<VerificationForm> {
                   return CustomGeneralButton(
                     text: 'Verify',
                     onPressed: () {
+                      // context.navigateTo(
+                      //   routeName: Routes.resetPasswordViewRoute,
+                      //   arguments: LoginParams(
+                      //     email: widget.email,
+
+                      //     password: '123456789',
+                      //   ),
+                      // );
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         BlocProvider.of<VerificationCubit>(context)

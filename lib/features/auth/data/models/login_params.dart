@@ -2,5 +2,8 @@ class LoginParams {
   final String email;
   final String password;
 
-  LoginParams(this.email, this.password);
+  const LoginParams({
+    required this.email,
+    required this.password,
+  });
 }
