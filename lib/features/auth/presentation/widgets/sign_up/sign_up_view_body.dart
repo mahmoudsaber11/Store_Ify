@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/utils/app_constants.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_state.dart';
+import 'package:store_ify/features/auth/presentation/widgets/or_sign_in_with_text.dart';
 import 'package:store_ify/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/features/auth/presentation/widgets/sign_with_social.dart';
@@ -16,67 +18,43 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    String confirmPassword = '';
-
     return BlocConsumer<SignUpCubit, SignUpState>(
-      listener: (context, state) {
-        _handleSignUpState(state, context);
-      },
+      listener: (context, state) => _handleSignUpState(state, context),
       builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.all(16).w,
-          child: SingleChildScrollView(
+        return SingleChildScrollView(
+          child: Padding(
+            padding: AppConstants.authHorizontalPadding,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  height: 41.h,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 40.h),
+                  child: const Text(
+                    "Sign Up",
+                    style: AppTextStyles.textStyle24Medium,
+                  ),
                 ),
-                const Text(
-                  "Sign Up",
-                  style: AppTextStyles.textStyle24Medium,
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
+                SizedBox(height: 5.h),
                 const Text(
                   "Create an account",
                   style: AppTextStyles.textStyle16Medium,
                 ),
-                SizedBox(
-                  height: 45.h,
-                ),
+                SizedBox(height: 45.h),
                 SignUpForm(state: state),
-                TextButton(
-                    onPressed: () {
-                      context.navigateTo(routeName: Routes.loginViewRoute);
-                    },
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        TextButton(
-                            onPressed: () {
-                              context.navigateTo(
-                                  routeName: Routes.loginViewRoute);
-                            },
-                            child: Text(
-                              "Login",
-                              style: AppTextStyles.textStyle16Regular.copyWith(
-                                color: AppColors.primaryColor,
-                              ),
-                            )),
-                      ],
-                    )),
-                const Center(
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: TextButton(
+                    onPressed: () => context.getBack(),
                     child: Text(
-                  "Or sign in with",
-                  style: AppTextStyles.textStyle16Medium,
-                )),
-                SizedBox(
-                  height: 24.h,
+                      "Login",
+                      style: AppTextStyles.textStyle16Regular.copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
                 ),
+                const OrSignInWithText(),
+                SizedBox(height: 24.h),
                 const SignWithSocial(),
               ],
             ),
