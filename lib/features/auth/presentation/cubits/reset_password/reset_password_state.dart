@@ -15,3 +15,9 @@ class ErrorResetPasswordState extends ResetPasswordState {
 
   ErrorResetPasswordState(this.errorMessage);
 }
+
+class ResetChangePasswordVisibility extends ResetPasswordState {
+  final bool isPassword;
+
+  ResetChangePasswordVisibility({required this.isPassword});
+}

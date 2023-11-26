@@ -34,4 +34,11 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       });
     });
   }
+
+  bool isPassword = true;
+  void changePasswordVisibility() {
+    isPassword = !isPassword;
+
+    emit(ResetChangePasswordVisibility(isPassword: isPassword));
+  }
 }
