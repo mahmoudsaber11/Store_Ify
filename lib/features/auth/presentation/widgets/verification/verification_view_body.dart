@@ -19,7 +19,7 @@ class VerificationViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const Spacer(),
-          const Align(
+          Align(
             alignment: Alignment.center,
             child: Text(
               "OTP Verification ",
@@ -37,7 +37,7 @@ class VerificationViewBody extends StatelessWidget {
           SizedBox(height: 19.h),
           Image.asset(AppAssets.imagesOtpVerification),
           SizedBox(height: 19.h),
-          const Center(
+          Center(
             child: Text(
               "OTP Code",
               style: AppTextStyles.textStyle16Medium,

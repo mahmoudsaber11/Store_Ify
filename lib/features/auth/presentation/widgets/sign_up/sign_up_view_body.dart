@@ -21,13 +21,13 @@ class SignUpViewBody extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 40.h),
-              child: const Text(
+              child: Text(
                 "Sign Up",
                 style: AppTextStyles.textStyle24Medium,
               ),
             ),
             SizedBox(height: 5.h),
-            const Text(
+            Text(
               "Create an account",
               style: AppTextStyles.textStyle16Medium,
             ),

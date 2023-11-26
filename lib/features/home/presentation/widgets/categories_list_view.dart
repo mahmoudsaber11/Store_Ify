@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/widgets/custom_category_item.dart';
 
-class CategorieslistView extends StatelessWidget {
-  const CategorieslistView({
+class CategoriesListView extends StatelessWidget {
+  const CategoriesListView({
     super.key,
   });
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/widgets/custom_stores_item.dart';
 
-class StoreslistView extends StatelessWidget {
-  const StoreslistView({
+class StoresListView extends StatelessWidget {
+  const StoresListView({
     super.key,
   });
 

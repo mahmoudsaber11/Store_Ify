@@ -22,7 +22,7 @@ class CategoriesViewBody extends StatelessWidget {
                   Icons.arrow_back,
                   color: Colors.grey,
                 )),
-            const Text(
+            Text(
               "Categories",
               style: AppTextStyles.textStyle16Regular,
             ),

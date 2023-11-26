@@ -20,7 +20,7 @@ class LocationDialog extends StatelessWidget {
         children: [
           Image.asset(AppAssets.locationDialog),
           SizedBox(height: 32.h),
-          const Text(
+          Text(
             "Grant permission for the Store-ify \n to access the geographic \n location of this device? ",
             textAlign: TextAlign.center,
             style: AppTextStyles.textStyle16Medium,

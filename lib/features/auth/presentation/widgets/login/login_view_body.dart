@@ -22,13 +22,13 @@ class LoginViewBody extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 122.h),
-              child: const Text(
+              child: Text(
                 "Sign in to Continue ",
                 style: AppTextStyles.textStyle24Medium,
               ),
             ),
             SizedBox(height: 5.h),
-            const Text(
+            Text(
               "Welcome ",
               style: AppTextStyles.textStyle16Medium,
             ),

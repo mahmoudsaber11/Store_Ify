@@ -40,7 +40,7 @@ class CustomStoresItem extends StatelessWidget {
                   padding: EdgeInsets.only(left: 27.w),
                   child: Row(
                     children: [
-                      const Text(
+                      Text(
                         "Spinneys store ",
                         style: AppTextStyles.textStyle14Regular,
                       ),

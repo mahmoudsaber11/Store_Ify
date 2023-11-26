@@ -41,7 +41,7 @@ class CustomCategoryItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 35.w),
-                    child: const Text(
+                    child: Text(
                       "Electronics",
                       style: AppTextStyles.textStyle14Regular,
                     ),
@@ -49,7 +49,7 @@ class CustomCategoryItem extends StatelessWidget {
                   SizedBox(
                     height: 4.h,
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.center,
                     child: Text(
                       "Tv,mobile,laptop",
