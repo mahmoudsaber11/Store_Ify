@@ -10,6 +10,7 @@ class CustomGeneralButton extends StatelessWidget {
     required this.onPressed,
     this.width,
   });
+
   final String text;
   final double? width;
 
@@ -24,12 +25,12 @@ class CustomGeneralButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.r),
       ),
       child: MaterialButton(
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style:
-                AppTextStyles.textStyle16Medium.copyWith(color: Colors.white),
-          )),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: AppTextStyles.textStyle16Medium.copyWith(color: Colors.white),
+        ),
+      ),
     );
   }
 }

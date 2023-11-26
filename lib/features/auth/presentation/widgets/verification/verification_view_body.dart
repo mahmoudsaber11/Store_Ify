@@ -13,14 +13,14 @@ class VerificationViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 110.h),
         padding: AppConstants.authHorizontalPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Spacer(),
-            const Align(
+            Align(
               alignment: Alignment.center,
               child: Text(
                 "OTP Verification ",
@@ -36,9 +36,12 @@ class VerificationViewBody extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 19.h),
-            Image.asset(AppAssets.imagesOtpVerification),
+            Image.asset(
+              AppAssets.imagesOtpVerification,
+              fit: BoxFit.cover,
+            ),
             SizedBox(height: 19.h),
-            const Center(
+            Center(
               child: Text(
                 "OTP Code",
                 style: AppTextStyles.textStyle16Medium,
@@ -46,7 +49,6 @@ class VerificationViewBody extends StatelessWidget {
             ),
             SizedBox(height: 13.h),
             VerificationForm(email: email),
-            const Spacer(),
           ],
         ),
       ),
