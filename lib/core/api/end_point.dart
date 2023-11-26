@@ -5,6 +5,7 @@ class EndPoints {
   static const String forgetPassword = "${baseUrl}auth/forgetPassword";
   static const String verifyCode = "${baseUrl}auth/CheckCode";
   static const String resetPassword = "${baseUrl}auth/RestePassword";
+  static const String loginWithGoogle = "${baseUrl}auth/loginWithGmail";
 }
 
 const String token =
