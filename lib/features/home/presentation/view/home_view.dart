@@ -28,20 +28,20 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    const Text(
+                    Text(
                       "Best Selling",
                       style: AppTextStyles.textStyle16Regular,
                     ),
                     SizedBox(
                       height: 25.h,
                     ),
-                    const BestSellerlistView(),
+                    const BestSellerListView(),
                     SizedBox(
                       height: 14.h,
                     ),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Categories",
                           style: AppTextStyles.textStyle16Regular,
                         ),
@@ -62,13 +62,13 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
-                    const CategorieslistView(),
+                    const CategoriesListView(),
                     SizedBox(
                       height: 13.h,
                     ),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Top Stores",
                           style: AppTextStyles.textStyle16Regular,
                         ),
@@ -83,7 +83,7 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 23.h,
                     ),
-                    const StoreslistView(),
+                    const StoresListView(),
                   ],
                 ),
               ),

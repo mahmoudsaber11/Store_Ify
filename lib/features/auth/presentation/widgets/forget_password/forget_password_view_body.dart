@@ -58,7 +58,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Center(
+            Center(
               child: Text(
                 "Forget Password",
                 style: AppTextStyles.textStyle24Medium,
@@ -95,7 +95,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "Don’t have an account ?",
                   style: AppTextStyles.textStyle16Regular,
                 ),

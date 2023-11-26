@@ -13,60 +13,62 @@ import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.da
 import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
 
 class LoginDialog extends StatelessWidget {
-  const LoginDialog({super.key, required this.email, required this.password});
+  const LoginDialog({
+    super.key,
+    required this.email,
+    required this.password,
+  });
+
   final String email;
   final String password;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => serviceLocator.get<LoginCubit>(),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 13, vertical: 197),
+        margin: EdgeInsets.symmetric(horizontal: 13.w, vertical: 197.h),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40.r), color: Colors.white),
+          borderRadius: BorderRadius.circular(40.r),
+          color: Colors.white,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Container(
-                height: 40.h,
-                width: 40.w,
-                decoration: BoxDecoration(
-                    color: const Color(0xff0EAA00),
-                    borderRadius: BorderRadius.circular(20.r)),
-                child: Image.asset(AppAssets.successResetPassword)),
-            SizedBox(
-              height: 19.h,
+              height: 40.h,
+              width: 40.w,
+              decoration: BoxDecoration(
+                color: const Color(0xff0EAA00),
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Image.asset(AppAssets.successResetPassword),
             ),
-            const Text(
+            SizedBox(height: 19.h),
+            Text(
               "Password has been changed successfully",
               textAlign: TextAlign.center,
               style: AppTextStyles.textStyle16Medium,
             ),
-            SizedBox(
-              height: 55.h,
-            ),
-            SizedBox(
-              width: 211.w,
-              height: 42.h,
-              child: BlocConsumer<LoginCubit, LoginState>(
-                listener: (context, state) =>
-                    _handleLoginStates(state, context),
-                builder: (context, state) {
-                  if (state is SignInLoadingState) {
-                    return const CustomCircularProgressIndicator();
-                  } else {
-                    return CustomGeneralButton(
-                      text: "Log in",
-                      onPressed: () {
-                        BlocProvider.of<LoginCubit>(context).userSignIn(
-                          email: email,
-                          password: password,
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
+            SizedBox(height: 55.h),
+            BlocBuilder<LoginCubit, LoginState>(
+              builder: (context, state) {
+                if (state is SignInLoadingState) {
+                  return const CustomCircularProgressIndicator();
+                } else {
+                  return CustomGeneralButton(
+                    width: 211.w,
+                    text: "Log in",
+                    onPressed: () {
+                      BlocProvider.of<LoginCubit>(context).userSignIn(
+                        email: email,
+                        password: password,
+                      );
+                    },
+                  );
+                }
+              },
+
             )
           ],
         ),

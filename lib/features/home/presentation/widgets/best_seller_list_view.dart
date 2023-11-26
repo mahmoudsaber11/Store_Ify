@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/widgets/custom_sale_item.dart';
 
-class BestSellerlistView extends StatelessWidget {
-  const BestSellerlistView({
+class BestSellerListView extends StatelessWidget {
+  const BestSellerListView({
     super.key,
   });
 
