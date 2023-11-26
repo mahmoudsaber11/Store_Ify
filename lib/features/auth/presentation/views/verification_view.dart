@@ -9,7 +9,7 @@ class VerificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: VerificationViewBody(email: email),
+      body: SafeArea(child: VerificationViewBody(email: email)),
     );
   }
 }
