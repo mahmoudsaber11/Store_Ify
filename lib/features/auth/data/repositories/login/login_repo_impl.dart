@@ -22,9 +22,13 @@ class LoginRepoImpl implements LoginRepo {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await dioConsumer.postData(EndPoints.login,
-            data: {"email": email, "password": password});
+        final response = await dioConsumer.postData(EndPoints.login, data: {
+          "email": email,
+          "password": password,
+        });
+
         final UserModel user = UserModel.fromJson(response);
+
         return right(user);
       } catch (e) {
         if (e is DioException) {

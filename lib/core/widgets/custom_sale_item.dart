@@ -40,44 +40,34 @@ class CustomSaleItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    const Text(
+                    SizedBox(height: 10.h),
+                    Text(
                       "Name of product",
                       style: AppTextStyles.textStyle14Regular,
                     ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    const Text(
+                    SizedBox(height: 4.h),
+                    Text(
                       "Description about Product",
                       style: AppTextStyles.textStyle8Regular,
                     ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
+                    SizedBox(height: 8.h),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "250.00 LE",
                           style: AppTextStyles.textStyle9Medium,
                         ),
-                        SizedBox(
-                          width: 16.w,
-                        ),
-                        const Text(
+                        SizedBox(width: 16.w),
+                        Text(
                           "450.00 LE",
                           style: AppTextStyles.textStyle7Regular,
                         ),
-                        SizedBox(
-                          width: 11.w,
-                        ),
+                        SizedBox(width: 11.w),
                         InkWell(
                           onTap: () {},
                           child: Icon(
                             Icons.favorite_border_outlined,
-                            size: 19.sp,
+                            size: 19.w,
                           ),
                         ),
                       ],

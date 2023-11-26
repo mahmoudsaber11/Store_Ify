@@ -31,7 +31,7 @@ class ProductsViewBody extends StatelessWidget {
                       Icons.arrow_back,
                       color: Colors.grey,
                     )),
-                const Text(
+                Text(
                   "Clothes",
                   style: AppTextStyles.textStyle16Regular,
                 ),

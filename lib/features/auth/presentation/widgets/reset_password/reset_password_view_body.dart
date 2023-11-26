@@ -20,7 +20,7 @@ class ResetPasswordViewBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text(
+          Text(
             "Reset Password",
             style: AppTextStyles.textStyle24Medium,
           ),
