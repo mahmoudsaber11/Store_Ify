@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/helpers/helper.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
@@ -82,6 +83,18 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                     password = value;
                   });
                 },
+                suffix: IconButton(
+                  onPressed: () {
+                    BlocProvider.of<ResetPasswordCubit>(context)
+                        .changePasswordVisibility();
+                  },
+                  icon: Icon(
+                    BlocProvider.of<ResetPasswordCubit>(context).isPassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
                 validate: (value) => Helper.validatePasswordField(value),
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
@@ -94,7 +107,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               SizedBox(height: 24.h),
               const TextFieldLabel(label: 'Confirm password'),
               CustomTextField(
-                isPassword: true,
+                isPassword:
+                    BlocProvider.of<ResetPasswordCubit>(context).isPassword,
                 onChange: (value) {
                   setState(() {
                     confirmPassword = value;
@@ -104,6 +118,18 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   value: value,
                   password: password,
                   confirmPassword: confirmPassword,
+                ),
+                suffix: IconButton(
+                  onPressed: () {
+                    BlocProvider.of<ResetPasswordCubit>(context)
+                        .changePasswordVisibility();
+                  },
+                  icon: Icon(
+                    BlocProvider.of<ResetPasswordCubit>(context).isPassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
                 controller: _confirmController,
                 keyboardType: TextInputType.visiblePassword,
@@ -132,8 +158,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       Helper.keyboardUnfocus(context);
       BlocProvider.of<ResetPasswordCubit>(context).resetPassword(
         email: widget.email,
-        password: password,
-        confirmPassword: confirmPassword,
+        password: _passwordController.text,
+        confirmPassword: _confirmController.text,
       );
     } else {
       setState(() {
@@ -153,7 +179,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
         builder: (context) {
           return LoginDialog(
             email: email,
-            password: password,
+            password: _passwordController.text,
           );
         },
       );
