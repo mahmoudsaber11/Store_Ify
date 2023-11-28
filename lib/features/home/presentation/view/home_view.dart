@@ -22,6 +22,7 @@ class HomeView extends StatelessWidget {
             const SectionUpper(),
             Expanded(
               child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

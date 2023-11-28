@@ -17,15 +17,13 @@ class CustomCategoryItem extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Image.asset(
-            AppAssets.testCategories,
-            alignment: Alignment.topRight,
-            height: 165.h,
+            AppAssets.categories,
             width: 169.w,
           ),
           Card(
             elevation: 2,
             child: Container(
-              width: 165.w,
+              width: 169.w,
               height: 53.h,
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -34,30 +32,18 @@ class CustomCategoryItem extends StatelessWidget {
                     bottomRight: Radius.circular(10.r),
                   )),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 35.w),
-                    child: Text(
-                      "Electronics",
-                      style: AppTextStyles.textStyle14Regular,
-                    ),
+                  Text(
+                    "Fruits &vegetables",
+                    style: AppTextStyles.textStyle14Regular,
                   ),
                   SizedBox(
-                    height: 4.h,
+                    height: 5.h,
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Tv,mobile,laptop",
-                      style: AppTextStyles.textStyle8Regular,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8.h,
+                  Text(
+                    "Apple ,potato,dates",
+                    style: AppTextStyles.textStyle8Regular,
                   ),
                 ],
               ),

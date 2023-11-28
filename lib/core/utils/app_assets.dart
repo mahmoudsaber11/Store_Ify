@@ -41,17 +41,11 @@ abstract class AppAssets {
   /// assets/images/twitter.png
   static const String imagesTwitter = "assets/images/twitter.png";
 
-  static const String successResetPassword =
-      "assets/icons/icon-park_correct.png";
   static const String locationDialog = "assets/icons/carbon_map.png";
 
   static const String search = "assets/icons/Search.png";
 
   static const String edit = "assets/icons/Filter.png";
-
-  static const String testCategories = "assets/images/testCategories.png";
-
-  static const String testStores = "assets/images/testStores.png";
 
   static const String testBestSelling = "assets/images/Best_Selling.png";
 
@@ -60,4 +54,8 @@ abstract class AppAssets {
   static const String testClothesMan = "assets/images/test_clothes.png";
 
   static const String testClothesWoman = "assets/images/test_clothes_woman.png";
+
+  static const String categories = "assets/images/Categories.png";
+
+  static const String stores = "assets/images/Stores.png";
 }

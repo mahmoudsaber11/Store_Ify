@@ -14,7 +14,7 @@ class CustomStoresItem extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Image.asset(
-          AppAssets.testStores,
+          AppAssets.stores,
           alignment: Alignment.topRight,
           height: 165.h,
           width: 169.w,
@@ -31,28 +31,28 @@ class CustomStoresItem extends StatelessWidget {
                   bottomRight: Radius.circular(10.r),
                 )),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 10.h,
+                  height: 8.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 27.w),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Spinneys store ",
-                        style: AppTextStyles.textStyle14Regular,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Spinneys store ",
+                      style: AppTextStyles.textStyle14Regular,
+                    ),
+                    const SizedBox(
+                      width: 9,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.favorite_border_outlined,
+                        size: 19.sp,
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.favorite_border_outlined,
-                          size: 19.sp,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
