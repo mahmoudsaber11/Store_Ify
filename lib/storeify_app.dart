@@ -6,10 +6,10 @@ import 'package:store_ify/config/themes/app_themes.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
 import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
-import 'package:store_ify/features/categories/presentation/cubit/categorey_cubit.dart';
+import 'package:store_ify/features/categories/presentation/cubit/category_cubit.dart';
 
-class StoreIfyApp extends StatelessWidget {
-  const StoreIfyApp({super.key});
+class StoreifyApp extends StatelessWidget {
+  const StoreifyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class StoreIfyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) =>
-                serviceLocator.get<CategoreyCubit>()..getCategories(),
+                serviceLocator.get<CategoryCubit>()..getCategories(),
           ),
         ],
         child: MaterialApp(
