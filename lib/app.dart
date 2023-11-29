@@ -7,6 +7,7 @@ import 'package:store_ify/core/app_cubit/custom_tabs_cubit/custom_tabs_cubit.dar
 import 'package:store_ify/core/utils/app_strings.dart';
 import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
+import 'package:store_ify/features/categories/presentation/cubit/categorey_cubit.dart';
 
 class StoreIfyApp extends StatelessWidget {
   const StoreIfyApp({super.key});
@@ -23,6 +24,9 @@ class StoreIfyApp extends StatelessWidget {
             create: (context) => serviceLocator.get<LayoutCubit>(),
           ),
           BlocProvider(create: (context) => ProductCubit()),
+          BlocProvider(
+            create: (context) => serviceLocator.get<CategoreyCubit>()..getCategories(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -139,6 +139,7 @@ class _LoginFormState extends State<LoginForm> {
     if (state is SignInSuccessState) {
       showToast(text: state.userModel.message, state: ToastStates.success);
       context.navigateAndReplacement(newRoute: Routes.storeifyLayoutViewRoute);
+      Helper.currentUser = state.userModel;
     }
 
     if (state is SignInErrorState) {

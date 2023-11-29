@@ -25,7 +25,7 @@ class ProductsView extends StatelessWidget {
           ),
         ],
       ),
-      body: const ProductsViewBody(),
+      body: ProductsViewBody(),
     );
   }
 }

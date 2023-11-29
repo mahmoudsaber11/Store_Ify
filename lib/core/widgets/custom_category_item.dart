@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_ify/features/categories/data/models/categories_model.dart';
 
 class CustomCategoryItem extends StatelessWidget {
   const CustomCategoryItem({
     super.key,
     this.onTap,
+    required this.categoriesModel,
   });
   final void Function()? onTap;
+  final CategoriesModel categoriesModel;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -35,14 +38,14 @@ class CustomCategoryItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Fruits &vegetables",
+                    categoriesModel.name,
                     style: AppTextStyles.textStyle14Regular,
                   ),
                   SizedBox(
                     height: 5.h,
                   ),
                   Text(
-                    "Apple ,potato,dates",
+                    categoriesModel.description,
                     style: AppTextStyles.textStyle8Regular,
                   ),
                 ],

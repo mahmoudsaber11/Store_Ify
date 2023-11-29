@@ -3,22 +3,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/widgets/custom_category_item.dart';
+import 'package:store_ify/features/categories/presentation/cubit/categorey_state.dart';
+import 'package:store_ify/features/categories/presentation/cubit/categorey_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 
 class AllCategoriesListView extends StatelessWidget {
   const AllCategoriesListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: GridView.builder(
-            itemCount: 20,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 10.w),
-            itemBuilder: (context, index) => CustomCategoryItem(
-                  onTap: () {
-                    context.navigateTo(routeName: Routes.productsViewRoute);
-                  },
-                )));
+    return BlocBuilder<CategoreyCubit, CategoreyState>(
+      builder: (context, state) {
+        if (state is CategoreySuccessState) {
+          return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: GridView.builder(
+                  itemCount: state.categorey.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, mainAxisSpacing: 10.w),
+                  itemBuilder: (context, index) => CustomCategoryItem(
+                        categoriesModel: state.categorey[index],
+                        onTap: () {
+                          context.navigateTo(
+                              routeName: Routes.productsViewRoute);
+                        },
+                      )));
+        } else {
+          return const CustomCircularProgressIndicator();
+        }
+      },
+    );
   }
 }
