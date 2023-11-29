@@ -7,25 +7,27 @@ class CustomButtonOutlinedApp extends StatelessWidget {
     super.key,
     required this.text,
     this.onPressed,
-    required this.buttonStyle,
+    required this.activeColor,
   });
 
   final String text;
   final void Function()? onPressed;
-  final ButtonStyle? buttonStyle;
+  final Color activeColor;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 30.h,
-      width: 90.w,
-      child: OutlinedButton(
-        style: buttonStyle,
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: AppTextStyles.textStyle8Regular.copyWith(fontSize: 10.sp),
-        ),
+    return OutlinedButton(
+      style: ButtonStyle(
+        side:
+            MaterialStatePropertyAll(BorderSide(width: 1, color: activeColor)),
+        padding: const MaterialStatePropertyAll(
+            EdgeInsets.symmetric(horizontal: 25, vertical: 5)),
+      ),
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: AppTextStyles.textStyle8Regular
+            .copyWith(fontSize: 10.sp, color: activeColor),
       ),
     );
   }

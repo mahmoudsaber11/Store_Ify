@@ -152,6 +152,7 @@ class _LoginFormState extends State<LoginForm> {
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
+        Helper.currentUser = state.userModel;
         showToast(text: state.userModel.message, state: ToastStates.success);
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);

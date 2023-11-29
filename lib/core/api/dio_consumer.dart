@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 
 class DioConsumer {
@@ -9,12 +7,11 @@ class DioConsumer {
 
   Future<Map<String, dynamic>> getData(
     String path,
-    // required Map<String, dynamic>? queryParameters,
   ) async {
     Response response = await dio.get(
       path,
     );
-    return jsonDecode(response.data);
+    return response.data;
   }
 
   Future<dynamic> postData(

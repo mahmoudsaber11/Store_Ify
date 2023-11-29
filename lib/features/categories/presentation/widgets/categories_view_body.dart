@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/core/widgets/custom_page_title.dart';
 import 'package:store_ify/features/categories/presentation/widgets/all_categories_list_view.dart';
 
 class CategoriesViewBody extends StatelessWidget {
@@ -10,25 +9,12 @@ class CategoriesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  context.getBack();
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.grey,
-                )),
-            Text(
-              "Categories",
-              style: AppTextStyles.textStyle16Regular,
-            ),
-          ],
+        CustomPageTitle(
+          title: "Categories",
         ),
-        const Expanded(child: AllCategoriesListView())
+        Expanded(child: AllCategoriesListView())
       ],
     );
   }
