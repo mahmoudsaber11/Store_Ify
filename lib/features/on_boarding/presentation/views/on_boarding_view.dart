@@ -11,23 +11,7 @@ class OnBoardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              BlocProvider.of<OnBoardingCubit>(context)
-                  .skipToLogin(context: context);
-            },
-            child: Text(
-              "Skip",
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontSize: 24.sp,
-              ),
-            ),
-          )
-        ],
-      ),
+      appBar: _onBoardingAppBar(context),
       body: BlocBuilder<OnBoardingCubit, OnBoardingState>(
         builder: (context, state) {
           return OnBoardingViewBody(
@@ -35,6 +19,26 @@ class OnBoardingView extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  AppBar _onBoardingAppBar(BuildContext context) {
+    return AppBar(
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            BlocProvider.of<OnBoardingCubit>(context)
+                .skipToLogin(context: context);
+          },
+          child: Text(
+            "Skip",
+            style: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: 24.sp,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
