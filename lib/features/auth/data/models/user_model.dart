@@ -1,26 +1,31 @@
-class UserModel {
-  final String message;
-  final UserData data;
+import 'package:equatable/equatable.dart';
 
-  UserModel({
+class UserModel extends Equatable {
+  final String message;
+  final UserData userData;
+
+  const UserModel({
     required this.message,
-    required this.data,
+    required this.userData,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       message: json["message"],
-      data: UserData.fromJson(json["data"]),
+      userData: UserData.fromJson(json["data"]),
     );
   }
+
+  @override
+  List<Object?> get props => [message, userData];
 }
 
-class UserData {
+class UserData extends Equatable {
   final String id;
   final String userName;
   final String email;
 
-  UserData({
+  const UserData({
     required this.id,
     required this.userName,
     required this.email,
@@ -33,4 +38,7 @@ class UserData {
       email: json["email"],
     );
   }
+
+  @override
+  List<Object?> get props => [id, userName, email];
 }
