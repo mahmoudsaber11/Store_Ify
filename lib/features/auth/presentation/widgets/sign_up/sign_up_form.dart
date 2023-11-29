@@ -82,7 +82,7 @@ class _SignUpFormState extends State<SignUpForm> {
           autovalidateMode: autovalidateMode,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               const TextFieldLabel(label: 'Email'),
               CustomTextField(
                 validate: (String? value) => Helper.validateEmailField(value),
@@ -95,20 +95,21 @@ class _SignUpFormState extends State<SignUpForm> {
                     FocusScope.of(context).requestFocus(_nameFocusNode),
               ),
               SizedBox(height: 24.h),
-              const TextFieldLabel(label: 'Username'),
+              const TextFieldLabel(label: 'Name'),
               CustomTextField(
                 validate: (String? value) =>
                     Helper.validateUserNameField(value),
                 controller: _nameController,
                 keyboardType: TextInputType.name,
-                hintText: 'Enter your username',
+                textCapitalization: TextCapitalization.words,
+                hintText: 'Enter your name',
                 autofillHints: const <String>[AutofillHints.name],
                 focusNode: _nameFocusNode,
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_passwordFocusNode),
               ),
               SizedBox(height: 24.h),
-              const TextFieldLabel(label: 'password'),
+              const TextFieldLabel(label: 'Password'),
               CustomTextField(
                 isPassword: cubit.isPassword,
                 suffix: IconButton(
@@ -132,17 +133,17 @@ class _SignUpFormState extends State<SignUpForm> {
               SizedBox(height: 24.h),
               const TextFieldLabel(label: 'Confirm password'),
               CustomTextField(
-                isPassword: cubit.isPassword,
+                isPassword: cubit.isConfirmPassVisible,
                 suffix: IconButton(
-                  onPressed: () => cubit.switchPassVisibility(),
+                  onPressed: () => cubit.switchConfirmPassVisibility(),
                   icon: Icon(
-                    cubit.isPassword
+                    cubit.isConfirmPassVisible
                         ? Icons.visibility_outlined
                         : Icons.visibility_off_outlined,
                     color: AppColors.primaryColor,
                   ),
                 ),
-                onSubmitted: (_) => _signUp(context),
+                onSubmit: (String val) => _signUp(context),
                 validate: (value) => Helper.validateConfirmPasswordField(
                   value: value,
                   password: _passwordController.text,
@@ -185,20 +186,24 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _handleSignUpState(SignUpState state, BuildContext context) {
     if (state is SignUpSuccessState) {
-      serviceLocator
-          .get<CacheHelper>()
-          .saveData(key: 'uid', value: Helper.uId)
-          .then((value) {
-        if (value) {
-          showToast(text: state.userModel.message, state: ToastStates.success);
-
-          context.navigateAndReplacement(
-              newRoute: Routes.storeifyLayoutViewRoute);
-        }
-      });
+      _handleSuccessState(state, context);
     }
     if (state is SignUpErrorState) {
       showToast(text: state.error, state: ToastStates.error);
     }
+  }
+
+  void _handleSuccessState(SignUpSuccessState state, BuildContext context) {
+    serviceLocator
+        .get<CacheHelper>()
+        .saveData(key: 'uid', value: Helper.uId)
+        .then((value) {
+      if (value) {
+        showToast(text: state.userModel.message, state: ToastStates.success);
+
+        context.navigateAndReplacement(
+            newRoute: Routes.storeifyLayoutViewRoute);
+      }
+    });
   }
 }

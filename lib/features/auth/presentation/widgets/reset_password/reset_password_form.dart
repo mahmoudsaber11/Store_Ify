@@ -133,7 +133,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 controller: _confirmController,
                 keyboardType: TextInputType.visiblePassword,
                 hintText: '*********',
-                onSubmitted: (_) => _resetPassword(context),
+                onSubmit: (_) => _resetPassword(context),
                 autofillHints: const <String>[AutofillHints.password],
                 focusNode: _confirmPasswordFocusNode,
               ),

@@ -37,9 +37,15 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   bool isPassword = true;
+  bool isConfirmPassVisible = true;
 
   void switchPassVisibility() {
     isPassword = !isPassword;
     emit(SignUpChangePasswordVisibility(isPassword: isPassword));
+  }
+
+  void switchConfirmPassVisibility() {
+    isConfirmPassVisible = !isConfirmPassVisible;
+    emit(SignUpChangePasswordVisibility(isPassword: isConfirmPassVisible));
   }
 }
