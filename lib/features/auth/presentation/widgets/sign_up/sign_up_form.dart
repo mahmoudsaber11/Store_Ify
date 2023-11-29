@@ -13,6 +13,7 @@ import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 
 import 'package:store_ify/core/widgets/custom_text_field.dart';
+import 'package:store_ify/features/auth/presentation/widgets/text_field_bottom_spacer.dart';
 import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -94,7 +95,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_nameFocusNode),
               ),
-              SizedBox(height: 24.h),
+              const TextFieldBottomSpacer(),
               const TextFieldLabel(label: 'Name'),
               CustomTextField(
                 validate: (String? value) =>
@@ -108,7 +109,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_passwordFocusNode),
               ),
-              SizedBox(height: 24.h),
+              const TextFieldBottomSpacer(),
               const TextFieldLabel(label: 'Password'),
               CustomTextField(
                 isPassword: cubit.isPassword,
@@ -130,7 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 onEditingComplete: () => FocusScope.of(context)
                     .requestFocus(_confirmPasswordFocusNode),
               ),
-              SizedBox(height: 24.h),
+              const TextFieldBottomSpacer(),
               const TextFieldLabel(label: 'Confirm password'),
               CustomTextField(
                 isPassword: cubit.isConfirmPassVisible,
