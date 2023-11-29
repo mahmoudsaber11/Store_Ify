@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 
-class Categories extends Equatable {
+class CategoriesModel extends Equatable {
   final String id;
   final String name;
   final String description;
   final CategoreyImage image;
 
-  const Categories(
+  const CategoriesModel(
       {required this.id,
       required this.name,
       required this.description,
       required this.image});
-  factory Categories.fromJson(Map<String, dynamic> json) {
-    return Categories(
+  factory CategoriesModel.fromJson(Map<String, dynamic> json) {
+    return CategoriesModel(
       id: json["_id"],
       name: json["name"],
       description: json["description"],

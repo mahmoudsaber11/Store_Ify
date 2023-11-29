@@ -8,10 +8,12 @@ class DioConsumer {
   DioConsumer(this.dio);
 
   Future<Map<String, dynamic>> getData(
-    String path, {
-    required Map<String, dynamic>? queryParameters,
-  }) async {
-    Response response = await dio.get(path, queryParameters: queryParameters);
+    String path,
+    // required Map<String, dynamic>? queryParameters,
+  ) async {
+    Response response = await dio.get(
+      path,
+    );
     return jsonDecode(response.data);
   }
 
