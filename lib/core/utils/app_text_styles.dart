@@ -6,7 +6,7 @@ class AppTextStyles {
   static TextStyle textStyle16Medium = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
-    color: AppColors.titleColor,
+    color: AppColors.fontPrimaryColor,
   );
 
   static TextStyle textStyle12Medium = TextStyle(
@@ -17,7 +17,7 @@ class AppTextStyles {
   static TextStyle textStyle24Medium = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.w500,
-    color: AppColors.titleColor,
+    color: AppColors.fontPrimaryColor,
   );
 
   static TextStyle textStyle16Regular = TextStyle(

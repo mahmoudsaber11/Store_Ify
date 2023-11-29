@@ -1,5 +1,5 @@
 class AppStrings {
-  static const String appTitle = 'Storeify';
+  static const String appTitle = 'Store-ify';
   static const String fontFamily = 'Poppins';
   static const String pottaOneFont = 'Potta One';
   static const String contentType = 'Content-Type';
