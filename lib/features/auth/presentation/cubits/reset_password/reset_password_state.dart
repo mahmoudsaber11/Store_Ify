@@ -1,23 +1,43 @@
-abstract class ResetPasswordState {}
+part of 'reset_password_cubit.dart';
 
-class InitialResetPasswordState extends ResetPasswordState {}
+abstract class ResetPasswordState extends Equatable {
+  const ResetPasswordState();
 
-class LoadingResetPasswordState extends ResetPasswordState {}
+  @override
+  List<Object?> get props => [];
+}
+
+class InitialResetPasswordState extends ResetPasswordState {
+  const InitialResetPasswordState();
+}
+
+class LoadingResetPasswordState extends ResetPasswordState {
+  const LoadingResetPasswordState();
+}
 
 class SuccessResetPasswordState extends ResetPasswordState {
   final String message;
 
-  SuccessResetPasswordState(this.message);
+  const SuccessResetPasswordState({required this.message});
+
+  @override
+  List<Object?> get props => [message];
 }
 
 class ErrorResetPasswordState extends ResetPasswordState {
   final String errorMessage;
 
-  ErrorResetPasswordState(this.errorMessage);
+  const ErrorResetPasswordState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }
 
 class ResetChangePasswordVisibility extends ResetPasswordState {
   final bool isPassword;
 
-  ResetChangePasswordVisibility({required this.isPassword});
+  const ResetChangePasswordVisibility({required this.isPassword});
+
+  @override
+  List<Object?> get props => [isPassword];
 }

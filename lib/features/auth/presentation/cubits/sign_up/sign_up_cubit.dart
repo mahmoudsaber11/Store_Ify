@@ -1,12 +1,12 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/core/helpers/cache_helper.dart';
-import 'package:store_ify/core/helpers/helper.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
 import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo.dart';
-import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_state.dart';
+
+part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit({required this.registerRepo}) : super(SignUpInitial());
+  SignUpCubit({required this.registerRepo}) : super(const SignUpInitial());
 
   final SignUpRepo registerRepo;
 
@@ -16,7 +16,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String password,
     required String confirmPassword,
   }) {
-    emit(SignUpLoadingState());
+    emit(const SignUpLoadingState());
     registerRepo
         .userSingUp(
       userName: userName,
@@ -27,15 +27,10 @@ class SignUpCubit extends Cubit<SignUpState> {
         .then((value) {
       value.fold(
         (failure) {
-          emit(SignUpErrorState(failure.errMessage.toString()));
+          emit(SignUpErrorState(error: failure.errMessage.toString()));
         },
         (user) {
-          serviceLocator
-              .get<CacheHelper>()
-              .saveData(key: 'uid', value: Helper.uId);
-          emit(SignUpSuccessState(
-            userModel: user,
-          ));
+          emit(SignUpSuccessState(userModel: user));
         },
       );
     });

@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/core/helpers/helper.dart';
+import 'package:equatable/equatable.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
-import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
-import 'package:store_ify/core/helpers/cache_helper.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
+
+part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit({required this.loginRepo}) : super(LoginInitial());
+  LoginCubit({required this.loginRepo}) : super(const LoginInitial());
 
   final LoginRepo loginRepo;
 
@@ -14,7 +14,7 @@ class LoginCubit extends Cubit<LoginState> {
     required String email,
     required String password,
   }) {
-    emit(SignInLoadingState());
+    emit(const SignInLoadingState());
 
     loginRepo
         .userLoginIn(
@@ -24,15 +24,10 @@ class LoginCubit extends Cubit<LoginState> {
         .then((value) {
       value.fold(
         (failure) {
-          emit(SignInErrorState(failure.errMessage.toString()));
+          emit(SignInErrorState(error: failure.errMessage.toString()));
         },
         (user) {
-          serviceLocator
-              .get<CacheHelper>()
-              .saveData(key: 'uid', value: Helper.uId);
-          emit(SignInSuccessState(
-            userModel: user,
-          ));
+          emit(SignInSuccessState(userModel: user));
         },
       );
     });
