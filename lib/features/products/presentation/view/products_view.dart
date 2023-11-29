@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_assets.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/widgets/action_appbar.dart';
+
 import 'package:store_ify/features/products/presentation/widgets/products_view_body.dart';
 
 class ProductsView extends StatelessWidget {
@@ -11,21 +11,11 @@ class ProductsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: Container(),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(AppAssets.profile),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications_none,
-              color: AppColors.iconsColor,
-            ),
-          ),
+        actions: const [
+          ActionAppBar(),
         ],
       ),
-      body: ProductsViewBody(),
+      body: const ProductsViewBody(),
     );
   }
 }
