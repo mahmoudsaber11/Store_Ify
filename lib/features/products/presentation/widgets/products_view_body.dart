@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/widgets/custom_outlined_button.dart';
+import 'package:store_ify/core/widgets/custom_page_title.dart';
 import 'package:store_ify/features/products/presentation/widgets/products_list_view.dart';
 
 class ProductsViewBody extends StatefulWidget {
@@ -24,22 +23,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  context.getBack();
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.grey,
-                )),
-            Text(
-              "Clothes",
-              style: AppTextStyles.textStyle16Regular,
-            ),
-          ],
-        ),
+        const CustomPageTitle(title: "Clothes"),
         SizedBox(
           height: 29.h,
         ),
