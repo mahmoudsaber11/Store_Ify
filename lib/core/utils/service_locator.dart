@@ -29,6 +29,9 @@ import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
 import 'package:store_ify/features/on_boarding/data/repositories/on_boarding_repo.dart';
 import 'package:store_ify/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:store_ify/features/categories/presentation/cubit/categorey_cubit.dart';
+import 'package:store_ify/features/categories/data/repositories/categorey_repo.dart';
+import 'package:store_ify/features/categories/data/repositories/categorey_repo_impl.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -126,6 +129,12 @@ class ServiceLocator {
     );
 
     serviceLocator.registerLazySingleton<LayoutRepo>(() => LayoutRepoImpl());
+    serviceLocator.registerLazySingleton<CategoreyRepo>(
+      () => CategoreyRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+        networkInfo: serviceLocator.get<NetworkInfo>(),
+      ),
+    );
   }
 
   void _setupForCubits() {
@@ -160,6 +169,12 @@ class ServiceLocator {
 
     serviceLocator.registerFactory<LayoutCubit>(
       () => LayoutCubit(layoutRepo: serviceLocator.get<LayoutRepo>()),
+    );
+
+    serviceLocator.registerFactory<CategoreyCubit>(
+      () => CategoreyCubit(
+        categoreyRepo: serviceLocator.get<CategoreyRepo>(),
+      ),
     );
   }
 }

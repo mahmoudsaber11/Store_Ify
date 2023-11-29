@@ -3,7 +3,7 @@ import 'package:store_ify/features/categories/presentation/cubit/categorey_state
 import 'package:store_ify/features/categories/data/repositories/categorey_repo.dart';
 
 class CategoreyCubit extends Cubit<CategoreyState> {
-  CategoreyCubit(this.categoreyRepo) : super(CategoreyInitial());
+  CategoreyCubit({required this.categoreyRepo}) : super(CategoreyInitial());
   final CategoreyRepo categoreyRepo;
 
   Future getCategories() async {
