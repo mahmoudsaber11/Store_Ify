@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
+import 'package:store_ify/core/utils/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
-import 'package:store_ify/features/auth/presentation/cubits/login/login_state.dart';
 import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class LoginForm extends StatefulWidget {
@@ -137,8 +138,16 @@ class _LoginFormState extends State<LoginForm> {
 
   void _handleLoginStates(LoginState state, BuildContext context) {
     if (state is SignInSuccessState) {
-      showToast(text: state.userModel.message, state: ToastStates.success);
-      context.navigateAndReplacement(newRoute: Routes.storeifyLayoutViewRoute);
+      serviceLocator
+          .get<CacheHelper>()
+          .saveData(key: 'uid', value: Helper.uId)
+          .then((value) {
+        if (value) {
+          showToast(text: state.userModel.message, state: ToastStates.success);
+          context.navigateAndReplacement(
+              newRoute: Routes.storeifyLayoutViewRoute);
+        }
+      });
     }
 
     if (state is SignInErrorState) {

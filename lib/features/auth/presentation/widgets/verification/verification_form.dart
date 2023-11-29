@@ -9,7 +9,6 @@ import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/presentation/cubits/verification/verification_cubit.dart';
-import 'package:store_ify/features/auth/presentation/cubits/verification/verification_state.dart';
 
 class VerificationForm extends StatefulWidget {
   const VerificationForm({

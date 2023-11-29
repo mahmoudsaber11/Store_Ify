@@ -8,7 +8,6 @@ import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
-import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_state.dart';
 import 'package:store_ify/features/auth/presentation/widgets/reset_password/login_dialog.dart';
 import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
