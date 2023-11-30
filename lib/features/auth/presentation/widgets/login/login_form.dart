@@ -12,6 +12,7 @@ import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
+import 'package:store_ify/features/auth/presentation/widgets/text_field_bottom_spacer.dart';
 import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class LoginForm extends StatefulWidget {
@@ -82,14 +83,14 @@ class _LoginFormState extends State<LoginForm> {
                 hintText: 'Example@gmail.com',
                 autofillHints: const [AutofillHints.email],
               ),
-              SizedBox(height: 38.h),
+              const TextFieldBottomSpacer(),
               const TextFieldLabel(label: 'password'),
               CustomTextField(
                 autofillHints: const <String>[AutofillHints.password],
                 validate: (String? value) =>
                     Helper.validatePasswordField(value),
                 focusNode: _passwordFocusNode,
-                onSubmitted: (_) => _login(context),
+                onSubmit: (_) => _login(context),
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 hintText: '*********',
@@ -138,22 +139,25 @@ class _LoginFormState extends State<LoginForm> {
 
   void _handleLoginStates(LoginState state, BuildContext context) {
     if (state is SignInSuccessState) {
-      serviceLocator
-          .get<CacheHelper>()
-          .saveData(key: 'uid', value: Helper.uId)
-          .then((value) {
-        if (value) {
-          showToast(text: state.userModel.message, state: ToastStates.success);
-          context.navigateAndReplacement(
-              newRoute: Routes.storeifyLayoutViewRoute);
-
-          Helper.currentUser = state.userModel;
-        }
-      });
+      _handleSuccessState(state, context);
     }
 
     if (state is SignInErrorState) {
       showToast(text: state.error, state: ToastStates.error);
     }
+  }
+
+  void _handleSuccessState(SignInSuccessState state, BuildContext context) {
+    serviceLocator
+        .get<CacheHelper>()
+        .saveData(key: 'uid', value: Helper.uId)
+        .then((value) {
+      if (value) {
+        Helper.currentUser = state.userModel;
+        showToast(text: state.userModel.message, state: ToastStates.success);
+        context.navigateAndReplacement(
+            newRoute: Routes.storeifyLayoutViewRoute);
+      }
+    });
   }
 }

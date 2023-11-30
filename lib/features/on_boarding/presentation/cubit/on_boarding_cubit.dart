@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +10,8 @@ part 'on_boarding_state.dart';
 class OnBoardingCubit extends Cubit<OnBoardingState> {
   final OnBoardingRepo onBoardingRepo;
 
-  OnBoardingCubit({required this.onBoardingRepo}) : super(OnBoardingInitial());
+  OnBoardingCubit({required this.onBoardingRepo})
+      : super(const OnBoardingInitial());
 
   bool isLastBoarding = false;
 
@@ -36,12 +38,12 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
       isLastBoarding: isLastBoarding,
     );
 
-    emit(NavigateBetweenPages());
+    emit(const NavigateBetweenPages());
   }
 
   void skipToLogin({required BuildContext context}) {
     onBoardingRepo.skipToLogin(context: context);
 
-    emit(SkipToLoginState());
+    emit(const SkipToLoginState());
   }
 }

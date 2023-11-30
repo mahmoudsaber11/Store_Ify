@@ -9,6 +9,7 @@ import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/widgets/reset_password/login_dialog.dart';
+import 'package:store_ify/features/auth/presentation/widgets/text_field_bottom_spacer.dart';
 import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
 class ResetPasswordForm extends StatefulWidget {
@@ -29,9 +30,6 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
 
   late final GlobalKey<FormState> _formKey;
   late AutovalidateMode autovalidateMode;
-
-  String password = '';
-  String confirmPassword = '';
 
   void _initFormAttributes() {
     _formKey = GlobalKey<FormState>();
@@ -77,11 +75,6 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               const TextFieldLabel(label: 'Password'),
               CustomTextField(
                 isPassword: true,
-                onChange: (value) {
-                  setState(() {
-                    password = value;
-                  });
-                },
                 suffix: IconButton(
                   onPressed: () {
                     BlocProvider.of<ResetPasswordCubit>(context)
@@ -103,20 +96,15 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 onEditingComplete: () => FocusScope.of(context)
                     .requestFocus(_confirmPasswordFocusNode),
               ),
-              SizedBox(height: 24.h),
+              const TextFieldBottomSpacer(),
               const TextFieldLabel(label: 'Confirm password'),
               CustomTextField(
                 isPassword:
                     BlocProvider.of<ResetPasswordCubit>(context).isPassword,
-                onChange: (value) {
-                  setState(() {
-                    confirmPassword = value;
-                  });
-                },
                 validate: (value) => Helper.validateConfirmPasswordField(
                   value: value,
-                  password: password,
-                  confirmPassword: confirmPassword,
+                  password: _passwordController.text,
+                  confirmPassword: _confirmController.text,
                 ),
                 suffix: IconButton(
                   onPressed: () {
@@ -133,7 +121,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 controller: _confirmController,
                 keyboardType: TextInputType.visiblePassword,
                 hintText: '*********',
-                onSubmitted: (_) => _resetPassword(context),
+                onSubmit: (_) => _resetPassword(context),
                 autofillHints: const <String>[AutofillHints.password],
                 focusNode: _confirmPasswordFocusNode,
               ),

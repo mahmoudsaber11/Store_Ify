@@ -66,7 +66,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             SizedBox(height: 30.h),
             const TextFieldLabel(label: 'E-mail'),
             CustomTextField(
-              onSubmitted: (_) => _forgetPassword(context),
+              onSubmit: (_) => _forgetPassword(context),
               validate: (String? value) => Helper.validateEmailField(value),
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
@@ -134,14 +134,22 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
     String email,
   ) {
     if (state is SuccessCheckEmailState) {
-      showToast(text: state.message, state: ToastStates.success);
-      context.navigateTo(
-        routeName: Routes.verificationViewRoute,
-        arguments: email,
-      );
+      _handleSuccessState(state, context, email);
     }
     if (state is ErrorCheckEmailState) {
       showToast(text: state.errorMessage, state: ToastStates.error);
     }
+  }
+
+  void _handleSuccessState(
+    SuccessCheckEmailState state,
+    BuildContext context,
+    String email,
+  ) {
+    showToast(text: state.message, state: ToastStates.success);
+    context.navigateTo(
+      routeName: Routes.verificationViewRoute,
+      arguments: email,
+    );
   }
 }

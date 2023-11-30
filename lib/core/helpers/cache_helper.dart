@@ -24,6 +24,10 @@ class CacheHelper {
     return _sharedPreferences.getInt(key);
   }
 
+  String? getStringData({required String key}) {
+    return _sharedPreferences.getString(key);
+  }
+
   Future<bool> removeData({required String key}) async {
     return await _sharedPreferences.remove(key);
   }

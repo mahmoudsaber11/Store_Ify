@@ -97,16 +97,27 @@ class _VerificationFormState extends State<VerificationForm> {
   }
 
   void _handleVerificationState(
-      VerificationState state, BuildContext context, String email) {
+    VerificationState state,
+    BuildContext context,
+    String email,
+  ) {
     if (state is SuccessVerificationState) {
-      showToast(text: state.message, state: ToastStates.success);
-      context.navigateTo(
-        routeName: Routes.resetPasswordViewRoute,
-        arguments: email,
-      );
+      _handleSuccessState(state, context, email);
     }
     if (state is ErrorVerificationState) {
       showToast(text: state.errorMessage, state: ToastStates.error);
     }
+  }
+
+  void _handleSuccessState(
+    SuccessVerificationState state,
+    BuildContext context,
+    String email,
+  ) {
+    showToast(text: state.message, state: ToastStates.success);
+    context.navigateTo(
+      routeName: Routes.resetPasswordViewRoute,
+      arguments: email,
+    );
   }
 }

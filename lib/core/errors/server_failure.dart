@@ -33,18 +33,13 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    final parsedResponse = response;
-
-    if (parsedResponse != null && parsedResponse is Map<String, dynamic>) {
-      if (statusCode == StatusCodes.badRequest ||
-          statusCode == StatusCodes.unAuthorized ||
-          statusCode == StatusCodes.forbidden) {
-        return ServerFailure(parsedResponse['msgError'] ?? AppStrings.opps);
-      } else if (statusCode == StatusCodes.internalServerError) {
-        return ServerFailure(parsedResponse['error'] ?? AppStrings.opps);
-      }
+    if (statusCode == StatusCodes.badRequest ||
+        statusCode == StatusCodes.unAuthorized ||
+        statusCode == StatusCodes.forbidden) {
+      return ServerFailure(response['msgError']);
+    } else if (statusCode == StatusCodes.internalServerError) {
+      return ServerFailure(AppStrings.opps);
     }
-
     return ServerFailure(AppStrings.opps);
   }
 }
