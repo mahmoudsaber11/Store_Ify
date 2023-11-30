@@ -22,7 +22,7 @@ class CustomUser extends StatelessWidget {
           Column(
             children: [
               Text(
-                Helper.currentUser!.userData.userName,
+                "Mahmoud Saber",
                 style: TextStyle(
                   color: AppColors.appColor,
                   fontWeight: FontWeight.w400,

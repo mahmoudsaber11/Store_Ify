@@ -24,7 +24,7 @@ class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(
@@ -80,8 +80,8 @@ class AppRouter {
           ),
         );
 
-      case Routes.storeifyLayoutViewRoute:
-        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
+      // case Routes.storeifyLayoutViewRoute:
+      //   return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
 
       case Routes.categoriesViewRoute:
         return MaterialPageRoute(builder: (context) => const CategoriesView());
