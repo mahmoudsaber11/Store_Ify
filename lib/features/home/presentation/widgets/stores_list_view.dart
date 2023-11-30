@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/widgets/custom_stores_item.dart';
 
 class StoresListView extends StatelessWidget {
@@ -16,7 +17,9 @@ class StoresListView extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return const CustomStoresItem();
+            return const CustomStoresItem(
+              image: AppAssets.stores,
+            );
           },
           separatorBuilder: ((context, index) => SizedBox(
                 height: 10.h,

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomStoresItem extends StatelessWidget {
   const CustomStoresItem({
     super.key,
+    required this.image,
   });
-
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         Image.asset(
-          AppAssets.stores,
+          image,
           alignment: Alignment.topRight,
           height: 165.h,
           width: 169.w,
