@@ -11,13 +11,18 @@ import 'package:store_ify/features/auth/data/repositories/reset_password/reset_p
 class ResetPasswordRepoImpl implements ResetPasswordRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
-  const ResetPasswordRepoImpl(
-      {required this.networkInfo, required this.dioConsumer});
+
+  const ResetPasswordRepoImpl({
+    required this.networkInfo,
+    required this.dioConsumer,
+  });
+
   @override
-  Future<Either<Failure, dynamic>> resetPassword(
-      {required String email,
-      required String password,
-      required String confirmPassword}) async {
+  Future<Either<Failure, dynamic>> resetPassword({
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await dioConsumer.patchData(

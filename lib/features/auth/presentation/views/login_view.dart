@@ -16,57 +16,62 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: AppConstants.authHorizontalPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 122.h),
-                  child: Text(
-                    "Sign in to Continue ",
-                    style: AppTextStyles.textStyle24Medium,
-                  ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "Welcome ",
-                  style: AppTextStyles.textStyle16Medium,
-                ),
-                SizedBox(height: 22.h),
-                const LoginForm(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: AppConstants.authHorizontalPadding,
+              sliver: SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    TextButton(
-                      onPressed: () => context.navigateTo(
-                        routeName: Routes.forgetPasswordRoute,
-                      ),
-                      child: Text(
-                        "Forget password?",
-                        style: AppTextStyles.textStyle16Regular
-                            .copyWith(color: AppColors.iconsColor),
-                      ),
+                    const Spacer(),
+                    Text(
+                      "Sign in to Continue ",
+                      style: AppTextStyles.textStyle24Medium,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        context.navigateTo(routeName: Routes.signUpViewRoute);
-                      },
-                      child: Text(
-                        "Sign up ",
-                        style: AppTextStyles.textStyle16Regular
-                            .copyWith(color: AppColors.primaryColor),
-                      ),
-                    )
+                    SizedBox(height: 5.h),
+                    Text(
+                      "Welcome ",
+                      style: AppTextStyles.textStyle16Medium,
+                    ),
+                    SizedBox(height: 22.h),
+                    const LoginForm(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () => context.navigateTo(
+                            routeName: Routes.forgetPasswordRoute,
+                          ),
+                          child: Text(
+                            "Forget password?",
+                            style: AppTextStyles.textStyle16Regular
+                                .copyWith(color: AppColors.iconsColor),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.navigateTo(
+                                routeName: Routes.signUpViewRoute);
+                          },
+                          child: Text(
+                            "Sign up ",
+                            style: AppTextStyles.textStyle16Regular
+                                .copyWith(color: AppColors.primaryColor),
+                          ),
+                        )
+                      ],
+                    ),
+                    const OrSignInWithText(),
+                    SizedBox(height: 24.h),
+                    const SignWithSocial(),
+                    const Spacer(),
                   ],
                 ),
-                const OrSignInWithText(),
-                SizedBox(height: 24.h),
-                const SignWithSocial(),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

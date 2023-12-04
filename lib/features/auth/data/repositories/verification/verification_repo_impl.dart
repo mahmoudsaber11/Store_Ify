@@ -11,7 +11,12 @@ import 'package:store_ify/features/auth/data/repositories/verification/verificat
 class VerificationRepoImpl implements VerificationRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
-  VerificationRepoImpl({required this.networkInfo, required this.dioConsumer});
+
+  const VerificationRepoImpl({
+    required this.networkInfo,
+    required this.dioConsumer,
+  });
+
   @override
   Future<Either<Failure, dynamic>> otpVerification({
     required String email,

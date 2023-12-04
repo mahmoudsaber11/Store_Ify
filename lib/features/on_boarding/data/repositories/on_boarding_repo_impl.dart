@@ -3,7 +3,7 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/service_locator.dart';
 import 'package:store_ify/features/on_boarding/data/models/on_boarding_model.dart';
 import 'package:store_ify/features/on_boarding/data/repositories/on_boarding_repo.dart';
 

@@ -11,8 +11,11 @@ import 'package:store_ify/features/auth/data/repositories/forget_password/forget
 class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
-  const ForgetPasswordRepoImpl(
-      {required this.networkInfo, required this.dioConsumer});
+
+  const ForgetPasswordRepoImpl({
+    required this.networkInfo,
+    required this.dioConsumer,
+  });
 
   @override
   Future<Either<Failure, dynamic>> checkEmailRepo({

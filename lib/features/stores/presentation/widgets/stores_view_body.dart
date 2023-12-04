@@ -4,8 +4,7 @@ import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/widgets/custom_outlined_button.dart';
 import 'package:store_ify/core/widgets/custom_page_title.dart';
-import 'package:store_ify/features/home/presentation/widgets/stores_list_view.dart';
-import 'package:store_ify/features/stores/presentation/widgets/All_stores_list_view.dart';
+import 'package:store_ify/features/stores/presentation/widgets/all_stores_list_view.dart';
 
 class StoresViewBody extends StatefulWidget {
   const StoresViewBody({super.key});

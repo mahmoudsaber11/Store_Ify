@@ -13,7 +13,12 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 class SingUpRepoImpl implements SignUpRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
-  SingUpRepoImpl({required this.networkInfo, required this.dioConsumer});
+
+  const SingUpRepoImpl({
+    required this.networkInfo,
+    required this.dioConsumer,
+  });
+
   @override
   Future<Either<Failure, UserModel>> userSingUp({
     required String userName,
