@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,7 @@ class CustomUser extends StatelessWidget {
           Column(
             children: [
               Text(
-                Helper.currentUser!.userData.userName,
+                "Mahmoud Saber",
                 style: TextStyle(
                   color: AppColors.appColor,
                   fontWeight: FontWeight.w400,

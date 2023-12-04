@@ -1,10 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_ify/core/utils/app_assets.dart';
+import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/core/widgets/custom_outlined_button.dart';
+import 'package:store_ify/core/widgets/custom_page_title.dart';
+import 'package:store_ify/features/home/presentation/widgets/stores_list_view.dart';
+import 'package:store_ify/features/stores/presentation/widgets/All_stores_list_view.dart';
 
-class StoresViewBody extends StatelessWidget {
+class StoresViewBody extends StatefulWidget {
   const StoresViewBody({super.key});
 
   @override
+  State<StoresViewBody> createState() => _StoresViewBodyState();
+}
+
+class _StoresViewBodyState extends State<StoresViewBody> {
+  final List<String> text = ["Food", "Clothes"];
+
+  int currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        const CustomPageTitle(title: "Stores"),
+        SizedBox(
+          height: 35.h,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SizedBox(
+            height: 25,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return CustomButtonOutlinedApp(
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  text: text[index],
+                  activeColor: currentIndex == index
+                      ? AppColors.primaryColor
+                      : AppColors.textColor,
+                );
+              },
+              itemCount: 2,
+              separatorBuilder: ((context, index) => SizedBox(
+                    width: 8.h,
+                  )),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 19.h,
+        ),
+        if (currentIndex == 0)
+          const Expanded(
+              child: AllStoresListView(
+            image: AppAssets.stores,
+          )),
+        if (currentIndex == 1)
+          const Expanded(
+              child: AllStoresListView(
+            image: AppAssets.stores1,
+          )),
+      ],
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_ify/core/widgets/action_appbar.dart';
 import 'package:store_ify/features/stores/presentation/widgets/stores_view_body.dart';
 
 class StoresView extends StatelessWidget {
@@ -6,8 +7,14 @@ class StoresView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: StoresViewBody(),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Container(),
+        actions: const [
+          ActionAppBar(),
+        ],
+      ),
+      body: const StoresViewBody(),
     );
   }
 }

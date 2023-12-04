@@ -60,4 +60,12 @@ abstract class AppAssets {
   static const String stores = "assets/images/Stores.png";
 
   static const String details = "assets/images/details.png";
+
+  static const String details1 = "assets/images/details1.png";
+
+  static const String details2 = "assets/images/details2.png";
+
+  static const String circleColor = "assets/images/circle_color.png";
+
+  static const String stores1 = "assets/images/stores1.png";
 }
