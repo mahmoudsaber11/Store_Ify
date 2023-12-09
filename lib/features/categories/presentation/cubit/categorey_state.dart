@@ -8,23 +8,27 @@ abstract class CategoryState extends Equatable {
   List<Object> get props => [];
 }
 
-final class CategoryInitial extends CategoryState {}
+class CategoryInitial extends CategoryState {
+  const CategoryInitial();
+}
 
-final class CategoryLoadingState extends CategoryState {}
+class CategoryLoading extends CategoryState {
+  const CategoryLoading();
+}
 
-final class CategorySuccessState extends CategoryState {
+class CategorySuccess extends CategoryState {
   final List<CategoriesModel> category;
 
-  const CategorySuccessState({required this.category});
+  const CategorySuccess({required this.category});
 
   @override
   List<Object> get props => [category];
 }
 
-class CategoryErrorState extends CategoryState {
+class CategoryError extends CategoryState {
   final String error;
 
-  const CategoryErrorState({required this.error});
+  const CategoryError({required this.error});
 
   @override
   List<Object> get props => [error];

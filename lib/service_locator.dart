@@ -145,7 +145,7 @@ class ServiceLocator {
 
     serviceLocator.registerFactory<ForgotPasswordCubit>(
       () => ForgotPasswordCubit(
-        forgetPasswordRepo: serviceLocator.get<ForgotPasswordRepo>(),
+        forgotPasswordRepo: serviceLocator.get<ForgotPasswordRepo>(),
       ),
     );
 

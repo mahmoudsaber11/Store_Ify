@@ -3,16 +3,16 @@ import 'package:store_ify/features/categories/presentation/cubit/categorey_state
 import 'package:store_ify/features/categories/data/repositories/category_repo.dart';
 
 class CategoryCubit extends Cubit<CategoryState> {
-  CategoryCubit({required this.categoryRepo}) : super(CategoryInitial());
+  CategoryCubit({required this.categoryRepo}) : super(const CategoryInitial());
   final CategoryRepo categoryRepo;
 
   Future getCategories() async {
-    emit(CategoryLoadingState());
+    emit(const CategoryLoading());
     categoryRepo.getCategories().then((value) {
       value.fold((failure) {
-        emit(CategoryErrorState(error: failure.errMessage.toString()));
+        emit(CategoryError(error: failure.errMessage.toString()));
       }, (categorey) {
-        emit(CategorySuccessState(category: categorey));
+        emit(CategorySuccess(category: categorey));
       });
     });
   }

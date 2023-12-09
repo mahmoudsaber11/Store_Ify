@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/features/auth/data/models/user.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
 
 class Helper {
   static String? uId = '';
   static User? currentUser;
+
   static String? validatePasswordField(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';

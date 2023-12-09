@@ -15,7 +15,7 @@ class AllCategoriesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
-        if (state is CategorySuccessState) {
+        if (state is CategorySuccess) {
           return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: GridView.builder(

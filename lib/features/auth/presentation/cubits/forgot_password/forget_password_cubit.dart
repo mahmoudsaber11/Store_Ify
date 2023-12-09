@@ -5,20 +5,20 @@ import 'package:store_ify/features/auth/data/repositories/forgot_password/forgot
 part 'forget_password_state.dart';
 
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
-  ForgotPasswordCubit({required this.forgetPasswordRepo})
-      : super((const InitialCheckEmailState()));
+  ForgotPasswordCubit({required this.forgotPasswordRepo})
+      : super((const ForgotPasswordInitial()));
 
-  final ForgotPasswordRepo forgetPasswordRepo;
+  final ForgotPasswordRepo forgotPasswordRepo;
 
-  void checkEmail({
+  void forgotPassword({
     required String email,
   }) {
-    emit(const LoadingCheckEmailState());
-    forgetPasswordRepo.checkEmailRepo(email: email).then((value) {
+    emit(const ForgotPasswordLoading());
+    forgotPasswordRepo.forgotPassword(email: email).then((value) {
       value.fold((failure) {
-        emit(ErrorCheckEmailState(errorMessage: failure.errMessage.toString()));
+        emit(ForgotPasswordError(errorMessage: failure.errMessage.toString()));
       }, (message) {
-        emit(SuccessCheckEmailState(message: message.toString()));
+        emit(ForgotPasswordSuccess(message: message.toString()));
       });
     });
   }

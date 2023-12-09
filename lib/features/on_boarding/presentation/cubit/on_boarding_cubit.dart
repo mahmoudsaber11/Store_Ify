@@ -25,7 +25,7 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
     } else {
       isLastBoarding = false;
     }
-    emit(PageViewIndexChangedState(index: index));
+    emit(PageViewIndexChanged(index: index));
   }
 
   void navigateBetweenPages({
@@ -44,6 +44,6 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   void skipToLogin({required BuildContext context}) {
     onBoardingRepo.skipToLogin(context: context);
 
-    emit(const SkipToLoginState());
+    emit(const SkipToLogin());
   }
 }

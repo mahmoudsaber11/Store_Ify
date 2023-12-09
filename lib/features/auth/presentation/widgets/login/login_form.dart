@@ -109,7 +109,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
               SizedBox(height: 32.h),
-              state is SignInLoadingState
+              state is LoginLoading
                   ? const CustomCircularProgressIndicator()
                   : CustomGeneralButton(
                       text: 'Log in',
@@ -138,23 +138,22 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _handleLoginStates(LoginState state, BuildContext context) {
-    if (state is SignInSuccessState) {
+    if (state is LoginSuccess) {
       _handleSuccessState(state, context);
     }
 
-    if (state is SignInErrorState) {
+    if (state is SignInError) {
       showToast(text: state.error, state: ToastStates.error);
     }
   }
 
-  void _handleSuccessState(SignInSuccessState state, BuildContext context) {
+  void _handleSuccessState(LoginSuccess state, BuildContext context) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
-        Helper.currentUser = state.userModel;
-        showToast(text: state.userModel.message, state: ToastStates.success);
+        Helper.currentUser = state.user;
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);
       }

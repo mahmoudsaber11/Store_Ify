@@ -50,7 +50,7 @@ class LoginDialog extends StatelessWidget {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) => _handleLoginStates(state, context),
               builder: (context, state) {
-                if (state is SignInLoadingState) {
+                if (state is LoginLoading) {
                   return const CustomCircularProgressIndicator();
                 } else {
                   return CustomGeneralButton(
@@ -74,20 +74,19 @@ class LoginDialog extends StatelessWidget {
 }
 
 void _handleLoginStates(LoginState state, BuildContext context) {
-  if (state is SignInSuccessState) {
+  if (state is LoginSuccess) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
-        showToast(text: state.userModel.message, state: ToastStates.success);
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);
       }
     });
   }
 
-  if (state is SignInErrorState) {
+  if (state is SignInError) {
     showToast(text: state.error, state: ToastStates.error);
   }
 }

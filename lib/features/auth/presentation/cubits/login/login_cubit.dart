@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
-import 'package:store_ify/features/auth/data/models/user.dart';
 
 part 'login_state.dart';
 
@@ -14,7 +14,7 @@ class LoginCubit extends Cubit<LoginState> {
     required String email,
     required String password,
   }) {
-    emit(const SignInLoadingState());
+    emit(const LoginLoading());
 
     loginRepo
         .userLoginIn(
@@ -24,10 +24,10 @@ class LoginCubit extends Cubit<LoginState> {
         .then((value) {
       value.fold(
         (failure) {
-          emit(SignInErrorState(error: failure.errMessage.toString()));
+          emit(SignInError(error: failure.errMessage.toString()));
         },
         (user) {
-          emit(SignInSuccessState(userModel: user));
+          emit(LoginSuccess(user: user));
         },
       );
     });
