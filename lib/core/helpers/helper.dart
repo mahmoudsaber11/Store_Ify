@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/features/auth/data/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user.dart';
 
 class Helper {
   static String? uId = '';

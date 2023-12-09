@@ -24,8 +24,13 @@ class VerificationRepoImpl implements VerificationRepo {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await dioConsumer.postData(EndPoints.verifyCode,
-            data: {"email": email, "forgetCode": forgetCode});
+        final response = await dioConsumer.postData(
+          EndPoints.verifyCode,
+          data: {
+            "email": email,
+            "forgetCode": forgetCode,
+          },
+        );
         return right(response);
       } catch (e) {
         if (e is DioException) {

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:store_ify/core/errors/failures.dart';
-import 'package:store_ify/features/auth/data/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user.dart';
 
 abstract class SignUpRepo {
   Future<Either<Failure, User>> userSingUp({

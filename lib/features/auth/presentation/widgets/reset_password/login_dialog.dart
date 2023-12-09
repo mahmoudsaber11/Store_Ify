@@ -57,7 +57,7 @@ class LoginDialog extends StatelessWidget {
                     width: 211.w,
                     text: "Log in",
                     onPressed: () {
-                      BlocProvider.of<LoginCubit>(context).userSignIn(
+                      BlocProvider.of<LoginCubit>(context).userLogin(
                         email: email,
                         password: password,
                       );
@@ -86,7 +86,7 @@ void _handleLoginStates(LoginState state, BuildContext context) {
     });
   }
 
-  if (state is SignInError) {
+  if (state is LoginError) {
     showToast(text: state.error, state: ToastStates.error);
   }
 }

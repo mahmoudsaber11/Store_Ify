@@ -23,8 +23,12 @@ class ForgotPasswordRepoImpl implements ForgotPasswordRepo {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await dioConsumer
-            .patchData(EndPoints.forgetPassword, data: {"email": email});
+        final response = await dioConsumer.patchData(
+          EndPoints.forgetPassword,
+          data: {
+            "email": email,
+          },
+        );
         return right(response);
       } catch (e) {
         if (e is DioException) {
