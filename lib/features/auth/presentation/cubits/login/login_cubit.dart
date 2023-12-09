@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:store_ify/features/auth/data/models/user_model.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
-import 'package:store_ify/features/auth/data/models/user.dart';
 
 part 'login_state.dart';
 
@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
           emit(SignInError(error: failure.errMessage.toString()));
         },
         (user) {
-          emit(LoginSuccess(userModel: user));
+          emit(LoginSuccess(user: user));
         },
       );
     });

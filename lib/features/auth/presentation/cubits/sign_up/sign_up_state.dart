@@ -25,12 +25,12 @@ class SignUpLoading extends SignUpState {
 }
 
 class SignUpSuccess extends SignUpState {
-  final User userModel;
+  final User user;
 
-  const SignUpSuccess({required this.userModel});
+  const SignUpSuccess({required this.user});
 
   @override
-  List<Object?> get props => [userModel];
+  List<Object?> get props => [user];
 }
 
 class SignUpError extends SignUpState {

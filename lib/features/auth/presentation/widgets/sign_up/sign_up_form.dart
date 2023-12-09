@@ -200,8 +200,6 @@ class _SignUpFormState extends State<SignUpForm> {
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
-        showToast(text: state.userModel.message, state: ToastStates.success);
-
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);
       }
