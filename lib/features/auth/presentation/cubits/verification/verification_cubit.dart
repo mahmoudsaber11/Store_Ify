@@ -6,20 +6,19 @@ part 'verification_state.dart';
 
 class VerificationCubit extends Cubit<VerificationState> {
   VerificationCubit({required this.verificationRepo})
-      : super((const InitialCheckVerificationState()));
+      : super((const VerificationInitial()));
 
   final VerificationRepo verificationRepo;
 
   void otpVerification({required String email, required String forgetCode}) {
-    emit(const LoadingVerificationState());
+    emit(const VerificationLoading());
     verificationRepo
         .otpVerification(email: email, forgetCode: forgetCode)
         .then((value) {
       value.fold((failure) {
-        emit(ErrorVerificationState(
-            errorMessage: failure.errMessage.toString()));
+        emit(VerificationError(errorMessage: failure.errMessage.toString()));
       }, (verify) {
-        emit(SuccessVerificationState(message: verify.toString()));
+        emit(VerificationSuccess(message: verify.toString()));
       });
     });
   }

@@ -7,7 +7,7 @@ import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
@@ -109,7 +109,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
               SizedBox(height: 32.h),
-              state is SignInLoadingState
+              state is LoginLoading
                   ? const CustomCircularProgressIndicator()
                   : CustomGeneralButton(
                       text: 'Log in',
@@ -126,7 +126,7 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
-      BlocProvider.of<LoginCubit>(context).userSignIn(
+      BlocProvider.of<LoginCubit>(context).userLogin(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
@@ -138,23 +138,22 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _handleLoginStates(LoginState state, BuildContext context) {
-    if (state is SignInSuccessState) {
+    if (state is LoginSuccess) {
       _handleSuccessState(state, context);
     }
 
-    if (state is SignInErrorState) {
+    if (state is LoginError) {
       showToast(text: state.error, state: ToastStates.error);
     }
   }
 
-  void _handleSuccessState(SignInSuccessState state, BuildContext context) {
+  void _handleSuccessState(LoginSuccess state, BuildContext context) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
-        Helper.currentUser = state.userModel;
-        showToast(text: state.userModel.message, state: ToastStates.success);
+        Helper.currentUser = state.user;
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);
       }

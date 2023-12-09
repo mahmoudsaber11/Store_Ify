@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:store_ify/core/widgets/custom_general_button.dart';
@@ -7,9 +8,7 @@ import 'package:store_ify/features/on_boarding/presentation/widgets/custom_indic
 import 'package:store_ify/features/on_boarding/presentation/widgets/page_view_item.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
-  const OnBoardingViewBody({super.key, required this.cubit});
-
-  final OnBoardingCubit cubit;
+  const OnBoardingViewBody({super.key});
 
   @override
   State<OnBoardingViewBody> createState() => _OnBoardingViewBodyState();
@@ -20,52 +19,48 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Flexible(
-          flex: 4,
-          child: LayoutBuilder(
-            builder: (_, __) {
-              return PageView.builder(
+    return BlocBuilder<OnBoardingCubit, OnBoardingState>(
+      builder: (context, state) {
+        OnBoardingCubit cubit = BlocProvider.of<OnBoardingCubit>(context);
+
+        return Column(
+          children: <Widget>[
+            const Spacer(),
+            Expanded(
+              child: PageView.builder(
                 controller: pageController,
-                itemCount: widget.cubit.onBoardingPages().length,
+                itemCount: cubit.onBoardingPages().length,
                 itemBuilder: (context, index) => PageViewItem(
-                  pageInfo: widget.cubit.onBoardingPages()[index],
+                  pageInfo: cubit.onBoardingPages()[index],
                 ),
                 onPageChanged: (int index) {
-                  widget.cubit.onChangePageIndex(index);
+                  cubit.onChangePageIndex(index);
                 },
-              );
-            },
-          ),
-        ),
-        SizedBox(height: 24.h),
-        Align(
-          alignment: Alignment.center,
-          child: CustomIndicator(
-            pageController: pageController,
-            dotIndex: pageController.hasClients ? pageController.page : 0,
-          ),
-        ),
-        SizedBox(height: 40.h),
-        CustomGeneralButton(
-          width: 213.w,
-          onPressed: () => _navigateAmongOnBoarding(context),
-          text: pageController.hasClients
-              ? (pageController.page == 2 ? 'Get Started' : 'Next')
-              : 'Next',
-        ),
-        const Spacer(),
-      ],
+              ),
+            ),
+            SizedBox(height: 24.h),
+            Align(
+              alignment: Alignment.center,
+              child: CustomIndicator(pageController: pageController),
+            ),
+            SizedBox(height: 40.h),
+            CustomGeneralButton(
+              width: 213.w,
+              onPressed: () => _navigateAmongOnBoarding(context),
+              text: cubit.isLastBoarding ? 'Get Started' : 'Next',
+            ),
+            const Spacer(),
+          ],
+        );
+      },
     );
   }
 
   void _navigateAmongOnBoarding(BuildContext context) {
-    if (widget.cubit.isLastBoarding) {
-      widget.cubit.skipToLogin(context: context);
+    if (BlocProvider.of<OnBoardingCubit>(context).isLastBoarding) {
+      BlocProvider.of<OnBoardingCubit>(context).skipToLogin(context: context);
     } else {
-      widget.cubit.navigateBetweenPages(
+      BlocProvider.of<OnBoardingCubit>(context).navigateBetweenPages(
         context: context,
         pageController: pageController,
       );

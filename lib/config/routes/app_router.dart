@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/config/routes/routes.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
-import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
+import 'package:store_ify/features/auth/presentation/cubits/forgot_password/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
-import 'package:store_ify/features/auth/presentation/views/forget_password_view.dart';
-import 'package:store_ify/features/auth/presentation/views/login_view.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
-import 'package:store_ify/features/auth/presentation/views/reset_password_view.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
-import 'package:store_ify/features/auth/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/presentation/cubits/verification/verification_cubit.dart';
+import 'package:store_ify/features/auth/presentation/views/forgot_password_view.dart';
+import 'package:store_ify/features/auth/presentation/views/login_view.dart';
+import 'package:store_ify/features/auth/presentation/views/reset_password_view.dart';
+import 'package:store_ify/features/auth/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/presentation/views/verification_view.dart';
 import 'package:store_ify/features/categories/presentation/view/categories_view.dart';
-import 'package:store_ify/features/layout/presentation/views/layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:store_ify/features/product_details/presentation/view/product_details_view.dart';
 import 'package:store_ify/features/products/presentation/view/products_view.dart';
+import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
 import 'package:store_ify/features/stores_details/presentation/view/stores_details_view.dart';
+import 'package:store_ify/service_locator.dart';
 
 class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (context) => const StoreIfyLayout());
+        return MaterialPageRoute(builder: (context) => const SplashView());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(
@@ -53,8 +53,8 @@ class AppRouter {
       case Routes.forgetPasswordRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<ForgetPasswordCubit>(),
-            child: const ForgetPasswordView(),
+            create: (context) => serviceLocator.get<ForgotPasswordCubit>(),
+            child: const ForgotPasswordView(),
           ),
         );
 

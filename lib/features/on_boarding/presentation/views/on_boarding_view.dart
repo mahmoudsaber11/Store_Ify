@@ -12,13 +12,7 @@ class OnBoardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _onBoardingAppBar(context),
-      body: BlocBuilder<OnBoardingCubit, OnBoardingState>(
-        builder: (context, state) {
-          return OnBoardingViewBody(
-            cubit: BlocProvider.of<OnBoardingCubit>(context),
-          );
-        },
-      ),
+      body: const OnBoardingViewBody(),
     );
   }
 

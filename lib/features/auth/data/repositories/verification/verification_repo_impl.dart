@@ -11,7 +11,12 @@ import 'package:store_ify/features/auth/data/repositories/verification/verificat
 class VerificationRepoImpl implements VerificationRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
-  VerificationRepoImpl({required this.networkInfo, required this.dioConsumer});
+
+  const VerificationRepoImpl({
+    required this.networkInfo,
+    required this.dioConsumer,
+  });
+
   @override
   Future<Either<Failure, dynamic>> otpVerification({
     required String email,
@@ -19,8 +24,13 @@ class VerificationRepoImpl implements VerificationRepo {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await dioConsumer.postData(EndPoints.verifyCode,
-            data: {"email": email, "forgetCode": forgetCode});
+        final response = await dioConsumer.postData(
+          EndPoints.verifyCode,
+          data: {
+            "email": email,
+            "forgetCode": forgetCode,
+          },
+        );
         return right(response);
       } catch (e) {
         if (e is DioException) {

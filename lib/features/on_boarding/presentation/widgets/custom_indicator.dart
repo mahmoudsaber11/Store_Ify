@@ -6,10 +6,8 @@ import 'package:store_ify/core/utils/app_colors.dart';
 class CustomIndicator extends StatelessWidget {
   const CustomIndicator({
     super.key,
-    required this.dotIndex,
     required this.pageController,
   });
-  final num? dotIndex;
   final PageController pageController;
 
   @override

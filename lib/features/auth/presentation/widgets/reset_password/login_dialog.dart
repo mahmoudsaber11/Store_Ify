@@ -7,7 +7,7 @@ import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_text_styles.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
@@ -50,14 +50,14 @@ class LoginDialog extends StatelessWidget {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) => _handleLoginStates(state, context),
               builder: (context, state) {
-                if (state is SignInLoadingState) {
+                if (state is LoginLoading) {
                   return const CustomCircularProgressIndicator();
                 } else {
                   return CustomGeneralButton(
                     width: 211.w,
                     text: "Log in",
                     onPressed: () {
-                      BlocProvider.of<LoginCubit>(context).userSignIn(
+                      BlocProvider.of<LoginCubit>(context).userLogin(
                         email: email,
                         password: password,
                       );
@@ -74,20 +74,19 @@ class LoginDialog extends StatelessWidget {
 }
 
 void _handleLoginStates(LoginState state, BuildContext context) {
-  if (state is SignInSuccessState) {
+  if (state is LoginSuccess) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
-        showToast(text: state.userModel.message, state: ToastStates.success);
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);
       }
     });
   }
 
-  if (state is SignInErrorState) {
+  if (state is LoginError) {
     showToast(text: state.error, state: ToastStates.error);
   }
 }

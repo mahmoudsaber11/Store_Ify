@@ -126,7 +126,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 focusNode: _confirmPasswordFocusNode,
               ),
               SizedBox(height: 28.h),
-              state is LoadingResetPasswordState
+              state is ResetPasswordLoading
                   ? const CustomCircularProgressIndicator()
                   : CustomGeneralButton(
                       text: 'Reset Password',
@@ -160,7 +160,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
     BuildContext context,
     String email,
   ) {
-    if (state is SuccessResetPasswordState) {
+    if (state is ResetPasswordSuccess) {
       showDialog(
         context: context,
         builder: (context) {
@@ -171,7 +171,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
         },
       );
     }
-    if (state is ErrorResetPasswordState) {
+    if (state is ResetPasswordError) {
       showToast(text: state.errorMessage, state: ToastStates.error);
     }
   }

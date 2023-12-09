@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:store_ify/core/errors/failures.dart';
 
-abstract class ForgetPasswordRepo {
-  Future<Either<Failure, dynamic>> checkEmailRepo({
+abstract class ForgotPasswordRepo {
+  Future<Either<Failure, dynamic>> forgotPassword({
     required String email,
   });
 }

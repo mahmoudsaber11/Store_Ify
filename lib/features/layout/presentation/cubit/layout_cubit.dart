@@ -4,7 +4,7 @@ import 'package:store_ify/features/layout/data/repositories/layout_repo.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
-  LayoutCubit({required this.layoutRepo}) : super(LayoutInitialState());
+  LayoutCubit({required this.layoutRepo}) : super(LayoutInitial());
   final LayoutRepo layoutRepo;
   var currentIndex = 0;
 

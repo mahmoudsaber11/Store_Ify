@@ -7,7 +7,7 @@ import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
@@ -157,7 +157,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 focusNode: _confirmPasswordFocusNode,
               ),
               SizedBox(height: 24.h),
-              state is SignUpLoadingState
+              state is SignUpLoading
                   ? const CustomCircularProgressIndicator()
                   : CustomGeneralButton(
                       text: 'Sign up',
@@ -174,7 +174,7 @@ class _SignUpFormState extends State<SignUpForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
-      BlocProvider.of<SignUpCubit>(context).userSignUP(
+      BlocProvider.of<SignUpCubit>(context).userSignUp(
         userName: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
@@ -186,22 +186,20 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _handleSignUpState(SignUpState state, BuildContext context) {
-    if (state is SignUpSuccessState) {
+    if (state is SignUpSuccess) {
       _handleSuccessState(state, context);
     }
-    if (state is SignUpErrorState) {
+    if (state is SignUpError) {
       showToast(text: state.error, state: ToastStates.error);
     }
   }
 
-  void _handleSuccessState(SignUpSuccessState state, BuildContext context) {
+  void _handleSuccessState(SignUpSuccess state, BuildContext context) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'uid', value: Helper.uId)
         .then((value) {
       if (value) {
-        showToast(text: state.userModel.message, state: ToastStates.success);
-
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);
       }

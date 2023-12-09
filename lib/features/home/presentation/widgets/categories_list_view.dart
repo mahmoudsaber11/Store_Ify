@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_category_item.dart';
 import 'package:store_ify/features/categories/presentation/cubit/categorey_state.dart';
-import 'package:store_ify/features/categories/presentation/cubit/categorey_cubit.dart';
+import 'package:store_ify/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 
@@ -14,9 +14,9 @@ class CategoriesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoreyCubit, CategoreyState>(
+    return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
-        if (state is CategoreySuccessState) {
+        if (state is CategorySuccess) {
           return SizedBox(
             height: 166.h,
             child: ListView.separated(
@@ -25,15 +25,15 @@ class CategoriesListView extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return CustomCategoryItem(
-                    categoriesModel: state.categorey[index],
+                    categoriesModel: state.category[index],
                   );
                 },
                 separatorBuilder: ((context, index) => SizedBox(
                       height: 10.h,
                     )),
-                itemCount: state.categorey.length),
+                itemCount: state.category.length),
           );
-        } else if (state is CategoreyErrorState) {
+        } else if (state is CategoryError) {
           return showToast(text: state.error, state: ToastStates.error);
         } else {
           return const CustomCircularProgressIndicator();

@@ -6,7 +6,7 @@ part 'reset_password_state.dart';
 
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   ResetPasswordCubit({required this.resetPasswordRepo})
-      : super((const InitialResetPasswordState()));
+      : super((const ResetPasswordInitial()));
 
   final ResetPasswordRepo resetPasswordRepo;
 
@@ -15,7 +15,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     required String password,
     required String confirmPassword,
   }) async {
-    emit(const LoadingResetPasswordState());
+    emit(const ResetPasswordLoading());
     await resetPasswordRepo
         .resetPassword(
       email: email,
@@ -24,10 +24,9 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     )
         .then((value) {
       value.fold((failure) {
-        emit(ErrorResetPasswordState(
-            errorMessage: failure.errMessage.toString()));
+        emit(ResetPasswordError(errorMessage: failure.errMessage.toString()));
       }, (message) {
-        emit(SuccessResetPasswordState(message: message.toString()));
+        emit(ResetPasswordSuccess(message: message.toString()));
       });
     });
   }
@@ -36,6 +35,6 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   void changePasswordVisibility() {
     isPassword = !isPassword;
 
-    emit(ResetChangePasswordVisibility(isPassword: isPassword));
+    emit(ChangeVisibility(isPassword: isPassword));
   }
 }

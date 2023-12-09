@@ -20,45 +20,45 @@ class LoginChangePasswordVisibility extends LoginState {
   List<Object?> get props => [isPassword];
 }
 
-class SignInLoadingState extends LoginState {
-  const SignInLoadingState();
+class LoginLoading extends LoginState {
+  const LoginLoading();
 }
 
-class SignInSuccessState extends LoginState {
-  final UserModel userModel;
+class LoginSuccess extends LoginState {
+  final User user;
 
-  const SignInSuccessState({required this.userModel});
+  const LoginSuccess({required this.user});
 
   @override
-  List<Object?> get props => [userModel];
+  List<Object?> get props => [user];
 }
 
-class SignInErrorState extends LoginState {
+class LoginError extends LoginState {
   final String error;
 
-  const SignInErrorState({required this.error});
+  const LoginError({required this.error});
 
   @override
   List<Object?> get props => [error];
 }
 
-class SignInWithGoogleLoadingState extends LoginState {
-  const SignInWithGoogleLoadingState();
+class SignInWithGoogleLoading extends LoginState {
+  const SignInWithGoogleLoading();
 }
 
-class SignInWithGoogleSuccessState extends LoginState {
+class SignInWithGoogleSuccess extends LoginState {
   final String uId;
 
-  const SignInWithGoogleSuccessState({required this.uId});
+  const SignInWithGoogleSuccess({required this.uId});
 
   @override
   List<Object?> get props => [uId];
 }
 
-class SignInWithGoogleErrorState extends LoginState {
+class SignInWithGoogleError extends LoginState {
   final String error;
 
-  const SignInWithGoogleErrorState({required this.error});
+  const SignInWithGoogleError({required this.error});
 
   @override
   List<Object?> get props => [error];

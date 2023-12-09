@@ -11,7 +11,7 @@ import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
-import 'package:store_ify/core/utils/service_locator.dart';
+import 'package:store_ify/service_locator.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

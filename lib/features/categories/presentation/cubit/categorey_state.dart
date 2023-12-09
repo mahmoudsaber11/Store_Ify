@@ -1,30 +1,34 @@
 import 'package:equatable/equatable.dart';
 import 'package:store_ify/features/categories/data/models/categories_model.dart';
 
-abstract class CategoreyState extends Equatable {
-  const CategoreyState();
+abstract class CategoryState extends Equatable {
+  const CategoryState();
 
   @override
   List<Object> get props => [];
 }
 
-final class CategoreyInitial extends CategoreyState {}
-
-final class CategoreyLoadingState extends CategoreyState {}
-
-final class CategoreySuccessState extends CategoreyState {
-  final List<CategoriesModel> categorey;
-
-  const CategoreySuccessState({required this.categorey});
-
-  @override
-  List<Object> get props => [categorey];
+class CategoryInitial extends CategoryState {
+  const CategoryInitial();
 }
 
-class CategoreyErrorState extends CategoreyState {
+class CategoryLoading extends CategoryState {
+  const CategoryLoading();
+}
+
+class CategorySuccess extends CategoryState {
+  final List<CategoriesModel> category;
+
+  const CategorySuccess({required this.category});
+
+  @override
+  List<Object> get props => [category];
+}
+
+class CategoryError extends CategoryState {
   final String error;
 
-  const CategoreyErrorState({required this.error});
+  const CategoryError({required this.error});
 
   @override
   List<Object> get props => [error];
