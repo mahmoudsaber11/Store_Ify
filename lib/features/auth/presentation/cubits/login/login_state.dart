@@ -33,10 +33,10 @@ class LoginSuccess extends LoginState {
   List<Object?> get props => [user];
 }
 
-class SignInError extends LoginState {
+class LoginError extends LoginState {
   final String error;
 
-  const SignInError({required this.error});
+  const LoginError({required this.error});
 
   @override
   List<Object?> get props => [error];

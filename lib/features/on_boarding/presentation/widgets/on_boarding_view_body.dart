@@ -47,9 +47,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             CustomGeneralButton(
               width: 213.w,
               onPressed: () => _navigateAmongOnBoarding(context),
-              text: pageController.hasClients
-                  ? (pageController.page == 2 ? 'Get Started' : 'Next')
-                  : 'Next',
+              text: cubit.isLastBoarding ? 'Get Started' : 'Next',
             ),
             const Spacer(),
           ],

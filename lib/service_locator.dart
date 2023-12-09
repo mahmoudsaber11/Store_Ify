@@ -85,7 +85,8 @@ class ServiceLocator {
     );
 
     serviceLocator.registerLazySingleton<DioConsumer>(
-        () => DioConsumer(serviceLocator.get()));
+      () => DioConsumer(dio: serviceLocator.get<Dio>()),
+    );
   }
 
   void _setupForRepos() {

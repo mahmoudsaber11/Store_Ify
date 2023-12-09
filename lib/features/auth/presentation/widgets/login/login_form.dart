@@ -126,7 +126,7 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
-      BlocProvider.of<LoginCubit>(context).userSignIn(
+      BlocProvider.of<LoginCubit>(context).userLogin(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
@@ -142,7 +142,7 @@ class _LoginFormState extends State<LoginForm> {
       _handleSuccessState(state, context);
     }
 
-    if (state is SignInError) {
+    if (state is LoginError) {
       showToast(text: state.error, state: ToastStates.error);
     }
   }

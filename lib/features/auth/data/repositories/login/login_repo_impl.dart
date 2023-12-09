@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
-import 'package:store_ify/features/auth/data/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
-import 'package:store_ify/core/api/dio_consumer.dart';
 
 class LoginRepoImpl implements LoginRepo {
   final DioConsumer dioConsumer;
@@ -16,7 +16,7 @@ class LoginRepoImpl implements LoginRepo {
   const LoginRepoImpl({required this.networkInfo, required this.dioConsumer});
 
   @override
-  Future<Either<Failure, User>> userLoginIn({
+  Future<Either<Failure, User>> userLogin({
     required String email,
     required String password,
   }) async {
@@ -30,7 +30,7 @@ class LoginRepoImpl implements LoginRepo {
           },
         );
 
-        final User user = User.fromJson(response);
+        final User user = User.fromJson(response['data']);
 
         return Right(user);
       } catch (e) {
