@@ -19,9 +19,18 @@ class CustomCategoryItem extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Image.asset(
-            AppAssets.categories,
+          Container(
+            height: 165.h,
             width: 169.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image: const DecorationImage(
+                image: AssetImage(
+                  AppAssets.categories,
+                ), // Provide the image path
+                //  fit: BoxFit.fill, // Adjust the BoxFit as needed
+              ),
+            ),
           ),
           Card(
             elevation: 2,

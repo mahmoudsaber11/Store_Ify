@@ -48,7 +48,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
               },
               itemCount: 3,
               separatorBuilder: ((context, index) => SizedBox(
-                    width: 8.h,
+                    width: 8.w,
                   )),
             ),
           ),
