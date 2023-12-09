@@ -7,27 +7,27 @@ abstract class VerificationState extends Equatable {
   List<Object?> get props => [];
 }
 
-class InitialCheckVerificationState extends VerificationState {
-  const InitialCheckVerificationState();
+class VerificationInitial extends VerificationState {
+  const VerificationInitial();
 }
 
-class LoadingVerificationState extends VerificationState {
-  const LoadingVerificationState();
+class VerificationLoading extends VerificationState {
+  const VerificationLoading();
 }
 
-class SuccessVerificationState extends VerificationState {
+class VerificationSuccess extends VerificationState {
   final String message;
 
-  const SuccessVerificationState({required this.message});
+  const VerificationSuccess({required this.message});
 
   @override
   List<Object?> get props => [message];
 }
 
-class ErrorVerificationState extends VerificationState {
+class VerificationError extends VerificationState {
   final String errorMessage;
 
-  const ErrorVerificationState({required this.errorMessage});
+  const VerificationError({required this.errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];

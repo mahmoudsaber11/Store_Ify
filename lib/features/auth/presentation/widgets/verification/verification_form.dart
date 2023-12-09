@@ -71,7 +71,7 @@ class _VerificationFormState extends State<VerificationForm> {
             listener: (context, state) =>
                 _handleVerificationState(state, context, widget.email),
             builder: (context, state) {
-              if (state is LoadingVerificationState) {
+              if (state is VerificationLoading) {
                 return const CustomCircularProgressIndicator();
               } else {
                 return CustomGeneralButton(
@@ -101,16 +101,16 @@ class _VerificationFormState extends State<VerificationForm> {
     BuildContext context,
     String email,
   ) {
-    if (state is SuccessVerificationState) {
+    if (state is VerificationSuccess) {
       _handleSuccessState(state, context, email);
     }
-    if (state is ErrorVerificationState) {
+    if (state is VerificationError) {
       showToast(text: state.errorMessage, state: ToastStates.error);
     }
   }
 
   void _handleSuccessState(
-    SuccessVerificationState state,
+    VerificationSuccess state,
     BuildContext context,
     String email,
   ) {

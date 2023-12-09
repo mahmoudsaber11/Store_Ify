@@ -16,7 +16,7 @@ class CategoriesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
-        if (state is CategorySuccessState) {
+        if (state is CategorySuccess) {
           return SizedBox(
             height: 166.h,
             child: ListView.separated(
@@ -33,7 +33,7 @@ class CategoriesListView extends StatelessWidget {
                     )),
                 itemCount: state.category.length),
           );
-        } else if (state is CategoryErrorState) {
+        } else if (state is CategoryError) {
           return showToast(text: state.error, state: ToastStates.error);
         } else {
           return const CustomCircularProgressIndicator();

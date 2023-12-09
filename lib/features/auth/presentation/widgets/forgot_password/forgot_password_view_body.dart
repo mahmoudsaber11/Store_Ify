@@ -80,7 +80,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
                     state, context, _emailController.text);
               },
               builder: (context, state) {
-                if (state is LoadingCheckEmailState) {
+                if (state is ForgotPasswordLoading) {
                   return const CustomCircularProgressIndicator();
                 } else {
                   return CustomGeneralButton(
@@ -120,7 +120,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
       BlocProvider.of<ForgotPasswordCubit>(context)
-          .checkEmail(email: _emailController.text);
+          .forgotPassword(email: _emailController.text);
     } else {
       setState(() {
         autoValidateMode = AutovalidateMode.always;
@@ -133,16 +133,16 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
     BuildContext context,
     String email,
   ) {
-    if (state is SuccessCheckEmailState) {
+    if (state is ForgotPasswordSuccess) {
       _handleSuccessState(state, context, email);
     }
-    if (state is ErrorCheckEmailState) {
+    if (state is ForgotPasswordError) {
       showToast(text: state.errorMessage, state: ToastStates.error);
     }
   }
 
   void _handleSuccessState(
-    SuccessCheckEmailState state,
+    ForgotPasswordSuccess state,
     BuildContext context,
     String email,
   ) {

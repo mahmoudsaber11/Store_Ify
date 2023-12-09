@@ -7,36 +7,36 @@ abstract class ResetPasswordState extends Equatable {
   List<Object?> get props => [];
 }
 
-class InitialResetPasswordState extends ResetPasswordState {
-  const InitialResetPasswordState();
+class ResetPasswordInitial extends ResetPasswordState {
+  const ResetPasswordInitial();
 }
 
-class LoadingResetPasswordState extends ResetPasswordState {
-  const LoadingResetPasswordState();
+class ResetPasswordLoading extends ResetPasswordState {
+  const ResetPasswordLoading();
 }
 
-class SuccessResetPasswordState extends ResetPasswordState {
+class ResetPasswordSuccess extends ResetPasswordState {
   final String message;
 
-  const SuccessResetPasswordState({required this.message});
+  const ResetPasswordSuccess({required this.message});
 
   @override
   List<Object?> get props => [message];
 }
 
-class ErrorResetPasswordState extends ResetPasswordState {
+class ResetPasswordError extends ResetPasswordState {
   final String errorMessage;
 
-  const ErrorResetPasswordState({required this.errorMessage});
+  const ResetPasswordError({required this.errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];
 }
 
-class ResetChangePasswordVisibility extends ResetPasswordState {
+class ChangeVisibility extends ResetPasswordState {
   final bool isPassword;
 
-  const ResetChangePasswordVisibility({required this.isPassword});
+  const ChangeVisibility({required this.isPassword});
 
   @override
   List<Object?> get props => [isPassword];

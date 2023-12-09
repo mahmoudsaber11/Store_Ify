@@ -11,17 +11,17 @@ class OnBoardingInitial extends OnBoardingState {
   const OnBoardingInitial();
 }
 
-class PageViewIndexChangedState extends OnBoardingState {
+class PageViewIndexChanged extends OnBoardingState {
   final int index;
 
-  const PageViewIndexChangedState({required this.index});
+  const PageViewIndexChanged({required this.index});
 
   @override
   List<Object?> get props => [index];
 }
 
-class SkipToLoginState extends OnBoardingState {
-  const SkipToLoginState();
+class SkipToLogin extends OnBoardingState {
+  const SkipToLogin();
 }
 
 class NavigateBetweenPages extends OnBoardingState {

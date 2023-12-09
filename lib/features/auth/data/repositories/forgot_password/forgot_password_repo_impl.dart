@@ -18,7 +18,7 @@ class ForgotPasswordRepoImpl implements ForgotPasswordRepo {
   });
 
   @override
-  Future<Either<Failure, dynamic>> checkEmailRepo({
+  Future<Either<Failure, dynamic>> forgotPassword({
     required String email,
   }) async {
     if (await networkInfo.isConnected) {

@@ -16,7 +16,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String password,
     required String confirmPassword,
   }) {
-    emit(const SignUpLoadingState());
+    emit(const SignUpLoading());
     signUpRepo
         .userSingUp(
       userName: userName,
@@ -27,10 +27,10 @@ class SignUpCubit extends Cubit<SignUpState> {
         .then((value) {
       value.fold(
         (failure) {
-          emit(SignUpErrorState(error: failure.errMessage.toString()));
+          emit(SignUpError(error: failure.errMessage.toString()));
         },
         (user) {
-          emit(SignUpSuccessState(userModel: user));
+          emit(SignUpSuccess(userModel: user));
         },
       );
     });

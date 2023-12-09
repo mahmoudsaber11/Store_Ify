@@ -157,7 +157,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 focusNode: _confirmPasswordFocusNode,
               ),
               SizedBox(height: 24.h),
-              state is SignUpLoadingState
+              state is SignUpLoading
                   ? const CustomCircularProgressIndicator()
                   : CustomGeneralButton(
                       text: 'Sign up',
@@ -186,15 +186,15 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _handleSignUpState(SignUpState state, BuildContext context) {
-    if (state is SignUpSuccessState) {
+    if (state is SignUpSuccess) {
       _handleSuccessState(state, context);
     }
-    if (state is SignUpErrorState) {
+    if (state is SignUpError) {
       showToast(text: state.error, state: ToastStates.error);
     }
   }
 
-  void _handleSuccessState(SignUpSuccessState state, BuildContext context) {
+  void _handleSuccessState(SignUpSuccess state, BuildContext context) {
     serviceLocator
         .get<CacheHelper>()
         .saveData(key: 'uid', value: Helper.uId)
