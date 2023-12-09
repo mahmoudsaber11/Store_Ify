@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
-import 'package:store_ify/features/auth/data/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user.dart';
 
 part 'login_state.dart';
 

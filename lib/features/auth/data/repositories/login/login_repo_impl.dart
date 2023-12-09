@@ -6,7 +6,7 @@ import 'package:store_ify/core/utils/app_strings.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
 import 'package:store_ify/core/errors/failures.dart';
-import 'package:store_ify/features/auth/data/models/user_model.dart';
+import 'package:store_ify/features/auth/data/models/user.dart';
 import 'package:store_ify/core/api/dio_consumer.dart';
 
 class LoginRepoImpl implements LoginRepo {
@@ -16,7 +16,7 @@ class LoginRepoImpl implements LoginRepo {
   const LoginRepoImpl({required this.networkInfo, required this.dioConsumer});
 
   @override
-  Future<Either<Failure, UserModel>> userLoginIn({
+  Future<Either<Failure, User>> userLoginIn({
     required String email,
     required String password,
   }) async {
@@ -27,14 +27,14 @@ class LoginRepoImpl implements LoginRepo {
           "password": password,
         });
 
-        final UserModel user = UserModel.fromJson(response);
+        final User user = User.fromJson(response);
 
-        return right(user);
+        return Right(user);
       } catch (e) {
         if (e is DioException) {
-          return left(ServerFailure.fromDioException(e));
+          return Left(ServerFailure.fromDioException(e));
         }
-        return left(ServerFailure(e.toString()));
+        return Left(ServerFailure(e.toString()));
       }
     } else {
       return Left(ServerFailure(AppStrings.noInternet));

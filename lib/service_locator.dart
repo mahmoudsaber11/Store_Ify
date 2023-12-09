@@ -7,8 +7,8 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/network/network_info_impl.dart';
-import 'package:store_ify/features/auth/data/repositories/forget_password/forget_password_repo.dart';
-import 'package:store_ify/features/auth/data/repositories/forget_password/forget_password_repo_impl.dart';
+import 'package:store_ify/features/auth/data/repositories/forgot_password/forgot_password_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/forgot_password/forgot_password_repo_impl.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo_impl.dart';
 import 'package:store_ify/features/auth/data/repositories/reset_password/reset_password_repo.dart';
@@ -17,12 +17,11 @@ import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo.d
 import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo_impl.dart';
 import 'package:store_ify/features/auth/data/repositories/verification/verification_repo.dart';
 import 'package:store_ify/features/auth/data/repositories/verification/verification_repo_impl.dart';
-import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
+import 'package:store_ify/features/auth/presentation/cubits/forgot_password/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/reset_password/reset_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:store_ify/features/auth/presentation/cubits/verification/verification_cubit.dart';
-
 import 'package:store_ify/features/layout/data/repositories/layout_repo.dart';
 import 'package:store_ify/features/layout/data/repositories/layout_repo_impl.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
@@ -94,8 +93,8 @@ class ServiceLocator {
       () => OnBoardingRepoImpl(),
     );
 
-    serviceLocator.registerLazySingleton<ForgetPasswordRepo>(
-      () => ForgetPasswordRepoImpl(
+    serviceLocator.registerLazySingleton<ForgotPasswordRepo>(
+      () => ForgotPasswordRepoImpl(
         dioConsumer: serviceLocator.get<DioConsumer>(),
         networkInfo: serviceLocator.get<NetworkInfo>(),
       ),
@@ -144,9 +143,10 @@ class ServiceLocator {
       ),
     );
 
-    serviceLocator.registerFactory<ForgetPasswordCubit>(
-      () => ForgetPasswordCubit(
-          forgetPasswordRepo: serviceLocator.get<ForgetPasswordRepo>()),
+    serviceLocator.registerFactory<ForgotPasswordCubit>(
+      () => ForgotPasswordCubit(
+        forgetPasswordRepo: serviceLocator.get<ForgotPasswordRepo>(),
+      ),
     );
 
     serviceLocator.registerFactory<LoginCubit>(
@@ -154,7 +154,7 @@ class ServiceLocator {
     );
 
     serviceLocator.registerFactory<SignUpCubit>(
-      () => SignUpCubit(registerRepo: serviceLocator.get<SignUpRepo>()),
+      () => SignUpCubit(signUpRepo: serviceLocator.get<SignUpRepo>()),
     );
 
     serviceLocator.registerFactory<VerificationCubit>(
