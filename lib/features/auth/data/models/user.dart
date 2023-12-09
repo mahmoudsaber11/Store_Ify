@@ -1,16 +1,16 @@
 import 'package:equatable/equatable.dart';
 
-class UserModel extends Equatable {
+class User extends Equatable {
   final String message;
   final UserData userData;
 
-  const UserModel({
+  const User({
     required this.message,
     required this.userData,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
       message: json["message"],
       userData: UserData.fromJson(json["data"]),
     );

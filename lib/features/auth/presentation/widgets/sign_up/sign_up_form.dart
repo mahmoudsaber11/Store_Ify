@@ -174,7 +174,7 @@ class _SignUpFormState extends State<SignUpForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
-      BlocProvider.of<SignUpCubit>(context).userSignUP(
+      BlocProvider.of<SignUpCubit>(context).userSignUp(
         userName: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,

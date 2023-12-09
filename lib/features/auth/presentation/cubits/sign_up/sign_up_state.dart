@@ -25,7 +25,7 @@ class SignUpLoadingState extends SignUpState {
 }
 
 class SignUpSuccessState extends SignUpState {
-  final UserModel userModel;
+  final User userModel;
 
   const SignUpSuccessState({required this.userModel});
 

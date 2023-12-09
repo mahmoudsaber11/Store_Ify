@@ -45,7 +45,7 @@ class LoginView extends StatelessWidget {
                             routeName: Routes.forgetPasswordRoute,
                           ),
                           child: Text(
-                            "Forget password?",
+                            "Forgot password?",
                             style: AppTextStyles.textStyle16Regular
                                 .copyWith(color: AppColors.iconsColor),
                           ),

@@ -1,21 +1,21 @@
 part of 'forget_password_cubit.dart';
 
-abstract class ForgetPasswordState extends Equatable {
-  const ForgetPasswordState();
+abstract class ForgotPasswordState extends Equatable {
+  const ForgotPasswordState();
 
   @override
   List<Object?> get props => [];
 }
 
-class InitialCheckEmailState extends ForgetPasswordState {
+class InitialCheckEmailState extends ForgotPasswordState {
   const InitialCheckEmailState();
 }
 
-class LoadingCheckEmailState extends ForgetPasswordState {
+class LoadingCheckEmailState extends ForgotPasswordState {
   const LoadingCheckEmailState();
 }
 
-class SuccessCheckEmailState extends ForgetPasswordState {
+class SuccessCheckEmailState extends ForgotPasswordState {
   final String message;
 
   const SuccessCheckEmailState({required this.message});
@@ -24,7 +24,7 @@ class SuccessCheckEmailState extends ForgetPasswordState {
   List<Object?> get props => [message];
 }
 
-class ErrorCheckEmailState extends ForgetPasswordState {
+class ErrorCheckEmailState extends ForgotPasswordState {
   final String errorMessage;
 
   const ErrorCheckEmailState({required this.errorMessage});

@@ -25,7 +25,7 @@ class SignInLoadingState extends LoginState {
 }
 
 class SignInSuccessState extends LoginState {
-  final UserModel userModel;
+  final User userModel;
 
   const SignInSuccessState({required this.userModel});
 

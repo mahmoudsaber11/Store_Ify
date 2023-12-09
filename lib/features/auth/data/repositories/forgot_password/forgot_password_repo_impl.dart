@@ -6,13 +6,13 @@ import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
-import 'package:store_ify/features/auth/data/repositories/forget_password/forget_password_repo.dart';
+import 'package:store_ify/features/auth/data/repositories/forgot_password/forgot_password_repo.dart';
 
-class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
+class ForgotPasswordRepoImpl implements ForgotPasswordRepo {
   final DioConsumer dioConsumer;
   final NetworkInfo networkInfo;
 
-  const ForgetPasswordRepoImpl({
+  const ForgotPasswordRepoImpl({
     required this.networkInfo,
     required this.dioConsumer,
   });

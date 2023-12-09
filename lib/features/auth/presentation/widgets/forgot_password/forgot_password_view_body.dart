@@ -13,17 +13,17 @@ import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
 
 import 'package:store_ify/core/widgets/custom_general_button.dart';
 import 'package:store_ify/core/widgets/custom_text_field.dart';
-import 'package:store_ify/features/auth/presentation/cubits/forget_password/forget_password_cubit.dart';
+import 'package:store_ify/features/auth/presentation/cubits/forgot_password/forget_password_cubit.dart';
 import 'package:store_ify/features/auth/presentation/widgets/text_field_label.dart';
 
-class ForgetPasswordViewBody extends StatefulWidget {
-  const ForgetPasswordViewBody({super.key});
+class ForgotPasswordViewBody extends StatefulWidget {
+  const ForgotPasswordViewBody({super.key});
 
   @override
-  State<ForgetPasswordViewBody> createState() => _ForgetPasswordViewBodyState();
+  State<ForgotPasswordViewBody> createState() => _ForgotPasswordViewBodyState();
 }
 
-class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
+class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
   final TextEditingController _emailController = TextEditingController();
 
   late final GlobalKey<FormState> _formKey;
@@ -74,7 +74,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
               autofillHints: const [AutofillHints.email],
             ),
             SizedBox(height: 32.h),
-            BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+            BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
               listener: (context, state) {
                 _handleForgetPasswordState(
                     state, context, _emailController.text);
@@ -119,7 +119,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Helper.keyboardUnfocus(context);
-      BlocProvider.of<ForgetPasswordCubit>(context)
+      BlocProvider.of<ForgotPasswordCubit>(context)
           .checkEmail(email: _emailController.text);
     } else {
       setState(() {
@@ -129,7 +129,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   }
 
   void _handleForgetPasswordState(
-    ForgetPasswordState state,
+    ForgotPasswordState state,
     BuildContext context,
     String email,
   ) {
