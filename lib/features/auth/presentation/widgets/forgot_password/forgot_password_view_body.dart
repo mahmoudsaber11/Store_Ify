@@ -76,7 +76,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
             SizedBox(height: 32.h),
             BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
               listener: (context, state) {
-                _handleForgetPasswordState(
+                _handleForgotPasswordState(
                     state, context, _emailController.text);
               },
               builder: (context, state) {
@@ -128,7 +128,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
     }
   }
 
-  void _handleForgetPasswordState(
+  void _handleForgotPasswordState(
     ForgotPasswordState state,
     BuildContext context,
     String email,
