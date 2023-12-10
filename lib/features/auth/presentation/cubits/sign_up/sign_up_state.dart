@@ -26,11 +26,12 @@ class SignUpLoading extends SignUpState {
 
 class SignUpSuccess extends SignUpState {
   final User user;
+  final String uId;
 
-  const SignUpSuccess({required this.user});
+  const SignUpSuccess({required this.user, required this.uId});
 
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [user, uId];
 }
 
 class SignUpError extends SignUpState {
