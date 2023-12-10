@@ -6,6 +6,7 @@ import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
+import 'package:store_ify/features/auth/data/entities/reset_password_params.dart';
 import 'package:store_ify/features/auth/data/repositories/reset_password/reset_password_repo.dart';
 
 class ResetPasswordRepoImpl implements ResetPasswordRepo {
@@ -19,18 +20,16 @@ class ResetPasswordRepoImpl implements ResetPasswordRepo {
 
   @override
   Future<Either<Failure, dynamic>> resetPassword({
-    required String email,
-    required String password,
-    required String confirmPassword,
+    required ResetPasswordParams resetPasswordParams,
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await dioConsumer.patchData(
           EndPoints.resetPassword,
           data: {
-            "email": email,
-            "password": password,
-            "confirmPassword": confirmPassword
+            "email": resetPasswordParams.email,
+            "password": resetPasswordParams.password,
+            "confirmPassword": resetPasswordParams.confirmPassword
           },
         );
         return right(response);

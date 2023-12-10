@@ -6,6 +6,7 @@ import 'package:store_ify/core/errors/failures.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
+import 'package:store_ify/features/auth/data/entities/verification_params.dart';
 import 'package:store_ify/features/auth/data/repositories/verification/verification_repo.dart';
 
 class VerificationRepoImpl implements VerificationRepo {
@@ -19,16 +20,15 @@ class VerificationRepoImpl implements VerificationRepo {
 
   @override
   Future<Either<Failure, dynamic>> otpVerification({
-    required String email,
-    required String forgetCode,
+    required VerificationParams verificationParams,
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await dioConsumer.postData(
           EndPoints.verifyCode,
           data: {
-            "email": email,
-            "forgetCode": forgetCode,
+            "email": verificationParams.email,
+            "forgetCode": verificationParams.forgetCode,
           },
         );
         return right(response);
