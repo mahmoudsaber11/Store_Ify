@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/helpers/auth_helper.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
@@ -86,7 +87,8 @@ class _SignUpFormState extends State<SignUpForm> {
             children: <Widget>[
               const TextFieldLabel(label: 'Email'),
               CustomTextField(
-                validate: (String? value) => Helper.validateEmailField(value),
+                validate: (String? value) =>
+                    AuthHelper.validateEmailField(value),
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 hintText: 'Example@gmail.com',
@@ -99,7 +101,7 @@ class _SignUpFormState extends State<SignUpForm> {
               const TextFieldLabel(label: 'Name'),
               CustomTextField(
                 validate: (String? value) =>
-                    Helper.validateUserNameField(value),
+                    AuthHelper.validateUserNameField(value),
                 controller: _nameController,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
@@ -122,7 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     color: AppColors.primaryColor,
                   ),
                 ),
-                validate: (value) => Helper.validatePasswordField(value),
+                validate: (value) => AuthHelper.validatePasswordField(value),
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 hintText: '*********',
@@ -145,7 +147,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   ),
                 ),
                 onSubmit: (String val) => _signUp(context),
-                validate: (value) => Helper.validateConfirmPasswordField(
+                validate: (value) => AuthHelper.validateConfirmPasswordField(
                   value: value,
                   password: _passwordController.text,
                   confirmPassword: _confirmController.text,
@@ -173,7 +175,7 @@ class _SignUpFormState extends State<SignUpForm> {
   void _signUp(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       BlocProvider.of<SignUpCubit>(context).userSignUp(
         userName: _nameController.text,
         email: _emailController.text,
