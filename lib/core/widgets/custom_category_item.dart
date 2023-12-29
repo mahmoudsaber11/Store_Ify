@@ -24,10 +24,10 @@ class CustomCategoryItem extends StatelessWidget {
             width: 169.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              image: const DecorationImage(
+              image: DecorationImage(
                 image: AssetImage(
-                  AppAssets.categories,
-                ), // Provide the image path
+                    // AppAssets.categories,
+                    "${categoriesModel.image}"), // Provide the image path
                 //  fit: BoxFit.fill, // Adjust the BoxFit as needed
               ),
             ),
