@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_ify/features/auth/data/entities/sign_up_params.dart';
 import 'package:store_ify/features/auth/data/models/user.dart';
 import 'package:store_ify/features/auth/data/repositories/sign_up/sign_up_repo.dart';
 
@@ -17,23 +18,27 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String confirmPassword,
   }) {
     emit(const SignUpLoading());
+
     signUpRepo
         .userSingUp(
+            signUpParams: SignUpParams(
       userName: userName,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
-    )
-        .then((value) {
-      value.fold(
-        (failure) {
-          emit(SignUpError(error: failure.errMessage.toString()));
-        },
-        (user) {
-          emit(SignUpSuccess(user: user));
-        },
-      );
-    });
+    ))
+        .then(
+      (value) {
+        value.fold(
+          (failure) {
+            emit(SignUpError(error: failure.errMessage.toString()));
+          },
+          (user) {
+            emit(SignUpSuccess(user: user, uId: user.id!));
+          },
+        );
+      },
+    );
   }
 
   bool isPassword = true;

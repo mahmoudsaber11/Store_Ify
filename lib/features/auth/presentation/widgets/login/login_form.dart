@@ -150,9 +150,10 @@ class _LoginFormState extends State<LoginForm> {
   void _handleSuccessState(LoginSuccess state, BuildContext context) {
     serviceLocator
         .get<CacheHelper>()
-        .saveData(key: 'uid', value: Helper.uId)
+        .saveData(key: 'uid', value: state.uId)
         .then((value) {
       if (value) {
+        Helper.uId = state.uId;
         Helper.currentUser = state.user;
         context.navigateAndReplacement(
             newRoute: Routes.storeifyLayoutViewRoute);

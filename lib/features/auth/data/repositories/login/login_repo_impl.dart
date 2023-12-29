@@ -4,6 +4,7 @@ import 'package:store_ify/core/api/dio_consumer.dart';
 import 'package:store_ify/core/errors/server_failure.dart';
 import 'package:store_ify/core/network/network_info.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
+import 'package:store_ify/features/auth/data/entities/login_params.dart';
 import 'package:store_ify/features/auth/data/models/user.dart';
 import 'package:store_ify/features/auth/data/repositories/login/login_repo.dart';
 import 'package:store_ify/core/api/end_point.dart';
@@ -17,16 +18,15 @@ class LoginRepoImpl implements LoginRepo {
 
   @override
   Future<Either<Failure, User>> userLogin({
-    required String email,
-    required String password,
+    required LoginParams loginParams,
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await dioConsumer.postData(
           EndPoints.login,
           data: {
-            "email": email,
-            "password": password,
+            "email": loginParams.email,
+            "password": loginParams.password,
           },
         );
 
