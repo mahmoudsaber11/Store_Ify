@@ -25,8 +25,10 @@ class AllCategoriesListView extends StatelessWidget {
                   itemBuilder: (context, index) => CustomCategoryItem(
                         categoriesModel: state.category[index],
                         onTap: () {
+                          String categoryId = state.category[index].categoryId;
                           context.navigateTo(
-                              routeName: Routes.productsViewRoute);
+                              routeName: Routes.productsViewRoute,
+                              arguments: {'categoryId': categoryId});
                         },
                       )));
         } else {

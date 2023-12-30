@@ -20,7 +20,7 @@ class CategoriesModel extends Equatable {
       image: CategoryImage.fromJson(json["image"]),
     );
   }
-
+  String get categoryId => id;
   @override
   List<Object?> get props => [id, name, description, image];
 }
