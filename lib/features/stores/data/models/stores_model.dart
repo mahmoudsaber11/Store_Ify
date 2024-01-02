@@ -3,26 +3,28 @@ import 'package:equatable/equatable.dart';
 class StoresModel extends Equatable {
   final String id;
   final String name;
-  final int rate;
   final CategoryImage image;
+  final double rate;
+  final String type;
 
   const StoresModel({
     required this.id,
     required this.name,
-    required this.rate,
     required this.image,
+    required this.rate,
+    required this.type,
   });
   factory StoresModel.fromJson(Map<String, dynamic> json) {
     return StoresModel(
-      id: json["_id"],
-      name: json["name"],
-      rate: json["rate"],
-      image: CategoryImage.fromJson(json["image"]),
-    );
+        id: json["_id"],
+        name: json["name"],
+        image: CategoryImage.fromJson(json["image"]),
+        rate: json['rate'],
+        type: json['type']);
   }
   String get categoryId => id;
   @override
-  List<Object?> get props => [id, name, rate, image];
+  List<Object?> get props => [id, name, image, rate, type];
 }
 
 class CategoryImage extends Equatable {

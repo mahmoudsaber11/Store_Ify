@@ -8,6 +8,7 @@ class EndPoints {
   static const String resetPassword = "${auth}RestePassword";
   static const String loginWithGoogle = "${auth}loginWithGmail";
   static const String category = "${baseUrl}category";
+  static const String store = "${baseUrl}Store";
 }
 
 const String token =
