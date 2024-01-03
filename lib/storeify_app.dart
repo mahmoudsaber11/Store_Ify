@@ -4,6 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/app_router.dart';
 import 'package:store_ify/config/themes/app_themes.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
+import 'package:store_ify/features/home/data/cubit/stores_cubit.dart';
+import 'package:store_ify/features/stores/presentation/cubit/clothes/clothes_cubit.dart';
+import 'package:store_ify/features/stores/presentation/cubit/food/food_cubit.dart';
 import 'package:store_ify/service_locator.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
 import 'package:store_ify/features/categories/presentation/cubit/category_cubit.dart';
@@ -26,6 +29,14 @@ class StoreifyApp extends StatelessWidget {
             create: (context) =>
                 serviceLocator.get<CategoryCubit>()..getCategories(),
           ),
+          BlocProvider(
+              create: (context) =>
+                  serviceLocator.get<StoresCubit>()..getStores()),
+          BlocProvider(
+              create: (context) =>
+                  serviceLocator.get<ClothesCubit>()..getClothes()),
+          BlocProvider(
+              create: (context) => serviceLocator.get<FoodCubit>()..getFood()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

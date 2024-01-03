@@ -19,7 +19,7 @@ class StoresModel extends Equatable {
         id: json["_id"],
         name: json["name"],
         image: CategoryImage.fromJson(json["image"]),
-        rate: json['rate'],
+        rate: (json['rate'] ?? 0).toDouble(),
         type: json['type']);
   }
   String get categoryId => id;

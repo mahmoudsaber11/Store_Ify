@@ -31,6 +31,11 @@ import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cu
 import 'package:store_ify/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:store_ify/features/categories/data/repositories/category_repo.dart';
 import 'package:store_ify/features/categories/data/repositories/category_repo_impl.dart';
+import 'package:store_ify/features/stores/data/repositories/stores_repo.dart';
+import 'package:store_ify/features/stores/data/repositories/stores_repo_impl.dart';
+import 'package:store_ify/features/home/data/cubit/stores_cubit.dart';
+import 'package:store_ify/features/stores/presentation/cubit/clothes/clothes_cubit.dart';
+import 'package:store_ify/features/stores/presentation/cubit/food/food_cubit.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -135,6 +140,12 @@ class ServiceLocator {
         networkInfo: serviceLocator.get<NetworkInfo>(),
       ),
     );
+    serviceLocator.registerLazySingleton<StoresRepo>(
+      () => StoresRepoImpl(
+        dioConsumer: serviceLocator.get<DioConsumer>(),
+        networkInfo: serviceLocator.get<NetworkInfo>(),
+      ),
+    );
   }
 
   void _setupForCubits() {
@@ -177,5 +188,14 @@ class ServiceLocator {
         categoryRepo: serviceLocator.get<CategoryRepo>(),
       ),
     );
+
+    serviceLocator.registerFactory<StoresCubit>(
+        () => StoresCubit(storesRepo: serviceLocator.get<StoresRepo>()));
+
+    serviceLocator.registerFactory<ClothesCubit>(
+        () => ClothesCubit(storesRepo: serviceLocator.get<StoresRepo>()));
+
+    serviceLocator.registerFactory<FoodCubit>(
+        () => FoodCubit(storesRepo: serviceLocator.get<StoresRepo>()));
   }
 }

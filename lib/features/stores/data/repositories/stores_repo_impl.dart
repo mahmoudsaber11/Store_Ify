@@ -19,11 +19,10 @@ class StoresRepoImpl implements StoresRepo {
   });
 
   @override
-  Future<Either<Failure, List<StoresModel>>> getStores(
-      {String? storeType}) async {
+  Future<Either<Failure, List<StoresModel>>> getStores() async {
     try {
       final response = await dioConsumer.getData(
-        '${EndPoints.store}?type=$storeType',
+        EndPoints.store,
       );
 
       List<StoresModel> stores = [];
@@ -32,6 +31,48 @@ class StoresRepoImpl implements StoresRepo {
       }
 
       return right(stores);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StoresModel>>> getClothes() async {
+    try {
+      final response = await dioConsumer.getData(
+        EndPoints.storeClothes,
+      );
+
+      List<StoresModel> storeClothes = [];
+      for (var item in response["Store"]) {
+        storeClothes.add(StoresModel.fromJson(item));
+      }
+
+      return right(storeClothes);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StoresModel>>> getFood() async {
+    try {
+      final response = await dioConsumer.getData(
+        EndPoints.storeFood,
+      );
+
+      List<StoresModel> storeFood = [];
+      for (var item in response["Store"]) {
+        storeFood.add(StoresModel.fromJson(item));
+      }
+
+      return right(storeFood);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
