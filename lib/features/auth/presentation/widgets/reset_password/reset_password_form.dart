@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_ify/core/helpers/helper.dart';
+import 'package:store_ify/core/helpers/auth_helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
@@ -87,7 +87,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                     color: AppColors.primaryColor,
                   ),
                 ),
-                validate: (value) => Helper.validatePasswordField(value),
+                validate: (value) => AuthHelper.validatePasswordField(value),
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 hintText: '*********',
@@ -101,7 +101,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               CustomTextField(
                 isPassword:
                     BlocProvider.of<ResetPasswordCubit>(context).isPassword,
-                validate: (value) => Helper.validateConfirmPasswordField(
+                validate: (value) => AuthHelper.validateConfirmPasswordField(
                   value: value,
                   password: _passwordController.text,
                   confirmPassword: _confirmController.text,
@@ -142,7 +142,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
   void _resetPassword(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       BlocProvider.of<ResetPasswordCubit>(context).resetPassword(
         email: widget.email,
         password: _passwordController.text,

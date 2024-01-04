@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/config/routes/routes.dart';
+import 'package:store_ify/core/helpers/auth_helper.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
@@ -74,7 +75,8 @@ class _LoginFormState extends State<LoginForm> {
             children: <Widget>[
               const TextFieldLabel(label: 'E-mail'),
               CustomTextField(
-                validate: (String? value) => Helper.validateEmailField(value),
+                validate: (String? value) =>
+                    AuthHelper.validateEmailField(value),
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_passwordFocusNode),
                 controller: _emailController,
@@ -88,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
               CustomTextField(
                 autofillHints: const <String>[AutofillHints.password],
                 validate: (String? value) =>
-                    Helper.validatePasswordField(value),
+                    AuthHelper.validatePasswordField(value),
                 focusNode: _passwordFocusNode,
                 onSubmit: (_) => _login(context),
                 controller: _passwordController,
@@ -125,7 +127,7 @@ class _LoginFormState extends State<LoginForm> {
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       BlocProvider.of<LoginCubit>(context).userLogin(
         email: _emailController.text.trim(),
         password: _passwordController.text,
