@@ -19,38 +19,41 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return BlocBuilder<OnBoardingCubit, OnBoardingState>(
       builder: (context, state) {
         OnBoardingCubit cubit = BlocProvider.of<OnBoardingCubit>(context);
 
-        return Column(
-          children: <Widget>[
-            const Spacer(),
-            Expanded(
-              child: PageView.builder(
-                controller: pageController,
-                itemCount: cubit.onBoardingPages().length,
-                itemBuilder: (context, index) => PageViewItem(
-                  pageInfo: cubit.onBoardingPages()[index],
+        return SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: screenHeight * 0.1),
+              SizedBox(
+                height: screenHeight * 0.5,
+                child: PageView.builder(
+                  controller: pageController,
+                  itemCount: cubit.onBoardingPages().length,
+                  itemBuilder: (context, index) => PageViewItem(
+                    pageInfo: cubit.onBoardingPages()[index],
+                  ),
+                  onPageChanged: (int index) {
+                    cubit.onChangePageIndex(index);
+                  },
                 ),
-                onPageChanged: (int index) {
-                  cubit.onChangePageIndex(index);
-                },
               ),
-            ),
-            SizedBox(height: 24.h),
-            Align(
-              alignment: Alignment.center,
-              child: CustomIndicator(pageController: pageController),
-            ),
-            SizedBox(height: 40.h),
-            CustomGeneralButton(
-              width: 213.w,
-              onPressed: () => _navigateAmongOnBoarding(context),
-              text: cubit.isLastBoarding ? 'Get Started' : 'Next',
-            ),
-            const Spacer(),
-          ],
+              SizedBox(height: 24.h),
+              Align(
+                alignment: Alignment.center,
+                child: CustomIndicator(pageController: pageController),
+              ),
+              SizedBox(height: 40.h),
+              CustomGeneralButton(
+                width: 213.w,
+                onPressed: () => _navigateAmongOnBoarding(context),
+                text: cubit.isLastBoarding ? 'Get Started' : 'Next',
+              ),
+            ],
+          ),
         );
       },
     );
