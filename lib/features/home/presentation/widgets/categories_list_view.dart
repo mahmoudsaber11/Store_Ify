@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
-import 'package:store_ify/core/widgets/custom_category_item.dart';
+import 'package:store_ify/features/categories/presentation/widgets/custom_category_item.dart';
 import 'package:store_ify/features/categories/presentation/cubit/categorey_state.dart';
 import 'package:store_ify/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

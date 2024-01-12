@@ -18,6 +18,7 @@ import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_vi
 import 'package:store_ify/features/product_details/presentation/view/product_details_view.dart';
 import 'package:store_ify/features/products/presentation/view/products_view.dart';
 import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
+import 'package:store_ify/features/stores_details/presentation/view/stores_details_view.dart';
 import 'package:store_ify/service_locator.dart';
 
 class AppRouter {
@@ -93,6 +94,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const ProductDetailsView(),
         );
+
+      case Routes.storesDetailsViewRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StoresDetailsView());
 
       default:
         return _unFoundRoute();

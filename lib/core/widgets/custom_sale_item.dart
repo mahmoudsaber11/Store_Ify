@@ -19,10 +19,16 @@ class CustomSaleItem extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Image.asset(
-            image,
-            fit: BoxFit.fill,
+          Container(
+            height: 209.h,
             width: 148.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(
+                image: AssetImage(image), // Provide the image path
+                fit: BoxFit.fill, // Adjust the BoxFit as needed
+              ),
+            ),
           ),
           Card(
             elevation: 2,

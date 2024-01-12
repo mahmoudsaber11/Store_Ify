@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
 
 class SignWithSocial extends StatelessWidget {
@@ -9,9 +10,29 @@ class SignWithSocial extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        InkWell(onTap: () {}, child: Image.asset(AppAssets.imagesFacebook)),
-        InkWell(onTap: () {}, child: Image.asset(AppAssets.imagesGoogle)),
-        InkWell(onTap: () {}, child: Image.asset(AppAssets.imagesTwitter)),
+        ElevatedButton(
+          onPressed: () {},
+          child: CircleAvatar(
+              radius: 10.r,
+              child: Image.asset(
+                AppAssets.imagesFacebook,
+              )),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: CircleAvatar(
+              radius: 10.r,
+              child: Image.asset(
+                AppAssets.imagesGoogle,
+              )),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: CircleAvatar(
+            radius: 10.r,
+            child: Image.asset(AppAssets.imagesTwitter),
+          ),
+        ),
       ],
     );
   }

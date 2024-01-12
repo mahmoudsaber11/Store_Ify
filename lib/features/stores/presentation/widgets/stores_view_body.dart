@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_ify/core/utils/app_assets.dart';
 import 'package:store_ify/core/utils/app_colors.dart';
 import 'package:store_ify/core/widgets/custom_outlined_button.dart';
 import 'package:store_ify/core/widgets/custom_page_title.dart';
-import 'package:store_ify/features/stores/presentation/widgets/all_stores_list_view.dart';
+import 'package:store_ify/features/stores/presentation/widgets/clothes_grid_view.dart';
+import 'package:store_ify/features/stores/presentation/widgets/food_grid_view.dart';
 
 class StoresViewBody extends StatefulWidget {
   const StoresViewBody({super.key});
@@ -24,7 +24,7 @@ class _StoresViewBodyState extends State<StoresViewBody> {
       children: [
         const CustomPageTitle(title: "Stores"),
         SizedBox(
-          height: 35.h,
+          height: 15.h,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -55,16 +55,8 @@ class _StoresViewBodyState extends State<StoresViewBody> {
         SizedBox(
           height: 19.h,
         ),
-        if (currentIndex == 0)
-          const Expanded(
-              child: AllStoresListView(
-            image: AppAssets.stores,
-          )),
-        if (currentIndex == 1)
-          const Expanded(
-              child: AllStoresListView(
-            image: AppAssets.stores1,
-          )),
+        if (currentIndex == 0) const Expanded(child: FoodGridView()),
+        if (currentIndex == 1) const Expanded(child: ClothesGridView()),
       ],
     );
   }
