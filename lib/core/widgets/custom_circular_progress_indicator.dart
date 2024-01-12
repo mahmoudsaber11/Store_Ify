@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
 
 class CustomCircularProgressIndicator extends StatelessWidget {
   const CustomCircularProgressIndicator({

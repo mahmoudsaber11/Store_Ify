@@ -22,7 +22,7 @@ class LoginRepoImpl implements LoginRepo {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await dioConsumer.postData(
+        final response = await dioConsumer.post(
           EndPoints.login,
           data: {
             "email": loginParams.email,

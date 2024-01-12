@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/core/utils/app_assets.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
 import 'package:store_ify/core/widgets/custom_outlined_button.dart';
 import 'package:store_ify/core/widgets/custom_page_title.dart';
 import 'package:store_ify/features/products/presentation/widgets/products_list_view.dart';

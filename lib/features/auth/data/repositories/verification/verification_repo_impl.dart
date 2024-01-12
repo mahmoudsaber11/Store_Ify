@@ -21,7 +21,7 @@ class VerificationRepoImpl implements VerificationRepo {
     required VerificationParams verificationParams,
   }) {
     return executeAndHandleErrors<dynamic>(
-      function: () async => await dioConsumer.postData(
+      function: () async => await dioConsumer.post(
         EndPoints.verifyCode,
         data: {
           "email": verificationParams.email,

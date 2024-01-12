@@ -21,7 +21,7 @@ class CategoryRepoImpl implements CategoryRepo {
   @override
   Future<Either<Failure, List<CategoriesModel>>> getCategories() async {
     try {
-      final response = await dioConsumer.getData(
+      final response = await dioConsumer.get(
         EndPoints.category,
       );
 

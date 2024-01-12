@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'package:store_ify/config/routes/routes.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';

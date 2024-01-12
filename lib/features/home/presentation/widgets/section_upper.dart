@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/widgets/custom_user.dart';
 import 'package:location/location.dart' as location;

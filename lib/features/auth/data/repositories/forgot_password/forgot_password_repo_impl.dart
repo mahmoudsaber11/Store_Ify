@@ -20,7 +20,7 @@ class ForgotPasswordRepoImpl implements ForgotPasswordRepo {
     required String email,
   }) {
     return executeAndHandleErrors<dynamic>(
-      function: () async => await dioConsumer.patchData(
+      function: () async => await dioConsumer.patch(
         EndPoints.forgetPassword,
         data: {
           "email": email,

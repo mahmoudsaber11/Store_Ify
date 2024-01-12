@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
 import 'package:store_ify/core/utils/app_strings.dart';
 
 class AppThemes {

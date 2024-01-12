@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/config/themes/app_text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/features/stores/data/models/stores_model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
