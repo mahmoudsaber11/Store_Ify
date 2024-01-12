@@ -12,12 +12,12 @@ import 'package:store_ify/features/auth/presentation/views/reset_password_view.d
 import 'package:store_ify/features/auth/presentation/views/sign_up_view.dart';
 import 'package:store_ify/features/auth/presentation/views/verification_view.dart';
 import 'package:store_ify/features/categories/presentation/view/categories_view.dart';
+import 'package:store_ify/features/entry/presentation/views/entry_view.dart';
 import 'package:store_ify/features/layout/presentation/views/layout_view.dart';
 import 'package:store_ify/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:store_ify/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:store_ify/features/product_details/presentation/view/product_details_view.dart';
 import 'package:store_ify/features/products/presentation/view/products_view.dart';
-import 'package:store_ify/features/splash/presentation/views/splash_view.dart';
 import 'package:store_ify/features/stores_details/presentation/view/stores_details_view.dart';
 import 'package:store_ify/service_locator.dart';
 
@@ -25,7 +25,7 @@ class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+        return MaterialPageRoute(builder: (context) => const EntryView());
 
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(

@@ -7,6 +7,7 @@ import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/helpers/helper.dart';
 import 'package:store_ify/config/themes/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
+import 'package:store_ify/core/utils/app_strings.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/service_locator.dart';
 import 'package:store_ify/core/widgets/custom_circular_progress_indicator.dart';
@@ -152,7 +153,7 @@ class _LoginFormState extends State<LoginForm> {
   void _handleSuccessState(LoginSuccess state, BuildContext context) {
     serviceLocator
         .get<CacheHelper>()
-        .saveData(key: 'uid', value: state.uId)
+        .saveData(key: AppStrings.cachedUserId, value: state.uId)
         .then((value) {
       if (value) {
         Helper.uId = state.uId;
