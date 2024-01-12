@@ -42,8 +42,8 @@ class _EntryViewState extends State<EntryView> {
     final double bottomPadding = View.of(context).viewPadding.bottom;
 
     // Set the color based on the presence of the system navigation bar
-    final Color systemNavigationBarColor =
-        bottomPadding > 0 ? Colors.black : Colors.transparent;
+    final Color? systemNavigationBarColor =
+        bottomPadding > 0 ? null : Colors.transparent;
 
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
