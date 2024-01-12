@@ -21,7 +21,7 @@ class StoresRepoImpl implements StoresRepo {
   @override
   Future<Either<Failure, List<StoresModel>>> getStores() async {
     try {
-      final response = await dioConsumer.getData(
+      final response = await dioConsumer.get(
         EndPoints.store,
       );
 
@@ -42,7 +42,7 @@ class StoresRepoImpl implements StoresRepo {
   @override
   Future<Either<Failure, List<StoresModel>>> getClothes() async {
     try {
-      final response = await dioConsumer.getData(
+      final response = await dioConsumer.get(
         EndPoints.storeClothes,
       );
 
@@ -63,7 +63,7 @@ class StoresRepoImpl implements StoresRepo {
   @override
   Future<Either<Failure, List<StoresModel>>> getFood() async {
     try {
-      final response = await dioConsumer.getData(
+      final response = await dioConsumer.get(
         EndPoints.storeFood,
       );
 

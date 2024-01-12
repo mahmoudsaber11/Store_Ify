@@ -26,7 +26,7 @@ class SingUpRepoImpl implements SignUpRepo {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await dioConsumer.postData(
+        final response = await dioConsumer.post(
           EndPoints.register,
           data: {
             "userName": signUpParams.userName,

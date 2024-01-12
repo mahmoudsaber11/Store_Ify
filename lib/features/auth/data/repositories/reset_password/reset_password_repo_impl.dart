@@ -21,7 +21,7 @@ class ResetPasswordRepoImpl implements ResetPasswordRepo {
     required ResetPasswordParams resetPasswordParams,
   }) {
     return executeAndHandleErrors<dynamic>(
-      function: () async => await dioConsumer.patchData(
+      function: () async => await dioConsumer.patch(
         EndPoints.resetPassword,
         data: {
           "email": resetPasswordParams.email,
