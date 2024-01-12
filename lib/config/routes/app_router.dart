@@ -92,7 +92,8 @@ class AppRouter {
 
       case Routes.productDetailsViewRoute:
         return MaterialPageRoute(
-            builder: (context) => const ProductDetailsView());
+          builder: (context) => const ProductDetailsView(),
+        );
 
       case Routes.storesDetailsViewRoute:
         return MaterialPageRoute(

@@ -158,7 +158,8 @@ class _LoginFormState extends State<LoginForm> {
         Helper.uId = state.uId;
         Helper.currentUser = state.user;
         context.navigateAndReplacement(
-            newRoute: Routes.storeifyLayoutViewRoute);
+          newRoute: Routes.storeifyLayoutViewRoute,
+        );
       }
     });
   }
