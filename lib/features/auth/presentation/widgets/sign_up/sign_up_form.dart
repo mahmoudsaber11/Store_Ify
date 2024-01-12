@@ -5,7 +5,7 @@ import 'package:store_ify/config/routes/routes.dart';
 import 'package:store_ify/core/helpers/auth_helper.dart';
 import 'package:store_ify/core/helpers/cache_helper.dart';
 import 'package:store_ify/core/helpers/helper.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
 import 'package:store_ify/core/utils/app_navigator.dart';
 import 'package:store_ify/core/utils/functions/show_toast.dart';
 import 'package:store_ify/service_locator.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_ify/core/utils/app_colors.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/config/themes/app_colors.dart';
+import 'package:store_ify/config/themes/app_text_styles.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_cubit.dart';
 import 'package:store_ify/features/layout/presentation/cubit/layout_state.dart';
 

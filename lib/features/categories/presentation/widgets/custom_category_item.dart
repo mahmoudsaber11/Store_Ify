@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_ify/core/utils/app_text_styles.dart';
+import 'package:store_ify/config/themes/app_text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_ify/features/categories/data/models/categories_model.dart';
 
